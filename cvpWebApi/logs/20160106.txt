@@ -1,0 +1,20 @@
+********** 7:32:09 PM **********
+Exception Type: System.IndexOutOfRangeException
+Exception: Unable to find specified column in result set
+Source: DbConnection.cs - GetAllDrugProducts()
+Stack Trace: 
+   at OracleInternal.ServiceObjects.OracleDataReaderImpl.GetColumnOrdinal(String colName)
+   at Oracle.ManagedDataAccess.Client.OracleDataReader.GetOrdinal(String name)
+   at Oracle.ManagedDataAccess.Client.OracleDataReader.get_Item(String columnName)
+   at cvp.DBConnection.GetAllDrugProduct() in c:\Users\hcuser\Documents\Visual Studio 2013\Projects\cvpWebApi\cvpWebApi\App_Data\DBConnection.cs:line 57
+
+********** 7:32:18 PM **********
+Exception Type: System.IndexOutOfRangeException
+Exception: Unable to find specified column in result set
+Source: DbConnection.cs - GetAllDrugProducts()
+Stack Trace: 
+   at OracleInternal.ServiceObjects.OracleDataReaderImpl.GetColumnOrdinal(String colName)
+   at Oracle.ManagedDataAccess.Client.OracleDataReader.GetOrdinal(String name)
+   at Oracle.ManagedDataAccess.Client.OracleDataReader.get_Item(String columnName)
+   at cvp.DBConnection.GetAllDrugProduct() in c:\Users\hcuser\Documents\Visual Studio 2013\Projects\cvpWebApi\cvpWebApi\App_Data\DBConnection.cs:line 57
+
