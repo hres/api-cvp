@@ -167,6 +167,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ReportInfoController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\DrugProductController.cs" />
     <Compile Include="Controllers\DrugProductIngredientController.cs" />
@@ -177,7 +178,10 @@
     </Compile>
     <Compile Include="Models\DrugProductIngredientRepository.cs" />
     <Compile Include="Models\IDrugProductIngredientRepository.cs" />
+    <Compile Include="Models\IReportInfoRepository.cs" />
     <Compile Include="Models\IReportRepository.cs" />
+    <Compile Include="Models\ReportInfo.cs" />
+    <Compile Include="Models\ReportInfoRepository.cs" />
     <Compile Include="Models\ReportRepository.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\DrugProductIngredient.cs" />
@@ -271,6 +275,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="searchReport_en.html" />
     <Content Include="Views\Shared\Error404.htm" />
     <Content Include="Views\Shared\Error500.htm" />
     <Content Include="Views\Shared\GenericError.htm" />
@@ -299,7 +304,9 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="js\" />

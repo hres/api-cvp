@@ -410,8 +410,126 @@ namespace cvp
                         con.Close();
                 }
             }
+
+
             return report;
         }
+
+        public List<ReportInfo> GetAllReportInfo()
+        {
+            var items = new List<ReportInfo>();
+            string commandText = "SELECT REPORT_ID, REPORT_NO, DATRECEIVED, DATINTRECEIVED, MAH_NO, GENDER_ENG, GENDER_FR,";
+            commandText += "AGE, AGE_UNIT_ENG, AGE_UNIT_FR, PT_NAME_ENG, PT_NAME_FR, SOC_NAME_ENG, SOC_NAME_FR, DRUGNAME FROM CVPONL_OWNER.REPORTS";
+
+            //using (SqlConnection con = new SqlConnection(DpdDBConnection))
+            using (OracleConnection con = new OracleConnection(DpdDBConnection))
+            {
+                OracleCommand cmd = new OracleCommand(commandText, con);
+                try
+                {
+                    con.Open();
+                    using (OracleDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                var item = new ReportInfo();
+                                item.ReportId = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
+                                item.ReportNo = dr["REPORT_NO"] == DBNull.Value ? string.Empty : dr["REPORT_NO"].ToString().Trim();
+                                item.DateReceived = dr["DATRECEIVED"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["DATRECEIVED"]);
+                                item.DateIntReceived = dr["DATINTRECEIVED"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["DATINTRECEIVED"]);
+                                item.MahNo = dr["MAH_NO"] == DBNull.Value ? string.Empty : dr["MAH_NO"].ToString().Trim();
+                                item.GenderEng = dr["GENDER_ENG"] == DBNull.Value ? string.Empty : dr["GENDER_ENG"].ToString().Trim();
+                                item.GenderFr = dr["GENDER_FR"] == DBNull.Value ? string.Empty : dr["GENDER_FR"].ToString().Trim();
+                                item.Age = dr["AGE"] == DBNull.Value ? 0 : Convert.ToInt32(dr["AGE"]);
+                                item.AgeUnitEng = dr["AGE_UNIT_ENG"] == DBNull.Value ? string.Empty : dr["AGE_UNIT_ENG"].ToString().Trim();
+                                item.AgeUnitFr = dr["AGE_UNIT_FR"] == DBNull.Value ? string.Empty : dr["AGE_UNIT_FR"].ToString().Trim();
+                                item.PtNameEng = dr["PT_NAME_ENG"] == DBNull.Value ? string.Empty : dr["PT_NAME_ENG"].ToString().Trim();
+                                item.PtNameFr = dr["PT_NAME_FR"] == DBNull.Value ? string.Empty : dr["PT_NAME_FR"].ToString().Trim();
+                                item.SocNameEng = dr["SOC_NAME_ENG"] == DBNull.Value ? string.Empty : dr["SOC_NAME_ENG"].ToString().Trim();
+                                item.SocNameFr = dr["SOC_NAME_FR"] == DBNull.Value ? string.Empty : dr["SOC_NAME_FR"].ToString().Trim();
+                                item.DrugName = dr["DRUGNAME"] == DBNull.Value ? string.Empty : dr["DRUGNAME"].ToString().Trim();
+
+                                items.Add(item);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string errorMessages = string.Format("DbConnection.cs - GetAllReport()");
+                    ExceptionHelper.LogException(ex, errorMessages);
+
+                    Console.WriteLine(errorMessages);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                        con.Close();
+                }
+            }
+            return items;
+        }
+
+        public ReportInfo GetReportInfoById(int id)
+        {
+            var report = new ReportInfo();
+            string commandText = "SELECT REPORT_ID, REPORT_NO, DATRECEIVED, DATINTRECEIVED, MAH_NO, GENDER_ENG, GENDER_FR,";
+            commandText += "AGE, AGE_UNIT_ENG, AGE_UNIT_FR, PT_NAME_ENG, PT_NAME_FR, SOC_NAME_ENG, SOC_NAME_FR, DRUGNAME FROM CVPONL_OWNER.REPORTS WHERE REPORT_ID = " + id; 
+
+            //using (SqlConnection con = new SqlConnection(DpdDBConnection))
+            using (
+
+                OracleConnection con = new OracleConnection(DpdDBConnection))
+            {
+                OracleCommand cmd = new OracleCommand(commandText, con);
+                try
+                {
+                    con.Open();
+                    using (OracleDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                var item = new ReportInfo();
+                                item.ReportId = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
+                                item.ReportNo = dr["REPORT_NO"] == DBNull.Value ? string.Empty : dr["REPORT_NO"].ToString().Trim();
+                                item.DateReceived = dr["DATRECEIVED"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["DATRECEIVED"]);
+                                item.DateIntReceived = dr["DATINTRECEIVED"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["DATINTRECEIVED"]);
+                                item.MahNo = dr["MAH_NO"] == DBNull.Value ? string.Empty : dr["MAH_NO"].ToString().Trim();
+                                item.GenderEng = dr["GENDER_ENG"] == DBNull.Value ? string.Empty : dr["GENDER_ENG"].ToString().Trim();
+                                item.GenderFr = dr["GENDER_FR"] == DBNull.Value ? string.Empty : dr["GENDER_FR"].ToString().Trim();
+                                item.Age = dr["AGE"] == DBNull.Value ? 0 : Convert.ToInt32(dr["AGE"]);
+                                item.AgeUnitEng = dr["AGE_UNIT_ENG"] == DBNull.Value ? string.Empty : dr["AGE_UNIT_ENG"].ToString().Trim();
+                                item.AgeUnitFr = dr["AGE_UNIT_FR"] == DBNull.Value ? string.Empty : dr["AGE_UNIT_FR"].ToString().Trim();
+                                item.PtNameEng = dr["PT_NAME_ENG"] == DBNull.Value ? string.Empty : dr["PT_NAME_ENG"].ToString().Trim();
+                                item.PtNameFr = dr["PT_NAME_FR"] == DBNull.Value ? string.Empty : dr["PT_NAME_FR"].ToString().Trim();
+                                item.SocNameEng = dr["SOC_NAME_ENG"] == DBNull.Value ? string.Empty : dr["SOC_NAME_ENG"].ToString().Trim();
+                                item.SocNameFr = dr["SOC_NAME_FR"] == DBNull.Value ? string.Empty : dr["SOC_NAME_FR"].ToString().Trim();
+                                item.DrugName = dr["DRUGNAME"] == DBNull.Value ? string.Empty : dr["DRUGNAME"].ToString().Trim();
+
+                                report = item;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string errorMessages = string.Format("DbConnection.cs - GetReportById()");
+                    ExceptionHelper.LogException(ex, errorMessages);
+                    Console.WriteLine(errorMessages);
+                }
+                finally
+                {
+                    if (con.State == ConnectionState.Open)
+                        con.Close();
+                }
+            }
+            return report;
+        }
+
     }
 
 }
