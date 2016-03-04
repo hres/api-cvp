@@ -1,5 +1,4 @@
 ﻿<!doctype html>
-
 <!--[if lt IE 9]>
 <html class="no-js lt-ie9" dir="ltr" lang="en">
 <![endif]-->
@@ -11,7 +10,7 @@
     <meta charset="utf-8">
     <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
     wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-    <title>Good clinical practices - clinical trial search</title>
+    <title>Search by Report - Canada Vigilance Adverse Reaction Database</title>
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <!-- Meta data -->
     <meta name="description" content="">
@@ -124,70 +123,77 @@
                     <ol class="breadcrumb">
                         <li><a href="http://canada.ca/en/index.html">Home</a></li>
                         <li><a href="http://open.canada.ca/en">Open Government</a></li>
-                        <li><a href="http://open.canada.ca/data/en/dataset/9cbaef00-b52c-4a70-9fed-d9aa8263ab74">Open Data</a></li>
+                        <li><a href="http://open.canada.ca/data/en/dataset?q=DPD">Open Data</a></li>
                     </ol>
                 </div>
             </div>
         </nav>
     </header>
     <main role="main" property="mainContentOfPage" class="container">
-        <div id="body">
-            <section class="featured">
-                <div class="content-wrapper">
-                    <hgroup class="title">
-                        <h1>Canada Vigilance Adverse Reaction Database - APIs</h1>
-                    </hgroup>
-                    <table class="wb-tables table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Request by:
-                                </th>
-                                <th scope=colgroup colspan=2>
-                                    Format:
-                            </tr>
-                        </thead>
-                        <tbody>
+       
+        <div>
+            <h2>Search by Report - Canada Vigilance Adverse Reaction Database:</h2>
+            <input type="text" id="searchCriteria" size="15" />
+            <input type="button" value="Search" onclick="find();" />
+            <p id="product" />
 
-                            <tr>
-                                <td>Drug Products:</td>
-                                <td> <a class="btn btn-default" href="/api/drugproduct/?type=json">Json</a></td>
-                                <td><a class="btn btn-default" href="/api/drugproduct/?type=xml">XML</a></td>
-                            </tr>
-                            <tr>
-                                <td>Drug Product By Id = 100:</td>
-                                <td> <a class="btn btn-default" href="/api/drugproduct/100/?type=json">Json</a></td>
-                                <td><a class="btn btn-default" href="/api/drugproduct/100/?type=xml">XML</a></td>
-                            </tr>
-                            <tr>
-                                <td>All Drug Product Ingredient:</td>
-                                <td><a class="btn btn-default" href="/api/drugproductingredient/?type=json">Json</a></td>
-                                <td><a class="btn btn-default" href="/api/drugproductingredient/?type=xml">XML</a></td>
-                            </tr>
-                            <tr>
-                                <td>Drug Product Ingredient By Id = 4049:</td>
-                                <td><a class="btn btn-default" href="/api/drugproductingredient/4049/?type=json">Json</a></td>
-                                <td><a class="btn btn-default" href="/api/drugproductingredient/4049/?type=xml">XML</a></td>
-                            </tr>
-                            <tr>
-                                <td>All Report:</td>
-                                <td><a class="btn btn-default" href="/api/report/?type=json">Json</a></td>
-                                <td><a class="btn btn-default" href="/api/report/?type=xml">XML</a></td>
-                            </tr>
-                            <tr>
-                                <td>Report By Id = 1:</td>
-                                <td><a class="btn btn-default" href="/api/report/1/?type=json">Json</a></td>
-                                <td><a class="btn btn-default" href="/api/report/1/?type=xml">XML</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-            </section>
-
-
+            <div id="placeholder"></div>
         </div>
 
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript">
+    var uri = 'api/reportinfo';
+
+    function find() {
+        var q = $("#searchCriteria").val();
+        
+           $.getJSON(uri + '/?type=json').done(function (data) {
+              // Add a list item for the product.
+              var output = "<div class='table-responsive'>";
+
+              output += "<table id='tabledata' class='table table-striped wb-tables'>";
+              output += "<caption class='text-left'>Search Result<br><span class='wb-inv'>Search Results</span></caption>";
+              output += "<thead>";
+              output += "<tr>";
+              output += "<th id='din' scope='col' class='hg-primary align-top' >AR Report Number</th>";
+              output += "<th id='product' scope='col' class='hg-primary align-top' >Market Authorization Holder AER No</th>";
+              output += "<th id='company' scope='col' class='hg-primary align-top' >Initial Received Date</th>";
+              output += "<th id='class' scope='col' class='hg-primary align-top' >Age</th>";
+              output += "<th id='class' scope='col' class='hg-primary align-top' >Gender</th>";
+              output += "<th id='class' scope='col' class='hg-primary align-top' >Suspected Product Brand Name</th>";
+              output += "<th id='class' scope='col' class='hg-primary align-top' >Adverse Reaction Terms</th>";
+
+              output += "</tr></thead><tbody>";
+              $.each(data, function(i, item) {
+                  if ((item.ReportNo.search(new RegExp(q, "i")) != -1) || (item.DrugName.search(new RegExp(q, "i")) != -1)) {
+				  output += "<tr><td>";
+                  output += data[i].ReportNo;
+                  output += "</td><td>";
+                  output += data[i].MahNo;
+                  output += "</td><td>";
+                  output += data[i].DateReceived;
+                  output += "</td><td>";
+                  output += data[i].Age;
+                  output += "</td><td>";
+                  output += data[i].GenderEng;
+                  output += "</td><td>";
+                  output += data[i].PtNameEng;
+                  output += "</td><td>";
+                  output += data[i].DrugName;
+                  output += "</td>";
+                  output += "</tr>";
+                  }
+                });
+
+              output += "</tbody></table>";
+              document.getElementById("placeholder").innerHTML = output;
+          })
+          .fail(function (jqXHR, textStatus, err) {
+            $('#product').text('Error: ' + err);
+          });
+    }
+    </script>
+ 
         <div class="row pagedetails">
             <div class="col-sm-5 col-xs-12 datemod">
                 <dl id="wb-dtmd">

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html><!--[if lt IE 9]><html class="no-js lt-ie9" lang="fr" dir="ltr"><![endif]--><!--[if gt IE 8]><!-->
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage" %>
+
+<!DOCTYPE html><!--[if lt IE 9]><html class="no-js lt-ie9" lang="fr" dir="ltr"><![endif]--><!--[if gt IE 8]><!-->
 <html class="no-js" lang="fr" dir="ltr">
 <!--<![endif]-->
 <head>
@@ -52,7 +54,7 @@ wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licenc
 <div class="row">
 <div class="col-md-12">
 <ul class="list-inline margin-bottom-none">
-<li><a lang="en" href="index-en.html">English</a></li>
+<li><a lang="en" href="default.aspx">English</a></li>
 </ul>
 </div>
 </div>

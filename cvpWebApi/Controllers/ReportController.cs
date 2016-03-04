@@ -29,6 +29,10 @@ namespace cvpWebApi.Controllers
             return report;
         }
 
+        public IEnumerable<Report> GetReportByDrugName(string drugName)
+        {
+            return databasePlaceholder.Get(drugName);
+        }
 
         //public HttpResponseMessage PostReport(Report report)
         //{

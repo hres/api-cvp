@@ -10,6 +10,7 @@ namespace cvpWebApi.Models
     {
         IEnumerable<DrugProduct> GetAll();
         DrugProduct Get(int id);
+        IEnumerable<DrugProduct> Get(string drugName);
         // DrugProduct Add(DrugProduct drugProduct);
         // void Remove(int id);
         // bool Update(DrugProduct drugProduct);

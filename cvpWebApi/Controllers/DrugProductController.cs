@@ -29,7 +29,11 @@ namespace cvpWebApi.Controllers
             return drugProduct;
         }
 
+        public IEnumerable<DrugProduct> GetDrugProductByDrugName(string drugName)
+        {
+            return databasePlaceholder.Get(drugName);
 
+        }
         //public HttpResponseMessage PostDrugProduct(DrugProduct drugProduct)
         //{
         //    drugProduct = databasePlaceholder.Add(drugProduct);

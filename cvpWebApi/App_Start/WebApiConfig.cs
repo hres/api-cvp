@@ -5,6 +5,8 @@ using System.Web.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Text;
+using Newtonsoft.Json.Converters;
 
 namespace cvpWebApi
 {
@@ -15,7 +17,11 @@ namespace cvpWebApi
         public static void Register(HttpConfiguration config)
         {
             // config.MapHttpAttributeRoutes();
-
+            config.Routes.MapHttpRoute(
+                name: "ApiMultiParamPathExtension ID",
+                routeTemplate: "api/{controller}/{id}/{no}/{drugname}.{ext}",
+                defaults: new { id = RouteParameter.Optional, ext = RouteParameter.Optional });
+            
             config.Routes.MapHttpRoute(
                 name: "Api UriPathExtension ID",
                 routeTemplate: "api/{controller}/{id}.{ext}",
@@ -26,6 +32,8 @@ namespace cvpWebApi
                 defaults: new { id = RouteParameter.Optional }
             );
             config.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("type", "json", new MediaTypeHeaderValue("application/json")));
+            config.Formatters.JsonFormatter.SupportedEncodings.Add(Encoding.GetEncoding("utf-8"));
+            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-dd" });
             config.Formatters.XmlFormatter.MediaTypeMappings.Add(new QueryStringMapping("type", "xml", new MediaTypeHeaderValue("application/xml")));
 
 
