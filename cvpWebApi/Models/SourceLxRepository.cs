@@ -6,7 +6,7 @@ using cvp;
 
 namespace cvpWebApi.Models
 {
-    public class SourceLxRespository : ISourceLxRepository
+    public class SourceLxRepository : ISourceLxRepository
     {
         private List<SourceLx> _sourceLxs = new List<SourceLx>();
         private SourceLx _sourceLx = new SourceLx();
@@ -20,7 +20,7 @@ namespace cvpWebApi.Models
 
         public SourceLx Get(int id)
         {
-            _sourceLx = dbConnection.GetSourceLxById();
+            _sourceLx = dbConnection.GetSourceLxById(id);
             return _sourceLx;
         }
     }

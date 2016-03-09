@@ -168,6 +168,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AEReportController.cs" />
+    <Compile Include="Controllers\ReportDrugIndicationController.cs" />
+    <Compile Include="Controllers\ReportDrugController.cs" />
+    <Compile Include="Controllers\ReportTypeLxController.cs" />
+    <Compile Include="Controllers\SourceLxController.cs" />
+    <Compile Include="Controllers\SeriousnessLxController.cs" />
+    <Compile Include="Controllers\ReactionsController.cs" />
+    <Compile Include="Controllers\ReportLinksLxController.cs" />
+    <Compile Include="Controllers\OutcomeLxController.cs" />
+    <Compile Include="Controllers\GenderLxController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\DrugProductController.cs" />
     <Compile Include="Controllers\DrugProductIngredientController.cs" />
@@ -218,7 +227,7 @@
     <Compile Include="Models\SeriousnessLx.cs" />
     <Compile Include="Models\SeriousnessLxRepository.cs" />
     <Compile Include="Models\SourceLx.cs" />
-    <Compile Include="Models\SourceLxRespository.cs" />
+    <Compile Include="Models\SourceLxRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

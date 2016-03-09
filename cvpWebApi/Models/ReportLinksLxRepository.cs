@@ -20,7 +20,7 @@ namespace cvpWebApi.Models
 
         public ReportLinksLx Get(int id)
         {
-            _reportLinksLx = DBConnection.GetReportLinksLxById(id);
+            _reportLinksLx = dbConnection.GetReportLinksLxById(id);
             return _reportLinksLx;
         }
     }

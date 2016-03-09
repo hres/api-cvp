@@ -20,7 +20,7 @@ namespace cvpWebApi.Models
 
         public ReportTypeLx Get(int id)
         {
-            _reportTypeLx = dbConnection.GetReportTypeLxById();
+            _reportTypeLx = dbConnection.GetReportTypeLxById(id);
             return _reportTypeLx;
         }
     }

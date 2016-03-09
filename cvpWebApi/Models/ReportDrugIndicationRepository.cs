@@ -20,7 +20,7 @@ namespace cvpWebApi.Models
 
         public ReportDrugIndication Get(int id)
         {
-            _reportDrugIndication = dbConnection.getReportDrugIndicationById(id);
+            _reportDrugIndication = dbConnection.GetReportDrugIndicationById(id);
             return _reportDrugIndication;
         }
     }

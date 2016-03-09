@@ -1082,8 +1082,8 @@ namespace cvp
                                 var item = new OutcomeLx();
                                 item.OutcomeLxId = dr["OUTCOME_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["OUTCOME_LX_ID"]);
                                 item.OutcomeCode =dr["OUTCOME_CODE"] == DBNull.Value ? string.Empty : dr["OUTCOME_CODE"].ToString().Trim();
-                                item.OutcomeEn = dr["OUTCOME_EN"] == DBNull.Value ? string.Empty : dr["OUTCOME_EN"].ToString().Trim();
-                                item.OutcomeFr = dr["OUTCOME_FR"] == DBNull.Value ? string.Empty : dr["OUTCOME_FR"].ToString().Trim();
+                                item.OutcomeEn = dr["EN_DESC"] == DBNull.Value ? string.Empty : dr["EN_DESC"].ToString().Trim();
+                                item.OutcomeFr = dr["FR_DESC"] == DBNull.Value ? string.Empty : dr["FR_DESC"].ToString().Trim();
                                 
                                 items.Add(item);
                             }
@@ -1128,8 +1128,8 @@ namespace cvp
                                 var item = new OutcomeLx();
                                 item.OutcomeLxId = dr["OUTCOME_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["OUTCOME_LX_ID"]);
                                 item.OutcomeCode = dr["OUTCOME_CODE"] == DBNull.Value ? string.Empty : dr["OUTCOME_CODE"].ToString().Trim();
-                                item.OutcomeEn = dr["OUTCOME_EN"] == DBNull.Value ? string.Empty : dr["OUTCOME_EN"].ToString().Trim();
-                                item.OutcomeFr = dr["OUTCOME_FR"] == DBNull.Value ? string.Empty : dr["OUTCOME_FR"].ToString().Trim();
+                                item.OutcomeEn = dr["EN_DESC"] == DBNull.Value ? string.Empty : dr["EN_DESC"].ToString().Trim();
+                                item.OutcomeFr = dr["FR_DESC"] == DBNull.Value ? string.Empty : dr["FR_DESC"].ToString().Trim();
 
                                 outcomeLx = item;
                             }
@@ -1172,8 +1172,8 @@ namespace cvp
                                 var item = new GenderLx();
                                 item.GenderLxId = dr["GENDER_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["GENDER_LX_ID"]);
                                 item.GenderCode = dr["GENDER_CODE"] == DBNull.Value ? string.Empty : dr["GENDER_CODE"].ToString().Trim();
-                                item.GenderEn = dr["GENDER_EN"] == DBNull.Value ? string.Empty : dr["GENDER_EN"].ToString().Trim();
-                                item.GenderFr = dr["GENDER_FR"] == DBNull.Value ? string.Empty : dr["GENDER_FR"].ToString().Trim();
+                                item.GenderEn = dr["EN_DESC"] == DBNull.Value ? string.Empty : dr["EN_DESC"].ToString().Trim();
+                                item.GenderFr = dr["FR_DESC"] == DBNull.Value ? string.Empty : dr["FR_DESC"].ToString().Trim();
 
                                 items.Add(item);
                             }
@@ -1218,8 +1218,8 @@ namespace cvp
                                 var item = new GenderLx();
                                 item.GenderLxId = dr["GENDER_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["GENDER_LX_ID"]);
                                 item.GenderCode = dr["GENDER_CODE"] == DBNull.Value ? string.Empty : dr["GENDER_CODE"].ToString().Trim();
-                                item.GenderEn = dr["GENDER_EN"] == DBNull.Value ? string.Empty : dr["GENDER_EN"].ToString().Trim();
-                                item.GenderFr = dr["GENDER_FR"] == DBNull.Value ? string.Empty : dr["GENDER_FR"].ToString().Trim();
+                                item.GenderEn = dr["EN_DESC"] == DBNull.Value ? string.Empty : dr["EN_DESC"].ToString().Trim();
+                                item.GenderFr = dr["FR_DESC"] == DBNull.Value ? string.Empty : dr["FR_DESC"].ToString().Trim();
 
                                 genderLx = item;
                             }
@@ -1262,8 +1262,8 @@ namespace cvp
                                 var item = new ReportTypeLx();
                                 item.ReportTypeLxId = dr["REPORT_TYPE_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_TYPE_LX_ID"]);
                                 item.ReportTypeCode = dr["REPORT_TYPE_CODE"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_CODE"].ToString().Trim();
-                                item.ReportTypeEn = dr["REPORT_TYPE_EN"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_EN"].ToString().Trim();
-                                item.ReportTypeFr = dr["REPORT_TYPE_FR"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_FR"].ToString().Trim();
+                                item.ReportTypeEn = dr["EN_DESC"] == DBNull.Value ? string.Empty : dr["EN_DESC"].ToString().Trim();
+                                item.ReportTypeFr = dr["FR_DESC"] == DBNull.Value ? string.Empty : dr["FR_DESC"].ToString().Trim();
 
                                 items.Add(item);
                             }
@@ -1308,8 +1308,8 @@ namespace cvp
                                 var item = new ReportTypeLx();
                                 item.ReportTypeLxId = dr["REPORT_TYPE_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_TYPE_LX_ID"]);
                                 item.ReportTypeCode = dr["REPORT_TYPE_CODE"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_CODE"].ToString().Trim();
-                                item.ReportTypeEn = dr["REPORT_TYPE_EN"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_EN"].ToString().Trim();
-                                item.ReportTypeFr = dr["REPORT_TYPE_FR"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_FR"].ToString().Trim();
+                                item.ReportTypeEn = dr["EN_DESC"] == DBNull.Value ? string.Empty : dr["EN_DESC"].ToString().Trim();
+                                item.ReportTypeFr = dr["FR_DESC"] == DBNull.Value ? string.Empty : dr["FR_DESC"].ToString().Trim();
 
                                 reportTypeLx = item;
                             }
@@ -1352,8 +1352,8 @@ namespace cvp
                                 var item = new SeriousnessLx();
                                 item.SeriousnessLxId = dr["SERIOUSNESS_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["SERIOUSNESS_LX_ID"]);
                                 item.SeriousnessCode = dr["SERIOUSNESS_CODE"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_CODE"].ToString().Trim();
-                                item.SeriousnessEn = dr["SERIOUSNESS_EN"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_EN"].ToString().Trim();
-                                item.SeriousnessFr = dr["SERIOUSNESS_FR"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_FR"].ToString().Trim();
+                                item.SeriousnessEn = dr["EN_DESC"] == DBNull.Value ? string.Empty : dr["EN_DESC"].ToString().Trim();
+                                item.SeriousnessFr = dr["FR_DESC"] == DBNull.Value ? string.Empty : dr["FR_DESC"].ToString().Trim();
 
                                 items.Add(item);
                             }
@@ -1375,7 +1375,7 @@ namespace cvp
             return items;
         }
 
-        public SeriousnessLx GetSeriousnessLxByID(int id)
+        public SeriousnessLx GetSeriousnessLxById(int id)
         {
             var seriousnessLx = new SeriousnessLx();
             string commandText = "SELECT * FROM CVPONL_OWNER.SERIOUSNESS_LX WHERE SERIOUSNESS_LX_ID = " + id;
@@ -1398,8 +1398,8 @@ namespace cvp
                                 var item = new SeriousnessLx();
                                 item.SeriousnessLxId = dr["SERIOUSNESS_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["SERIOUSNESS_LX_ID"]);
                                 item.SeriousnessCode = dr["SERIOUSNESS_CODE"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_CODE"].ToString().Trim();
-                                item.SeriousnessEn = dr["SERIOUSNESS_EN"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_EN"].ToString().Trim();
-                                item.SeriousnessFr = dr["SERIOUSNESS_FR"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_FR"].ToString().Trim();
+                                item.SeriousnessEn = dr["EN_DESC"] == DBNull.Value ? string.Empty : dr["EN_DESC"].ToString().Trim();
+                                item.SeriousnessFr = dr["FR_DESC"] == DBNull.Value ? string.Empty : dr["FR_DESC"].ToString().Trim();
 
                                 seriousnessLx = item;
                             }
@@ -1442,8 +1442,8 @@ namespace cvp
                                 var item = new SourceLx();
                                 item.SourceLxId = dr["SOURCE_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["SOURCE_LX_ID"]);
                                 item.SourceCode = dr["SOURCE_CODE"] == DBNull.Value ? string.Empty : dr["SOURCE_CODE"].ToString().Trim();
-                                item.SourceEn = dr["SOURCE_EN"] == DBNull.Value ? string.Empty : dr["SOURCE_EN"].ToString().Trim();
-                                item.SourceFr = dr["SOURCE_FR"] == DBNull.Value ? string.Empty : dr["SOURCE_FR"].ToString().Trim();
+                                item.SourceEn = dr["EN_DESC"] == DBNull.Value ? string.Empty : dr["EN_DESC"].ToString().Trim();
+                                item.SourceFr = dr["FR_DESC"] == DBNull.Value ? string.Empty : dr["FR_DESC"].ToString().Trim();
 
                                 items.Add(item);
                             }
