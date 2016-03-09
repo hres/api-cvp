@@ -43,7 +43,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\oracle\product\12\odp.net\managed\common\Oracle.ManagedDataAccess.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Oracle\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -179,19 +179,46 @@
     </Compile>
     <Compile Include="Models\AEReport.cs" />
     <Compile Include="Models\AEReportRepository.cs" />
+    <Compile Include="Models\GenderLx.cs" />
+    <Compile Include="Models\GenderLxRepository.cs" />
+    <Compile Include="Models\IGenderLxRepository.cs" />
+    <Compile Include="Models\IOutcomeLxRepository.cs" />
+    <Compile Include="Models\IReportDrugIndicationRepository.cs" />
+    <Compile Include="Models\IReportDrugRepository.cs" />
+    <Compile Include="Models\IReportLinksLxRepository.cs" />
+    <Compile Include="Models\IReportTypeLxRepository.cs" />
+    <Compile Include="Models\ISeriousnessLxRepository.cs" />
+    <Compile Include="Models\ISourceLxRepository.cs" />
+    <Compile Include="Models\OutcomeLx.cs" />
     <Compile Include="Models\DrugProductIngredientRepository.cs" />
     <Compile Include="Models\IAEReportRepository.cs" />
     <Compile Include="Models\IDrugProductIngredientRepository.cs" />
+    <Compile Include="Models\IReactionsRepository.cs" />
     <Compile Include="Models\IReportInfoRepository.cs" />
     <Compile Include="Models\IReportRepository.cs" />
+    <Compile Include="Models\OutcomeLxRepository.cs" />
+    <Compile Include="Models\Reactions.cs" />
+    <Compile Include="Models\ReactionsRepository.cs" />
+    <Compile Include="Models\ReportDrug.cs" />
+    <Compile Include="Models\ReportDrugIndication.cs" />
+    <Compile Include="Models\ReportDrugIndicationRepository.cs" />
+    <Compile Include="Models\ReportDrugRepository.cs" />
     <Compile Include="Models\ReportInfo.cs" />
     <Compile Include="Models\ReportInfoRepository.cs" />
+    <Compile Include="Models\ReportLinksLx.cs" />
+    <Compile Include="Models\ReportLinksLxRepository.cs" />
     <Compile Include="Models\ReportRepository.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\DrugProductIngredient.cs" />
     <Compile Include="Models\DrugProduct.cs" />
     <Compile Include="Models\DrugProductRepository.cs" />
     <Compile Include="Models\IDrugProductRepository.cs" />
+    <Compile Include="Models\ReportTypeLx.cs" />
+    <Compile Include="Models\ReportTypeLxRepository.cs" />
+    <Compile Include="Models\SeriousnessLx.cs" />
+    <Compile Include="Models\SeriousnessLxRepository.cs" />
+    <Compile Include="Models\SourceLx.cs" />
+    <Compile Include="Models\SourceLxRespository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
