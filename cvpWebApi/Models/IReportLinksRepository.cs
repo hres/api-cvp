@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace cvpWebApi.Models
 {
-    interface IReportLinksLxRepository
+    interface IReportLinksRepository
     {
-        IEnumerable<ReportLinksLx> GetAll();
-        ReportLinksLx Get(int id);
+        IEnumerable<ReportLinks> GetAll();
+        ReportLinks Get(int id);
     }
 }

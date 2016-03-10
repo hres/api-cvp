@@ -1511,10 +1511,10 @@ namespace cvp
             return sourceLx;
         }
 
-        public List<ReportLinksLx> GetAllReportLinksLx()
+        public List<ReportLinks> GetAllReportLinks()
         {
-            var items = new List<ReportLinksLx>();
-            string commandText = "SELECT DISTINCT * FROM CVPONL_OWNER.REPORT_LINKS_LX";
+            var items = new List<ReportLinks>();
+            string commandText = "SELECT DISTINCT * FROM CVPONL_OWNER.REPORT_LINKS";
 
             //using (SqlConnection con = new SqlConnection(DpdDBConnection))
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
@@ -1529,12 +1529,12 @@ namespace cvp
                         {
                             while (dr.Read())
                             {
-                                var item = new ReportLinksLx();
+                                var item = new ReportLinks();
                                 item.ReportLinkId = dr["REPORT_LINK_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_LINK_ID"]);
                                 item.ReportId = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
                                 item.RecordTypeEng = dr["RECORD_TYPE_ENG"] == DBNull.Value ? string.Empty : dr["RECORD_TYPE_ENG"].ToString().Trim();
                                 item.RecordTypeFr = dr["RECORD_TYPE_FR"] == DBNull.Value ? string.Empty : dr["RECORD_TYPE_FR"].ToString().Trim();
-                                item.ReportLinkNo = dr["REPORT_LINK_NO"] == DBNull.Value ? string.Empty : dr["REPORT_LINK_NO"].ToString().Trim();
+                                item.ReportLinkNo = dr["REPORT_LINK"] == DBNull.Value ? string.Empty : dr["REPORT_LINK"].ToString().Trim();
 
                                 items.Add(item);
                             }
@@ -1556,9 +1556,9 @@ namespace cvp
             return items;
         }
 
-        public ReportLinksLx GetReportLinksLxById(int id)
+        public ReportLinks GetReportLinksById(int id)
         {
-            var reportLinksLx = new ReportLinksLx();
+            var reportLinks = new ReportLinks();
             string commandText = "SELECT * FROM CVPONL_OWNER.REPORT_LINKS_LX WHERE REPORT_LINK_ID = " + id;
 
             //using (SqlConnection con = new SqlConnection(DpdDBConnection))
@@ -1576,14 +1576,14 @@ namespace cvp
                         {
                             while (dr.Read())
                             {
-                                var item = new ReportLinksLx();
+                                var item = new ReportLinks();
                                 item.ReportLinkId = dr["REPORT_LINK_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_LINK_ID"]);
                                 item.ReportId = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
                                 item.RecordTypeEng = dr["RECORD_TYPE_ENG"] == DBNull.Value ? string.Empty : dr["RECORD_TYPE_ENG"].ToString().Trim();
                                 item.RecordTypeFr = dr["RECORD_TYPE_FR"] == DBNull.Value ? string.Empty : dr["RECORD_TYPE_FR"].ToString().Trim();
                                 item.ReportLinkNo = dr["REPORT_LINK_NO"] == DBNull.Value ? string.Empty : dr["REPORT_LINK_NO"].ToString().Trim();
 
-                                reportLinksLx = item;
+                                reportLinks = item;
                             }
                         }
                     }
@@ -1600,7 +1600,7 @@ namespace cvp
                         con.Close();
                 }
             }
-            return reportLinksLx;
+            return reportLinks;
         }
 
         public List<ReportDrug> GetAllReportDrug()
@@ -1642,7 +1642,7 @@ namespace cvp
                                 item.TherapyDuration = dr["THERAPY_DURATION"] == DBNull.Value ? 0 : Convert.ToInt32(dr["THERAPY_DURATION"]);
                                 item.TherapyDurationUnitEng = dr["THERAPY_DURATION_UNIT_ENG"] == DBNull.Value ? string.Empty : dr["THERAPY_DURATION_UNIT_ENG"].ToString().Trim();
                                 item.TherapyDurationUnitFr = dr["THERAPY_DURATION_UNIT_FR"] == DBNull.Value ? string.Empty : dr["THERAPY_DURATION_UNIT_FR"].ToString().Trim();
-                                item.DosageformEng = dr["DOSAGEFORM_ENG"] == DBNull.Value ? string.Empty : dr["DOSAGE_FORM_ENG"].ToString().Trim();
+                                item.DosageformEng = dr["DOSAGEFORM_ENG"] == DBNull.Value ? string.Empty : dr["DOSAGEFORM_ENG"].ToString().Trim();
                                 item.DosageformFr = dr["DOSAGEFORM_FR"] == DBNull.Value ? string.Empty : dr["DOSAGEFORM_FR"].ToString().Trim();
 
                                 items.Add(item);
