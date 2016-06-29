@@ -308,6 +308,7 @@
   <ItemGroup>
     <Compile Include="App_Data\DBConnection.cs" />
     <Compile Include="App_Data\ExceptionHelper.cs" />
+    <Compile Include="App_Data\QueryStringHelper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -316,6 +317,7 @@
     <Compile Include="Controllers\ReportDrugIndicationController.cs" />
     <Compile Include="Controllers\ReportDrugController.cs" />
     <Compile Include="Controllers\ReportTypeLxController.cs" />
+    <Compile Include="Controllers\SearchReportController.cs" />
     <Compile Include="Controllers\SourceLxController.cs" />
     <Compile Include="Controllers\SeriousnessLxController.cs" />
     <Compile Include="Controllers\ReactionsController.cs" />
@@ -415,6 +417,7 @@
     <Content Include="dataextract\drugnames.xml" />
     <Content Include="Global.asax" />
     <Content Include="dataextract\drugnames.json" />
+    <Content Include="js\cvp.js" />
     <Content Include="Libraries\GoC.WebTemplateMVC.dll" />
     <Content Include="Libraries\WebTemplateCore.dll" />
     <Content Include="searchReport-en.html" />
@@ -477,6 +480,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\cvp.pubxml" />
+    <Content Include="Views\Home\Reference.cshtml" />
+    <Content Include="Views\Home\SearchReport.cshtml" />
+    <Content Include="Views\Home\SearchResultEn.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

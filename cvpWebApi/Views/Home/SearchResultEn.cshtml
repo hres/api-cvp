@@ -1,0 +1,137 @@
+﻿@{
+    Layout = "~/Views/GoC.WebTemplate/GoCWebTemplate_Layout.cshtml";
+}
+
+<div class="container">
+    <main role="main" property="mainContentOfPage" class="container">
+        <h1 property="name" id="wb-cont">Adverse Reaction Reports</h1>
+        <section class="panel panel-default">
+            <header class="panel-heading">
+                <h2 id="title" class="panel-title">Search results</h2>
+            </header>
+            <div class="panel-body">
+                @*<p id="subParam1">Below are the results for clinical trial inspections in Canada.</p>
+                <p id="subParam2">
+                    You can also learn about how <a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/inspecting-monitoring-inspection-controle/inspections/about-clinical-trials-au-sujet-essais-cliniques-eng.php#s1
+        ">clinical trial inspections</a> are conducted in Canada and <a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/inspecting-monitoring-inspection-controle/inspections/about-clinical-trials-au-sujet-essais-cliniques-eng.php#s3">what inspectors look for</a>.
+                </p>*@
+                <table class="wb-tables table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr class="active">
+                            <th>Control number</th>
+                            <th>Sponsor name</th>
+                            <th>Region</th>
+                            <th>Inspection start date</th>
+                            <th>Drug name</th>
+                            <th>Trial phase</th>
+                            <th>Rating</th>
+                    </thead>
+                    <tbody id="tbodyMain"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="row pagedetails">
+            <div class="col-sm-5 col-xs-12 datemod">
+                <dl id="wb-dtmd">
+                    <dt>Date modified:&#32;</dt>
+                    <dd><time property="dateModified">2016-02-08</time></dd>
+                </dl>
+            </div>
+            <div class="clear visible-xs"></div>
+            <div class="col-sm-4 col-xs-6">
+                <a href="http://www.canada.ca/en/contact/feedback.html" class="btn btn-default"><span class="glyphicon glyphicon-comment mrgn-rght-sm"></span>Feedback<span class="wb-inv"> about this web site</span></a>
+            </div>
+            <div class="col-sm-3 col-xs-6 text-right">
+                <div class="wb-share" data-wb-share='{"lnkClass": "btn btn-default"}'></div>
+            </div>
+            <div class="clear visible-xs"></div>
+        </div>
+    </main>
+</div>
+
+<script>
+        var brandName = getParameterByName("brandName");
+        //var contNum = getParameterByName("contNum");
+        //var region = getParameterByName("region");
+        //var drugName = getParameterByName("drugName");
+        //var phase = getParameterByName("phase");
+        //var startDate = getParameterByName("startDate");
+        //var rating = getParameterByName("rating");
+        //var cat = getParameterByName("cat");
+        //var searchUrl = "searchResult.ashx?lang=en&sponName=" + sponName + "&contNum=" + contNum + "&region=" + region + "&drugName=" + drugName + "&phase=" + phase + "&startDate=" + startDate + "&rating=" + rating + "&cat=" + cat;
+        //var langUrl = "searchResult-fr.html?lang=fr&sponName=" + sponName + "&contNum=" + contNum + "&region=" + region + "&drugName=" + drugName + "&phase=" + phase + "&startDate=" + startDate + "&rating=" + rating + "&cat=" + cat;
+        var searchUrl = "SearchResultEn?lang=en&brandName=" + brandName;
+        var langUrl = "searchResult-fr.html?lang=fr&brandName=" + brandName;
+        alert(brandName);
+        alert(searchUrl);
+        var searchUrl2 = '/Home/SearchResultEn?lang=en&brandName=' + brandName;
+
+        $("a#langLink").attr('href', langUrl);
+        //$("tbodyMain").load('www.google.com', function () {
+        //    alert("Load was performed.");
+        //});
+
+        $(document).ready(function () {
+            alert('call the AJAX function');
+            $.ajax({
+                @*url: '@Url.Action("SearchResultEn", "HomeController")',*@
+                url: searchUrl2,
+                //dataType: 'json',
+                //type: 'post',
+                success: function(data){
+                    alert('i got success');
+                    alert(data.count);
+                },
+                error: function(){
+                    alert('i got an error');
+                }
+            });
+            alert ('after ajax call, in ready function')
+        });
+
+        alert('outside and after the ready function');
+
+        //if (cat == '1') {
+        //    $('#title').text('Clinical trial inspections search results');
+        //    $('#subParam1').text('Below are the results for clinical trial inspections.');
+        //    $('#subParam2').html('You can also learn about how <a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/inspecting-monitoring-inspection-controle/inspections/about-clinical-trials-au-sujet-essais-cliniques-eng.php#s1">clinical trial inspections </a> are conducted and <a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/inspecting-monitoring-inspection-controle/inspections/about-clinical-trials-au-sujet-essais-cliniques-eng.php#s3">what inspectors look for</a>.');
+        //}
+        //else if (cat == '2') {
+        //    $('#title').text('Non-compliant clinical trial inspections search results');
+        //    $('#subParam1').text('Below are the results for non-compliant clinical trial inspections.');
+        //    $('#subParam2').html('You can also learn about what <a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/inspecting-monitoring-inspection-controle/inspections/about-clinical-trials-au-sujet-essais-cliniques-eng.php#s4b">non-compliant clinical trial inspections</a> involve.');
+        //}
+
+
+        //window["wb-tables"] = {
+        //    "processing":true,
+        //    "ajax": {
+        //        "url": gcpUrl + searchUrl,
+        //        "error": OnFail
+        //    },
+        //    "order": [[3, "desc"]],
+        //    "columns": [
+        //                        { "data": "controlNumber"},
+        //                        { "data": null,
+        //                          "render": function (data, type, full) {
+        //                              return '<a href=inspectionDetail-en.html?lang=en&gcpid=' + data.gcpID + '>' + data.sponsorName + '</a>';
+        //                            }
+        //                        },
+        //                        { "data": "region" },
+        //                        {
+        //                            "data": "insStartDate",
+        //                            "render": function (data, type, full, meta) {
+        //                                return formatedDate(data);
+        //                            }
+        //                        },
+        //                        { "data": "drugName" },
+        //                        { "data": "trialPhase" },
+        //                        { "data": null,
+        //                            "render": function (data, type, full) {
+        //                                return displayRating(data, 'en');
+        //                            }
+        //                        }
+        //    ]
+        //}
+</script>

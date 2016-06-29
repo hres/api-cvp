@@ -14,6 +14,8 @@
     <script type="text/javascript" src="@string.Concat(ViewBag.WebTemplateCore.CDNPath, "/js/compiled/soyutils.js")"></script>
     <script type="text/javascript" src="@string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}/js/compiled/wet-{1}.js", ViewBag.WebTemplateCore.CDNPath, ViewBag.WebTemplateCore.TwoLetterCultureLanguage)"></script>
     <script type="text/javascript" src="@string.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}/js/compiled/plugins-{1}.js", ViewBag.WebTemplateCore.CDNPath, ViewBag.WebTemplateCore.TwoLetterCultureLanguage)"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script type="text/javascript" src="~/js/cvp.js"></script>
     <noscript>
         <!-- Write closure fall-back static file -->
         @ViewBag.WebTemplateCore.LoadStaticFile("refTop.html")
