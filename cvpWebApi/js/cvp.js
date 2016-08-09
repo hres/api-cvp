@@ -8,7 +8,7 @@
 
 var gcpUrl = "http://localhost:59955/handler/";
 
-function formatedDate(data) {
+function formatdate(data) {
     var data = data.replace("/Date(", "").replace(")/", "");
     if (data.indexOf("+") > 0) {
         data = data.substring(0, data.indexOf("+"));
@@ -65,7 +65,7 @@ function displayTableList(data, lang) {
     var i;
     for (i = 0; i < data.length; i++) {
         if ($.trim(data[i].insStartDate) != '') {
-            txt += "<tr><td>" + formatedDate(data[i].insStartDate) + "</td>";
+            txt += "<tr><td>" + formatdate(data[i].insStartDate) + "</td>";
         }
         if ($.trim(data[i].rating) != '' || $.trim(data[i].rating) == '') {
             if ($.trim(data[i].rating) != '') {

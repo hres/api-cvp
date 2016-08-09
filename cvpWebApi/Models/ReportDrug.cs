@@ -11,11 +11,14 @@ namespace cvpWebApi.Models
         public int ReportId { get; set; }
         public int DrugProductId { get; set; }
         public String Drugname { get; set; }
+        public String Druginvolv { get; set; }
         public String DruginvolvEng { get; set; }
         public String DruginvolvFr { get; set; }
+        public String RoutesAdmin { get; set; }
         public String RouteadminEng { get; set; }
         public String RouteadminFr { get; set; }
         public int UnitDoseQty { get; set; }
+        public String DoseUnit { get; set; }
         public String DoseUnitEng { get; set; }
         public String DoseUnitFr { get; set; }
         public int Frequency { get; set; }
@@ -29,5 +32,11 @@ namespace cvpWebApi.Models
         public String TherapyDurationUnitFr { get; set; }
         public String DosageformEng { get; set; }
         public String DosageformFr { get; set; }
+        public String DosageForm { get; set; }
+        public String IndicationNameEng { get; set; }
+        public String IndicationNameFr { get; set; }
+
+
+
     }
 }

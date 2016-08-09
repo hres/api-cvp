@@ -306,9 +306,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\Common.cs" />
+    <Compile Include="App_Data\DataEntity.cs" />
     <Compile Include="App_Data\DBConnection.cs" />
     <Compile Include="App_Data\ExceptionHelper.cs" />
+    <Compile Include="App_Data\JsonHelper.cs" />
     <Compile Include="App_Data\QueryStringHelper.cs" />
+    <Compile Include="App_Data\UtilityHelper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -414,12 +418,19 @@
     <Content Include="bin\WebActivatorEx.dll" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="bin\WebTemplateCore.dll" />
+    <Content Include="css\hcans.css" />
     <Content Include="dataextract\drugnames.xml" />
+    <Content Include="genericError.html" />
     <Content Include="Global.asax" />
     <Content Include="dataextract\drugnames.json" />
     <Content Include="js\cvp.js" />
+    <Content Include="js\dhpr.js" />
+    <Content Include="js\jquery.xdomainrequest.min.js" />
     <Content Include="Libraries\GoC.WebTemplateMVC.dll" />
     <Content Include="Libraries\WebTemplateCore.dll" />
+    <Content Include="canada-vigilance-detail.html" />
+    <Content Include="regulatory-decision-summary-result.html" />
+    <Content Include="regulatory-decision-summary.html" />
     <Content Include="searchReport-en.html" />
     <Content Include="searchReport_en.html" />
     <Content Include="Views\GoC.WebTemplate\ChangeLog.txt" />
@@ -440,6 +451,9 @@
     <Content Include="Views\GoC.WebTemplate\StaticFallbackFiles\gcweb\transactFooter-fr.html" />
     <Content Include="Views\GoC.WebTemplate\StaticFallbackFiles\gcweb\transactTop-en.html" />
     <Content Include="Views\GoC.WebTemplate\StaticFallbackFiles\gcweb\transactTop-fr.html" />
+    <Content Include="regulatory-decision-summary-detail.html" />
+    <Content Include="canada-vigilance-result.html" />
+    <Content Include="canada-vigilance.html" />
     <Content Include="Views\Shared\Error404.htm" />
     <Content Include="Views\Shared\Error500.htm" />
     <Content Include="Views\Shared\GenericError.htm" />
@@ -470,6 +484,7 @@
     <Folder Include="bin\ru\" />
     <Folder Include="bin\zh-Hans\" />
     <Folder Include="bin\zh-Hant\" />
+    <Folder Include="distro\4.0.20\" />
     <Folder Include="logs\" />
   </ItemGroup>
   <ItemGroup>
@@ -479,6 +494,7 @@
     <Content Include="bin\ApplicationInsights.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Controllers\dhprController.ashx" />
     <None Include="Properties\PublishProfiles\cvp.pubxml" />
     <Content Include="Views\Home\Reference.cshtml" />
     <Content Include="Views\Home\SearchReport.cshtml" />

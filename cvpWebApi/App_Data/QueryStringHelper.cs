@@ -22,6 +22,26 @@ namespace cvp
         {
             return queryString.AllKeys.Any(x => x.ToLower() == "brandname") ? queryString["brandName"].Trim() : string.Empty;
         }
+        public static string GetSearchTerm(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("term") ? queryString["term"] : string.Empty;
+        }
+        public static string GetLinkID(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("linkID") ? queryString["linkID"] : string.Empty;
+        }
+        public static string GetDrugsReportID(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("drugsReportId") ? queryString["drugsReportId"] : string.Empty;
+        }
+        public static string GetReactionsReportID(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("reactionsReportId") ? queryString["reactionsReportId"] : string.Empty;
+        }
+        public static string GetProgramType(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("pType") ? queryString["pType"] : string.Empty;
+        }
         //public static string GetControlNumber(this NameValueCollection queryString)
         //{
         //    return queryString.AllKeys.Any(x => x.ToLower() == "contnum") ? queryString["contnum"].Trim() : string.Empty;
@@ -54,6 +74,6 @@ namespace cvp
         //{
         //    return queryString.AllKeys.Any(x => x.ToLower() == "excel") ? queryString["excel"].Trim() : string.Empty;
         //}
-        
+
     }
 }
