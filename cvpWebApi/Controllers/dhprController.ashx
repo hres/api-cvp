@@ -95,10 +95,23 @@ namespace cvp
                             context.Response.Write("{\"data\":[]}");
                         }
                     }
-
-
-
-
+                }
+                else
+                {
+                    List<Report> reports = new List<Report>();
+                    reports = dbConnection.GetReportsByDrugName(term);
+                    if (reports != null && reports.Count > 0)
+                    {
+                        jsonResult = JsonHelper.JsonSerializer<List<Report>>(reports);
+                        jsonResult = "{\"data\":" + jsonResult + "}";
+                        Debug.WriteLine(jsonResult);
+                        context.Response.Write(jsonResult);
+                    }
+                    else
+                    {
+                        context.Response.Write("{\"data\":[]}");
+                    }
+                }
                     //    switch (pType)
                     //    {
                     //        case programType.rds:
@@ -183,26 +196,7 @@ namespace cvp
                     //            context.Response.Write("{\"id\":\"\"}");
                     //            break;
                     //    }
-                }
-                else
-                {
-                    List<Report> reports = new List<Report>();
-                    reports = dbConnection.GetReportsByDrugName(term);
-                    if (reports != null && reports.Count > 0)
-                    {
-                        //reports.ForEach(x =>
-                        //{
-                        //    x.Outcome = "";
-                        //}); //will be removed later
-                        jsonResult = JsonHelper.JsonSerializer<List<Report>>(reports);
-                        jsonResult = "{\"data\":" + jsonResult + "}";
-                        Debug.WriteLine(jsonResult);
-                        context.Response.Write(jsonResult);
-                    }
-                    else
-                    {
-                        context.Response.Write("{\"data\":[]}");
-                    }
+
 
                     //switch (pType)
                     //{
@@ -242,7 +236,7 @@ namespace cvp
                     //        context.Response.Write("{\"data\":[]}");
                     //        break;
                     //}
-                }
+
             }
             catch (Exception ex)
             {

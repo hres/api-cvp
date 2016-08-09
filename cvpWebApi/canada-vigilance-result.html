@@ -140,8 +140,8 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                         <li><a href="http://canada.ca/en/index.html">Home</a></li>
                         <li><a href="http://healthycanadians.gc.ca/index-eng.php">Health</a></li>
                         <li><a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/index-eng.php">Drug and health products</a></li>
-                        <li><a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/inspecting-monitoring-inspection-controle/index-eng.php">Inspecting and monitoring drug and health products</a></li>
-                        <li><a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/inspecting-monitoring-inspection-controle/inspections/index-eng.php">Drug and health product inspections</a></li>
+                        <li><a href="canada-vigilance.html">Canada Vigilance Adverse Reaction Online Database</a></li>
+                        <!--<li><a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/inspecting-monitoring-inspection-controle/inspections/index-eng.php">Drug and health product inspections</a></li>-->
                     </ol>
                 </div>
             </div>
@@ -335,7 +335,13 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                                        return formatedDate(data);
                                     }
                                 },
-                                { "data": "AgeUnitEng" },
+                                {
+
+                                    "data": null,
+                                    "render": function (data, type, full) {
+                                            return data.AgeY + ' ' + data.AgeUnitEng;
+                                    }
+                                },
                                 { "data": "GenderEng" },
                                 { "data": "DrugName" },
                                 { "data": "PtNameEng" }

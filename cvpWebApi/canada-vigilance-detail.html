@@ -140,8 +140,9 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                         <li><a href="http://canada.ca/en/index.html">Home</a></li>
                         <li><a href="http://healthycanadians.gc.ca/index-eng.php">Health</a></li>
                         <li><a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/index-eng.php">Drug and health products</a></li>
-                        <li><a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/inspecting-monitoring-inspection-controle/index-eng.php">Inspecting and monitoring drug and health products</a></li>
-                        <li><a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/inspecting-monitoring-inspection-controle/inspections/index-eng.php">Drug and health product inspections</a></li>
+                        <li><a href="canada-vigilance.html">Canada Vigilance Adverse Reaction Online Database</a></li>
+                        <!--<li><a href="http://healthycanadians.gc.ca/drugs-products-medicaments-produits/inspecting-monitoring-inspection-controle/inspections/index-eng.php">Drug and health product inspections</a></li>-->
+
                     </ol>
                 </div>
             </div>
@@ -183,7 +184,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Age Group:</strong></p>
-                            <div class="col-sm-8"><p id="AgeGroupFr"></p></div>
+                            <div class="col-sm-8"><p id="AgeGroupEng"></p></div>
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Type of Report:</strong></p>
@@ -421,7 +422,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                 $('#DateIntReceived').append(formatedDate(data.DateIntReceived));                
                 $('#MahNo').append(data.MahNo);
                 (data.AgeY != null && data.AgeY > 0) ? $('#AgeY').append(data.AgeY + " " + data.AgeUnitEng) : '';
-                $('#AgeGroupFr').append(data.AgeGroupFr);
+                $('#AgeGroupEng').append(data.AgeGroupEng);
                 $('#ReportTypeEng').append(data.ReportTypeEng);
                 $('#ReporterTypeEng').append(data.ReporterTypeEng);
                 $('#SourceEng').append(data.SourceEng);
@@ -437,7 +438,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                     data.LifeThreatening == 1 ? $('#LifeThreatening').append("Yes") : '';
                     data.CongenitalAnomaly == 1 ? $('#CongenitalAnomaly').append("Yes") : '';
                     data.Disability == 1 ? $('#Disability').append("Yes") : '';
-                    data.OtherMedicallyImpCond == 1 ? $('#OtherMedicallyImpCond').OtherMedicallyImpCond("Yes") : '';
+                    data.OtherMedicallyImpCond == 1 ? $('#OtherMedicallyImpCond').append("Yes") : '';
                 } else {
                     $("#seriousSection").hide();
                 }
