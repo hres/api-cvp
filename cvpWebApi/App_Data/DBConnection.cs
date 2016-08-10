@@ -784,7 +784,7 @@ namespace cvp
             }
             return items;
         }
-        public List<Report> GetReportsByDrugName(string drugName)
+        public List<Report> GetReportByCriteria(string drugName, string lang)
         {
             var items = new List<Report>();
             string commandText = "SELECT * FROM CVPONL_OWNER.REPORTS WHERE UPPER(DRUGNAME) IN ('" + drugName.ToUpper() + "')";
@@ -812,6 +812,15 @@ namespace cvp
                                 item.DateIntReceived = dr["DATINTRECEIVED"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["DATINTRECEIVED"]);
                                 item.MahNo = dr["MAH_NO"] == DBNull.Value ? string.Empty : dr["MAH_NO"].ToString().Trim();
                                 item.ReportTypeCode = dr["REPORT_TYPE_CODE"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_CODE"].ToString().Trim();
+
+                                if (lang.Equals("fr"))
+                                {
+
+
+                                }
+                                else { 
+                                }
+
                                 item.ReportTypeEng = dr["REPORT_TYPE_ENG"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_ENG"].ToString().Trim();
                                 item.ReportTypeFr = dr["REPORT_TYPE_FR"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_FR"].ToString().Trim();
                                 item.GenderCode = dr["GENDER_CODE"] == DBNull.Value ? string.Empty : dr["GENDER_CODE"].ToString().Trim();

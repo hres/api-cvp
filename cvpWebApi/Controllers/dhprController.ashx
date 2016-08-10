@@ -48,7 +48,7 @@ namespace cvp
                     if (!string.IsNullOrWhiteSpace(linkId))
                     {
                         var adverseReport = new Report();
-                        adverseReport = dbConnection.GetReportById(linkId, lang);
+                        //adverseReport = UtilityHelper.GetReportById(linkId, lang);
                         if (!string.IsNullOrWhiteSpace(adverseReport.ReportNo))
                         {
                             jsonResult = JsonHelper.JsonSerializer<Report>(adverseReport);
@@ -98,7 +98,7 @@ namespace cvp
                 else
                 {
                     List<Report> reports = new List<Report>();
-                    reports = dbConnection.GetReportsByDrugName(term);
+                    reports = UtilityHelper.GetReportByCriteria(lang, term);
                     if (reports != null && reports.Count > 0)
                     {
                         jsonResult = JsonHelper.JsonSerializer<List<Report>>(reports);

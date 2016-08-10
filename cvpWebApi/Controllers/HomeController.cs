@@ -198,16 +198,16 @@ namespace cvpWebApi.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                Debug.WriteLine(brandname);
-                List<Report> reports = new List<Report>();
-                reports = dbConnection.GetReportsByDrugName(brandname);
-                Debug.WriteLine(reports.Count);
+                //Debug.WriteLine(brandname);
+                //List<Report> reports = new List<Report>();
+                //reports = dbConnection.GetReportsByDrugName(brandname);
+                //Debug.WriteLine(reports.Count);
 
-                //JavaScriptSerializer js = new JavaScriptSerializer();
-                //Context.Response.Write(js.Serialize(reports));
+                ////JavaScriptSerializer js = new JavaScriptSerializer();
+                ////Context.Response.Write(js.Serialize(reports));
 
-                reportsString = JsonConvert.SerializeObject(reports);
-                Debug.WriteLine(reportsString);
+                //reportsString = JsonConvert.SerializeObject(reports);
+                //Debug.WriteLine(reportsString);
 
                 //context.Response.ContentType = "application/json; charset=utf-8";
                 //context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -265,16 +265,16 @@ namespace cvpWebApi.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                Debug.WriteLine(brandname);
-                List<Report> reports = new List<Report>();
-                reports = dbConnection.GetReportsByDrugName(brandname);
-                Debug.WriteLine(reports.Count);
+                //Debug.WriteLine(brandname);
+                //List<Report> reports = new List<Report>();
+                //reports = dbConnection.GetReportsByDrugName(brandname);
+                //Debug.WriteLine(reports.Count);
 
                 //JavaScriptSerializer js = new JavaScriptSerializer();
                 //Context.Response.Write(js.Serialize(reports));
 
-                reportsString = JsonConvert.SerializeObject(reports);
-                Debug.WriteLine(reportsString);
+                //reportsString = JsonConvert.SerializeObject(reports);
+                //Debug.WriteLine(reportsString);
 
                 context.Response.ContentType = "application/json; charset=utf-8";
                 context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
