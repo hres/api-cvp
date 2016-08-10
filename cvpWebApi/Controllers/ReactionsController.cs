@@ -29,6 +29,11 @@ namespace cvpWebApi.Controllers
             return reaction;
         }
 
+        public IEnumerable<Reactions> GetReactionsByReportId(string reportId, string lang)
+        {
+            return databasePlaceholder.GetReactionsByReportId(reportId, lang);
+        }
+
         //public IEnumerable<Reactions> GetReactionsByName(string name)
         //{
         //    return databasePlaceholder.Get(name);

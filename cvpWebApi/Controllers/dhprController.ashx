@@ -48,7 +48,8 @@ namespace cvp
                     if (!string.IsNullOrWhiteSpace(linkId))
                     {
                         var adverseReport = new Report();
-                        //adverseReport = UtilityHelper.GetReportById(linkId, lang);
+                        //adverseReport = dbConnection.GetReportById(linkId, lang);
+                        adverseReport = UtilityHelper.GetReportByID(linkId, lang);
                         if (!string.IsNullOrWhiteSpace(adverseReport.ReportNo))
                         {
                             jsonResult = JsonHelper.JsonSerializer<Report>(adverseReport);
@@ -60,9 +61,9 @@ namespace cvp
                         }
                     } else if (!string.IsNullOrWhiteSpace(drugsReportId))
                     {
-                        Debug.WriteLine("reportDrugsId is not null");
                         List<ReportDrug> reportDrugs = new List<ReportDrug>();
-                        reportDrugs = dbConnection.GetReportDrugsByReportId(drugsReportId, lang);
+                        //reportDrugs = dbConnection.GetReportDrugsByReportId(drugsReportId, lang);
+                        reportDrugs = UtilityHelper.GetReportDrugsById(drugsReportId, lang);
 
                         if (reportDrugs != null && reportDrugs.Count > 0)
                         {
@@ -78,9 +79,9 @@ namespace cvp
 
                     } else
                     {
-                        Debug.WriteLine("reactionsReportId is not null");
                         List<Reactions> reactions = new List<Reactions>();
-                        reactions = dbConnection.GetReactionsByReportId(drugsReportId, lang);
+                        //reactions = dbConnection.GetReactionsByReportId(drugsReportId, lang);
+                        reactions = UtilityHelper.GetReactionsByReportId(drugsReportId, lang);
 
                         if (reactions != null && reactions.Count > 0)
                         {

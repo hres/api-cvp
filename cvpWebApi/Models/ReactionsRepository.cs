@@ -23,5 +23,10 @@ namespace cvpWebApi.Models
             _reaction = dbConnection.GetReactionsById(id);
             return _reaction;
         }
+        public IEnumerable<Reactions> GetReactionsByReportId(string reportId, string lang)
+        {
+            _reactions = dbConnection.GetReactionsByReportId(reportId, lang);
+            return _reactions;
+        }
     }
 }

@@ -69,12 +69,12 @@ namespace cvp
             var filteredList = new List<Report>();
             var json = string.Empty;
             var drugname = term;
-            var cvpJsonUrl = string.Format("{0}&drugname={1}&lang={2}", ConfigurationManager.AppSettings["cvpJsonUrl"].ToString(), drugname, lang);
+            var reportJsonUrl = string.Format("{0}&drugname={1}&lang={2}", ConfigurationManager.AppSettings["reportJsonUrl"].ToString(), drugname, lang);
             try
             {
                 using (var webClient = new System.Net.WebClient())
                 {
-                    json = webClient.DownloadString(cvpJsonUrl);
+                    json = webClient.DownloadString(reportJsonUrl);
                     if (!string.IsNullOrWhiteSpace(json))
                     {
                         items = JsonConvert.DeserializeObject<List<Report>>(json);
@@ -83,7 +83,7 @@ namespace cvp
             }
             catch (Exception ex)
             {
-                var errorMessages = string.Format("UtilityHelper - GetJSonDataFromRegAPI()- Error Message:{0}", ex.Message);
+                var errorMessages = string.Format("UtilityHelper - GetReportByCriteria()- Error Message:{0}", ex.Message);
                 ExceptionHelper.LogException(ex, errorMessages);
             }
             finally
@@ -93,19 +93,19 @@ namespace cvp
             return items;
         }
 
-        public static Report GetReportByID(string reportID, string lang)
+        public static Report GetReportByID(string reportId, string lang)
         {
             // CertifySSL.EnableTrustedHosts();
             var item = new Report();
             var json = string.Empty;
             var postData = new Dictionary<string, string>();
-            var cvpJsonUrlbyID = string.Format("{0}&id={1}&lang={2}", ConfigurationManager.AppSettings["cvpJsonUrl"].ToString(), reportID, lang);
+            var reportJsonUrlbyID = string.Format("{0}&id={1}&lang={2}", ConfigurationManager.AppSettings["reportJsonUrl"].ToString(), reportId, lang);
 
             try
             {
                 using (var webClient = new System.Net.WebClient())
                 {
-                    json = webClient.DownloadString(cvpJsonUrlbyID);
+                    json = webClient.DownloadString(reportJsonUrlbyID);
                     if (!string.IsNullOrWhiteSpace(json))
                     {
                         item = JsonConvert.DeserializeObject<Report>(json);
@@ -124,7 +124,70 @@ namespace cvp
             return item;
         }
 
+        public static List<ReportDrug> GetReportDrugsById(string reportId, string lang)
+        {
+            var items = new List<ReportDrug>();
+            var filteredList = new List<ReportDrug>();
+            var json = string.Empty;
+            var id = reportId;
+            var reportDrugJsonUrl = string.Format("{0}&id={1}&lang={2}", ConfigurationManager.AppSettings["reportDrugJsonUrl"].ToString(), id, lang);
+            try
+            {
+                using (var webClient = new System.Net.WebClient())
+                {
+                    json = webClient.DownloadString(reportDrugJsonUrl);
+                    if (!string.IsNullOrWhiteSpace(json))
+                    {
+                        items = JsonConvert.DeserializeObject<List<ReportDrug>>(json);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var errorMessages = string.Format("UtilityHelper - GetReportDrugsById()- Error Message:{0}", ex.Message);
+                ExceptionHelper.LogException(ex, errorMessages);
+            }
+            finally
+            {
+
+            }
+            return items;
+        }
+
+        public static List<Reactions> GetReactionsByReportId(string reportId, string lang)
+        {
+            var items = new List<Reactions>();
+            var filteredList = new List<Reactions>();
+            var json = string.Empty;
+            var id = reportId;
+            var reactionsJsonUrl = string.Format("{0}&id={1}&lang={2}", ConfigurationManager.AppSettings["reactionsJsonUrl"].ToString(), id, lang);
+            try
+            {
+                using (var webClient = new System.Net.WebClient())
+                {
+                    json = webClient.DownloadString(reactionsJsonUrl);
+                    if (!string.IsNullOrWhiteSpace(json))
+                    {
+                        items = JsonConvert.DeserializeObject<List<Reactions>>(json);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var errorMessages = string.Format("UtilityHelper - GetReactionsByReportId()- Error Message:{0}", ex.Message);
+                ExceptionHelper.LogException(ex, errorMessages);
+            }
+            finally
+            {
+
+            }
+            return items;
+        }
+
+
+
+
     }
-  
+
 }
 

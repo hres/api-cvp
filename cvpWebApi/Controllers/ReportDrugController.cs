@@ -28,6 +28,12 @@ namespace cvpWebApi.Controllers
             }
             return report;
         }
+
+        public IEnumerable<ReportDrug> GetReportDrugsById(string reportId, string lang)
+        {
+            return databasePlaceholder.GetReportDrugsById(reportId, lang);
+        }
+
         //public IEnumerable<ReportDrug> GetReportDrugByName(string drugName)
         //{
         //    return databasePlaceholder.Get(drugName);

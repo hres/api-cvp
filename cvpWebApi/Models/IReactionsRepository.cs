@@ -10,5 +10,6 @@ namespace cvpWebApi.Models
     {
         IEnumerable<Reactions> GetAll();
         Reactions Get(int id);
+        IEnumerable<Reactions> GetReactionsByReportId(string reportId, string lang);
     }
 }

@@ -19,9 +19,9 @@ namespace cvpWebApi.Controllers
         }
 
 
-        public Report GetReportByID(int id)
+        public Report GetReportByID(string id, string lang)
         {
-            Report report = databasePlaceholder.Get(id);
+            Report report = databasePlaceholder.GetReportByID(id, lang);
             if (report == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
