@@ -8,7 +8,7 @@ namespace cvpWebApi.Models
 {
     interface IOutcomeLxRepository
     {
-        IEnumerable<OutcomeLx> GetAll();
-        OutcomeLx Get(int id);
+        IEnumerable<OutcomeLx> GetAll(string lang);
+        OutcomeLx Get(int id, string lang);
     }
 }

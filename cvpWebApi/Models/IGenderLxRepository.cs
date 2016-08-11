@@ -8,7 +8,7 @@ namespace cvpWebApi.Models
 {
     interface IGenderLxRepository
     {
-        IEnumerable<GenderLx> GetAll();
-        GenderLx Get(int id);
+        IEnumerable<GenderLx> GetAll(string lang);
+        GenderLx Get(int id, string lang);
     }
 }

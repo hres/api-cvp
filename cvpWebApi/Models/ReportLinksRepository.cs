@@ -12,15 +12,15 @@ namespace cvpWebApi.Models
         private ReportLinks _reportLink = new ReportLinks();
         DBConnection dbConnection = new DBConnection("en");
 
-        public IEnumerable<ReportLinks> GetAll()
+        public IEnumerable<ReportLinks> GetAll(string lang)
         {
-            _reportLinks = dbConnection.GetAllReportLinks();
+            _reportLinks = dbConnection.GetAllReportLinks(lang);
             return _reportLinks;
         }
 
-        public ReportLinks Get(int id)
+        public ReportLinks Get(int id, string lang)
         {
-            _reportLink = dbConnection.GetReportLinksById(id);
+            _reportLink = dbConnection.GetReportLinksById(id, lang);
             return _reportLink;
         }
     }

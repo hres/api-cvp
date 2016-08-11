@@ -14,9 +14,9 @@ namespace cvpWebApi.Models
         DBConnection dbConnection = new DBConnection("en");
 
 
-        public IEnumerable<Report> GetAll()
+        public IEnumerable<Report> GetAll(string lang)
         {
-            _reports = dbConnection.GetAllReport();
+            _reports = dbConnection.GetAllReport(lang);
 
             return _reports;
         }

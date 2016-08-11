@@ -409,7 +409,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
 
     <script>
         var lang = "en";
-        var pType = "rds";
+        var pType = "cvp";
         $("a#langLink").attr('href', goCvpLangUrlByID(lang));
         $.getJSON(goCvpUrlByID(lang), function (data) {
             if ($.trim(data.ReportId) == '') {
@@ -421,16 +421,16 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                 $('#DateReceived').append(formatedDate(data.DateReceived));
                 $('#DateIntReceived').append(formatedDate(data.DateIntReceived));                
                 $('#MahNo').append(data.MahNo);
-                (data.AgeY != null && data.AgeY > 0) ? $('#AgeY').append(data.AgeY + " " + data.AgeUnitEng) : '';
-                $('#AgeGroupEng').append(data.AgeGroupEng);
-                $('#ReportTypeEng').append(data.ReportTypeEng);
-                $('#ReporterTypeEng').append(data.ReporterTypeEng);
-                $('#SourceEng').append(data.SourceEng);
-                $('#OutcomeEng').append(data.OutcomeEng);
-                $('#GenderEng').append(data.GenderEng);
-                (data.Weight != null && data.Weight > 0) ? $('#Weight').append(data.Weight + " " + data.WeightUnitEng) : '';
-                (data.Height != null && data.Height > 0) ? $('#Height').append(data.Height + " " + data.HeightUnitEng) : '';
-                $('#SeriousnessEng').append(data.SeriousnessEng);
+                (data.AgeY != null && data.AgeY > 0) ? $('#AgeY').append(data.AgeY + " " + data.AgeUnit) : '';
+                $('#AgeGroupName').append(data.AgeGroupName);
+                $('#ReportTypeName').append(data.ReportTypeName);
+                $('#ReporterType').append(data.ReporterType);
+                $('#SourceName').append(data.SourceName);
+                $('#Outcome').append(data.Outcome);
+                $('#GenderName').append(data.Gender);
+                (data.Weight != null && data.Weight > 0) ? $('#Weight').append(data.Weight + " " + data.WeightUnit) : '';
+                (data.Height != null && data.Height > 0) ? $('#Height').append(data.Height + " " + data.HeightUnit) : '';
+                $('#Seriousness').append(data.Seriousness);
                 if ((data.SeriousnessCode) == 01) {
                     $("#seriousSection").show();
                     data.Death == 1 ? $('#Death').append("Yes") : '';
@@ -458,24 +458,24 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                 },
                 "order": [[1, "desc"]],
                 "columns": [
-                            { "data": "Drugname", sDefaultContent: "" },
-                            { "data": "DosageformEng", sDefaultContent: "" },
-                            { "data": "DruginvolvEng", sDefaultContent: "" },
-                            { "data": "RouteadminEng", sDefaultContent: "" },
+                            { "data": "DrugName", sDefaultContent: "" },
+                            { "data": "DosageForm", sDefaultContent: "" },
+                            { "data": "DrugInvolvName", sDefaultContent: "" },
+                            { "data": "RouteAdminName", sDefaultContent: "" },
                             {
                                 "data": null,
                                 "render": function (data, type, full) {
-                                    return data.UnitDoseQty + ' ' + data.DoseUnitEng;
+                                    return data.UnitDoseQty + ' ' + data.DoseUnit;
                                 }
                             },
-                            { "data": "FrequencyTimeEng", sDefaultContent: "" },
+                            { "data": "FrequencyTime", sDefaultContent: "" },
                             {
                                 "data": null,
                                 "render": function (data, type, full) {
-                                    return data.TherapyDuration + ' ' + data.TherapyDurationUnitEng;
+                                    return data.TherapyDuration + ' ' + data.TherapyDurationUnit;
                                 }
                             },
-                            { "data": "IndicationNameEng", sDefaultContent: "" }
+                            { "data": "IndicationName", sDefaultContent: "" }
                 ]
             }
 

@@ -9,7 +9,6 @@ namespace cvpWebApi.Models
     {
         public int GenderLxId { get; set; }
         public String GenderCode { get; set; }
-        public String GenderEn { get; set; }
-        public String GenderFr { get; set; }
+        public String GenderName { get; set; }
     }
 }

@@ -14,24 +14,24 @@ namespace cvpWebApi.Models
         DBConnection dbConnection = new DBConnection("en");
 
 
-        public IEnumerable<DrugProduct> GetAll()
+        public IEnumerable<DrugProduct> GetAll(string lang)
         {
-            _drugProducts = dbConnection.GetAllDrugProduct();
+            _drugProducts = dbConnection.GetAllDrugProduct(lang);
 
             return _drugProducts;
         }
 
 
-        public DrugProduct Get(int id)
+        public DrugProduct Get(int id, string lang)
         {
-            _drugProduct = dbConnection.GetDrugProductById(id);
+            _drugProduct = dbConnection.GetDrugProductById(id, lang);
             return _drugProduct;
         }
 
 
-        public IEnumerable<DrugProduct> Get(string drugName)
+        public IEnumerable<DrugProduct> Get(string drugName, string lang)
         {
-            _drugProducts = dbConnection.GetDrugProductByDrugName(drugName);
+            _drugProducts = dbConnection.GetDrugProductByDrugName(drugName, lang);
             return _drugProducts;
         }
 

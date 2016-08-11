@@ -12,15 +12,15 @@ namespace cvpWebApi.Models
         private OutcomeLx _outcomeLx = new OutcomeLx();
         DBConnection dbConnection = new DBConnection("en");
 
-        public IEnumerable<OutcomeLx> GetAll()
+        public IEnumerable<OutcomeLx> GetAll(string lang)
         {
-            _outcomeLxs = dbConnection.GetAllOutcomeLx();
+            _outcomeLxs = dbConnection.GetAllOutcomeLx(lang);
             return _outcomeLxs;
         }
 
-        public OutcomeLx Get(int id)
+        public OutcomeLx Get(int id, string lang)
         {
-            _outcomeLx = dbConnection.GetOutcomeLxById(id);
+            _outcomeLx = dbConnection.GetOutcomeLxById(id, lang);
             return _outcomeLx;
         }
     }

@@ -12,15 +12,15 @@ namespace cvpWebApi.Models
         private GenderLx _genderLx = new GenderLx();
         DBConnection dbConnection = new DBConnection("en");
 
-        public IEnumerable<GenderLx> GetAll()
+        public IEnumerable<GenderLx> GetAll(string lang)
         {
-            _genderLxs = dbConnection.GetAllGenderLx();
+            _genderLxs = dbConnection.GetAllGenderLx(lang);
             return _genderLxs;
         }
 
-        public GenderLx Get(int id)
+        public GenderLx Get(int id, string lang)
         {
-            _genderLx = dbConnection.GetGenderLxById(id);
+            _genderLx = dbConnection.GetGenderLxById(id, lang);
             return _genderLx;
         }
     }

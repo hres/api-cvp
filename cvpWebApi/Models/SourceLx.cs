@@ -9,7 +9,6 @@ namespace cvpWebApi.Models
     {
         public int SourceLxId { get; set; }
         public String SourceCode { get; set; }
-        public String SourceEn { get; set; }
-        public String SourceFr { get; set; }
+        public String Source { get; set; }
     }
 }

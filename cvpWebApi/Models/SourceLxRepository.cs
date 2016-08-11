@@ -12,15 +12,15 @@ namespace cvpWebApi.Models
         private SourceLx _sourceLx = new SourceLx();
         DBConnection dbConnection = new DBConnection("en");
 
-        public IEnumerable<SourceLx> GetAll()
+        public IEnumerable<SourceLx> GetAll(string lang)
         {
-            _sourceLxs = dbConnection.GetAllSourceLx();
+            _sourceLxs = dbConnection.GetAllSourceLx(lang);
             return _sourceLxs;
         }
 
-        public SourceLx Get(int id)
+        public SourceLx Get(int id, string lang)
         {
-            _sourceLx = dbConnection.GetSourceLxById(id);
+            _sourceLx = dbConnection.GetSourceLxById(id, lang);
             return _sourceLx;
         }
     }

@@ -10,7 +10,8 @@ namespace cvp
         rds,
         ssr,
         sbd,
-        dhpr
+        dhpr,
+        cvp
     }
 
 

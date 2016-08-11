@@ -9,8 +9,7 @@ namespace cvpWebApi.Models
     {
         public int ReportLinkId { get; set; }
         public int ReportId { get; set; }
-        public String RecordTypeEng { get; set; }
-        public String RecordTypeFr { get; set; }
+        public String RecordType { get; set; }
         public String ReportLinkNo { get; set; }
     }
 }

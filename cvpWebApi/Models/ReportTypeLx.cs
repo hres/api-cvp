@@ -9,7 +9,6 @@ namespace cvpWebApi.Models
     {
         public int ReportTypeLxId { get; set; }
         public String ReportTypeCode { get; set; }
-        public String ReportTypeEn { get; set; }
-        public String ReportTypeFr { get; set; }
+        public String ReportType { get; set; }
     }
 }

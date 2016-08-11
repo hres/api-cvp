@@ -14,7 +14,7 @@ namespace cvpWebApi.Models
         DBConnection dbConnection = new DBConnection("en");
 
 
-        public IEnumerable<AEReport> GetAll()
+        public IEnumerable<AEReport> GetAll(string lang)
         {
             _reports = null; // dbConnection.GetAllReport();
 
@@ -22,16 +22,16 @@ namespace cvpWebApi.Models
         }
 
 
-        public AEReport Get(int id)
+        public AEReport Get(int id, string lang)
         {
             _report = null; //dbConnection.GetReportById(id);
             return _report;
         }
 
-        public IEnumerable<AEReport> Get(string drugName)
+        public IEnumerable<AEReport> Get(string drugName, string lang)
         {
            
-            _reports = dbConnection.GetAEExportReportByDrugName(drugName);
+            _reports = dbConnection.GetAEExportReportByDrugName(drugName, lang);
             return _reports;
         }
 

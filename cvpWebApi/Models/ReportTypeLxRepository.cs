@@ -12,15 +12,15 @@ namespace cvpWebApi.Models
         private ReportTypeLx _reportTypeLx = new ReportTypeLx();
         DBConnection dbConnection = new DBConnection("en");
 
-        public IEnumerable<ReportTypeLx> GetAll()
+        public IEnumerable<ReportTypeLx> GetAll(string lang)
         {
-            _reportTypeLxs = dbConnection.GetAllReportTypeLx();
+            _reportTypeLxs = dbConnection.GetAllReportTypeLx(lang);
             return _reportTypeLxs;
         }
 
-        public ReportTypeLx Get(int id)
+        public ReportTypeLx Get(int id, string lang)
         {
-            _reportTypeLx = dbConnection.GetReportTypeLxById(id);
+            _reportTypeLx = dbConnection.GetReportTypeLxById(id, lang);
             return _reportTypeLx;
         }
     }

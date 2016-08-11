@@ -8,7 +8,7 @@ namespace cvpWebApi.Models
 {
     interface IReportLinksRepository
     {
-        IEnumerable<ReportLinks> GetAll();
-        ReportLinks Get(int id);
+        IEnumerable<ReportLinks> GetAll(string lang);
+        ReportLinks Get(int id, string lang);
     }
 }

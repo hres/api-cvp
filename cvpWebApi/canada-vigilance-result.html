@@ -168,7 +168,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                               </li>
                         </ul>
                     </div>      
-                     <table id="rdsTable" class="wb-tables table table-striped table-hover table-bordered">
+                     <table id="cvpTable" class="wb-tables table table-striped table-hover table-bordered">
                             <thead>
                                 <tr class="active">
                                     <!--<th>Adverse Reaction Report Number</th>
@@ -307,7 +307,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
  
     <script>
         var lang = " en";
-        var pType = "rds";
+        var pType = "cvp";
         $('#btnDownload').hide();
         //$("a#langLink").attr('href', goDhprLangUrl(lang, pType));            
         
@@ -339,12 +339,12 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
 
                                     "data": null,
                                     "render": function (data, type, full) {
-                                            return data.AgeY + ' ' + data.AgeUnitEng;
+                                        return data.AgeY + ' ' + data.AgeUnit;
                                     }
                                 },
-                                { "data": "GenderEng" },
+                                { "data": "GenderName" },
                                 { "data": "DrugName" },
-                                { "data": "PtNameEng" }
+                                { "data": "PtName" }
                 ]
             }
 

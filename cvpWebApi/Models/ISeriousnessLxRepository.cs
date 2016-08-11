@@ -8,7 +8,7 @@ namespace cvpWebApi.Models
 {
     interface ISeriousnessLxRepository
     {
-        IEnumerable<SeriousnessLx> GetAll();
-        SeriousnessLx Get(int id);
+        IEnumerable<SeriousnessLx> GetAll(string lang);
+        SeriousnessLx Get(int id, string lang);
     }
 }

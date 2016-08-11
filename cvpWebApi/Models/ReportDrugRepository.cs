@@ -12,15 +12,15 @@ namespace cvpWebApi.Models
         private ReportDrug _reportDrug = new ReportDrug();
         DBConnection dbConnection = new DBConnection("en");
 
-        public IEnumerable<ReportDrug> GetAll()
+        public IEnumerable<ReportDrug> GetAll(string lang)
         {
-            _reportDrugs = dbConnection.GetAllReportDrug();
+            _reportDrugs = dbConnection.GetAllReportDrug(lang);
             return _reportDrugs;
         }
 
-        public ReportDrug Get(int id)
+        public ReportDrug Get(int id, string lang)
         {
-            _reportDrug = dbConnection.GetReportDrugById(id);
+            _reportDrug = dbConnection.GetReportDrugById(id, lang);
             return _reportDrug;
         }
 

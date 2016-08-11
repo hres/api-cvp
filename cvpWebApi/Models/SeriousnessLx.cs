@@ -9,7 +9,6 @@ namespace cvpWebApi.Models
     {
         public int SeriousnessLxId { get; set; }
         public String SeriousnessCode { get; set; }
-        public String SeriousnessEn { get; set; }
-        public String SeriousnessFr { get; set; }
+        public String Seriousness { get; set; }
     }
 }

@@ -12,16 +12,16 @@ namespace cvpWebApi.Controllers
     {
         static readonly IAEReportRepository databasePlaceholder = new AEReportRepository();
 
-        public IEnumerable<AEReport> GetAllReport()
+        public IEnumerable<AEReport> GetAllReport(string lang)
         {
 
-            return databasePlaceholder.GetAll();
+            return databasePlaceholder.GetAll(lang);
         }
 
 
-        public AEReport GetReportByID(int id)
+        public AEReport GetReportByID(int id, string lang)
         {
-            AEReport report = databasePlaceholder.Get(id);
+            AEReport report = databasePlaceholder.Get(id, lang);
             if (report == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -30,9 +30,9 @@ namespace cvpWebApi.Controllers
         }
 
 
-        public IEnumerable<AEReport> GetReportByDrugName(string drugName)
+        public IEnumerable<AEReport> GetReportByDrugName(string drugName, string lang)
         {
-            return databasePlaceholder.Get(drugName);
+            return databasePlaceholder.Get(drugName, lang);
         }
         
     }

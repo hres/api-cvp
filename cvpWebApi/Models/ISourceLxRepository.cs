@@ -8,7 +8,7 @@ namespace cvpWebApi.Models
 {
     interface ISourceLxRepository
     {
-        IEnumerable<SourceLx> GetAll();
-        SourceLx Get(int id);
+        IEnumerable<SourceLx> GetAll(string lang);
+        SourceLx Get(int id, string lang);
     }
 }

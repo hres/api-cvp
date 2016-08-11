@@ -8,7 +8,7 @@ namespace cvpWebApi.Models
 {
     interface IReportTypeLxRepository
     {
-        IEnumerable<ReportTypeLx> GetAll();
-        ReportTypeLx Get(int id);
+        IEnumerable<ReportTypeLx> GetAll(string lang);
+        ReportTypeLx Get(int id, string lang);
     }
 }

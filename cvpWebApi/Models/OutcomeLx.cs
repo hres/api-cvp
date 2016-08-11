@@ -9,7 +9,6 @@ namespace cvpWebApi.Models
     {
         public int OutcomeLxId { get; set; }
         public String OutcomeCode { get; set; }
-        public String OutcomeEn { get; set; }
-        public String OutcomeFr { get; set; }
+        public String OutcomeName { get; set; }
     }
 }

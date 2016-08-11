@@ -8,7 +8,7 @@ namespace cvpWebApi.Models
 {
     interface IReportDrugIndicationRepository
     {
-        IEnumerable<ReportDrugIndication> GetAll();
-        ReportDrugIndication Get(int id);
+        IEnumerable<ReportDrugIndication> GetAll(string lang);
+        ReportDrugIndication Get(int id, string lang);
     }
 }

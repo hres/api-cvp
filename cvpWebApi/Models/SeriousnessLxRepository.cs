@@ -12,15 +12,15 @@ namespace cvpWebApi.Models
         private SeriousnessLx _seriousnessLx = new SeriousnessLx();
         DBConnection dbConnection = new DBConnection("en");
 
-        public IEnumerable<SeriousnessLx> GetAll()
+        public IEnumerable<SeriousnessLx> GetAll(string lang)
         {
-            _seriousnessLxs = dbConnection.GetAllSeriousnessLx();
+            _seriousnessLxs = dbConnection.GetAllSeriousnessLx(lang);
             return _seriousnessLxs;
         }
 
-        public SeriousnessLx Get(int id)
+        public SeriousnessLx Get(int id, string lang)
         {
-            _seriousnessLx = dbConnection.GetSeriousnessLxById(id);
+            _seriousnessLx = dbConnection.GetSeriousnessLxById(id, lang);
             return _seriousnessLx;
         }
     }

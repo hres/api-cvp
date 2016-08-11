@@ -12,59 +12,26 @@ namespace cvpWebApi.Controllers
     {
         static readonly IReportInfoRepository databasePlaceholder = new ReportInfoRepository();
 
-        public IEnumerable<ReportInfo> GetAllReportInfo()
+        public IEnumerable<ReportInfo> GetAllReportInfo(string lang)
         {
 
-            return databasePlaceholder.GetAll();
+            return databasePlaceholder.GetAll(lang);
         }
 
 
-        public ReportInfo GetReportByInfoID(int id)
+        public ReportInfo GetReportByInfoID(int id, string lang)
         {
-            ReportInfo report = databasePlaceholder.Get(id);
+            ReportInfo report = databasePlaceholder.Get(id, lang);
             if (report == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
             return report;
         }
-        public IEnumerable<ReportInfo> GetReportByDrugName(string drugName)
+        public IEnumerable<ReportInfo> GetReportByDrugName(string drugName, string lang)
         {
-            return databasePlaceholder.Get(drugName);
+            return databasePlaceholder.Get(drugName, lang);
         }
 
-
-        //public HttpResponseMessage PostReport(Report report)
-        //{
-        //    report = databasePlaceholder.Add(report);
-        //    string apiName = App_Start.WebApiConfig.DEFAULT_ROUTE_NAME;
-        //    var response =
-        //        this.Request.CreateResponse<Report>(HttpStatusCode.Created, report);
-        //    string uri = Url.Link(apiName, new { id = report.ReportId });
-        //    response.Headers.Location = new Uri(uri);
-        //    return response;
-        //}
-
-
-        //public bool PutReport(Report report)
-        //{
-        //    if (!databasePlaceholder.Update(report))
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-
-        //    return true;
-        //}
-
-
-        //public void DeleteReport(int id)
-        //{
-        //    Report report = databasePlaceholder.Get(id);
-        //    if (report == null)
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-        //    databasePlaceholder.Remove(id);
-        //}
     }
 }

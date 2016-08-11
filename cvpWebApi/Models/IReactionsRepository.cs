@@ -8,8 +8,8 @@ namespace cvpWebApi.Models
 {
     interface IReactionsRepository
     {
-        IEnumerable<Reactions> GetAll();
-        Reactions Get(int id);
+        IEnumerable<Reactions> GetAll(string lang);
+        Reactions Get(int id, string lang);
         IEnumerable<Reactions> GetReactionsByReportId(string reportId, string lang);
     }
 }

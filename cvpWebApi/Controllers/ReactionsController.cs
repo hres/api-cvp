@@ -12,16 +12,16 @@ namespace cvpWebApi.Controllers
     {
         static readonly IReactionsRepository databasePlaceholder = new ReactionsRepository();
 
-        public IEnumerable<Reactions> GetAllReport()
+        public IEnumerable<Reactions> GetAllReport(string lang)
         {
 
-            return databasePlaceholder.GetAll();
+            return databasePlaceholder.GetAll(lang);
         }
 
 
-        public Reactions GetReactionsByID(int id)
+        public Reactions GetReactionsByID(int id, string lang)
         {
-            Reactions reaction = databasePlaceholder.Get(id);
+            Reactions reaction = databasePlaceholder.Get(id, lang);
             if (reaction == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -34,42 +34,5 @@ namespace cvpWebApi.Controllers
             return databasePlaceholder.GetReactionsByReportId(reportId, lang);
         }
 
-        //public IEnumerable<Reactions> GetReactionsByName(string name)
-        //{
-        //    return databasePlaceholder.Get(name);
-        //}
-
-        //public HttpResponseMessage PostReport(Report report)
-        //{
-        //    report = databasePlaceholder.Add(report);
-        //    string apiName = App_Start.WebApiConfig.DEFAULT_ROUTE_NAME;
-        //    var response =
-        //        this.Request.CreateResponse<Report>(HttpStatusCode.Created, report);
-        //    string uri = Url.Link(apiName, new { id = report.ReportId });
-        //    response.Headers.Location = new Uri(uri);
-        //    return response;
-        //}
-
-
-        //public bool PutReport(Report report)
-        //{
-        //    if (!databasePlaceholder.Update(report))
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-
-        //    return true;
-        //}
-
-
-        //public void DeleteReport(int id)
-        //{
-        //    Report report = databasePlaceholder.Get(id);
-        //    if (report == null)
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-        //    databasePlaceholder.Remove(id);
-        //}
     }
 }

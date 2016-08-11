@@ -13,15 +13,11 @@ namespace cvpWebApi.Models
         public DateTime? DateReceived { get; set; }
         public DateTime? DateIntReceived { get; set; }
         public string MahNo { get; set; }
-        public string GenderEng { get; set; }
-        public string GenderFr { get; set; }
+        public string GenderName { get; set; }
         public int Age { get; set; }
-        public string AgeUnitEng { get; set; }
-        public string AgeUnitFr { get; set; }
-        public string PtNameEng { get; set; }
-        public string PtNameFr { get; set; }
-        public string SocNameEng { get; set; }
-        public string SocNameFr { get; set; }
+        public string AgeUnit { get; set; }
+        public string PtName { get; set; }
+        public string SocName { get; set; }
         public string DrugName { get; set; }
 
     }

@@ -12,15 +12,15 @@ namespace cvpWebApi.Models
         private Reactions _reaction = new Reactions();
         DBConnection dbConnection = new DBConnection("en");
 
-        public IEnumerable<Reactions> GetAll()
+        public IEnumerable<Reactions> GetAll(string lang)
         {
-            _reactions = dbConnection.GetAllReactions();
+            _reactions = dbConnection.GetAllReactions(lang);
             return _reactions;
         }
 
-        public Reactions Get(int id)
+        public Reactions Get(int id, string lang)
         {
-            _reaction = dbConnection.GetReactionsById(id);
+            _reaction = dbConnection.GetReactionsById(id, lang);
             return _reaction;
         }
         public IEnumerable<Reactions> GetReactionsByReportId(string reportId, string lang)

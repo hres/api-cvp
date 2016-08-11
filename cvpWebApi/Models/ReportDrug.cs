@@ -10,33 +10,22 @@ namespace cvpWebApi.Models
         public int ReportDrugId { get; set; }
         public int ReportId { get; set; }
         public int DrugProductId { get; set; }
-        public String Drugname { get; set; }
-        public String Druginvolv { get; set; }
-        public String DruginvolvEng { get; set; }
-        public String DruginvolvFr { get; set; }
+        public String DrugName { get; set; }
+        public String DrugInvolvName { get; set; }
         public String RoutesAdmin { get; set; }
-        public String RouteadminEng { get; set; }
-        public String RouteadminFr { get; set; }
+        public String RouteAdminName { get; set; }
+ 
         public int UnitDoseQty { get; set; }
         public String DoseUnit { get; set; }
-        public String DoseUnitEng { get; set; }
-        public String DoseUnitFr { get; set; }
+        public String DoseUnitName { get; set; }
         public int Frequency { get; set; }
         public int FreqTime { get; set; }
-        public String FrequencyTimeEng { get; set; }
-        public String FrequencyTimeFr { get; set; }
-        public String FreqTimeUnitEng { get; set; }
-        public String FreqTimeUnitFr { get; set; }
+        public String FrequencyTime { get; set; }
+        public String FreqTimeUnit { get; set; }
         public int TherapyDuration { get; set; }
-        public String TherapyDurationUnitEng { get; set; }
-        public String TherapyDurationUnitFr { get; set; }
-        public String DosageformEng { get; set; }
-        public String DosageformFr { get; set; }
+        public String TherapyDurationUnit { get; set; }
         public String DosageForm { get; set; }
-        public String IndicationNameEng { get; set; }
-        public String IndicationNameFr { get; set; }
-
-
+        public String IndicationName { get; set; }
 
     }
 }

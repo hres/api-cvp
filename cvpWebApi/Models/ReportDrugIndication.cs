@@ -11,7 +11,6 @@ namespace cvpWebApi.Models
         public int ReportId { get; set; }
         public int DrugProductId { get; set; }
         public String Drugname { get; set; }
-        public String IndicationNameEng { get; set; }
-        public String IndicationNameFr { get; set; }
+        public String IndicationName { get; set; }
     }
 }

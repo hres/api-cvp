@@ -12,16 +12,16 @@ namespace cvpWebApi.Controllers
     {
         static readonly IDrugProductIngredientRepository databasePlaceholder = new DrugProductIngredientRepository();
 
-        public IEnumerable<DrugProductIngredient> GetAllDrugProductIngredient()
+        public IEnumerable<DrugProductIngredient> GetAllDrugProductIngredient(string lang)
         {
 
-            return databasePlaceholder.GetAll();
+            return databasePlaceholder.GetAll(lang);
         }
 
 
-        public DrugProductIngredient GetDrugProductIngredientByID(int id)
+        public DrugProductIngredient GetDrugProductIngredientByID(int id, string lang)
         {
-            DrugProductIngredient drugProductIngredient = databasePlaceholder.Get(id);
+            DrugProductIngredient drugProductIngredient = databasePlaceholder.Get(id, lang);
             if (drugProductIngredient == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -29,38 +29,5 @@ namespace cvpWebApi.Controllers
             return drugProductIngredient;
         }
 
-
-        //public HttpResponseMessage PostDrugProduct(DrugProductIngredient drugProductIngredient)
-        //{
-        //    drugProductIngredient = databasePlaceholder.Add(drugProductIngredient);
-        //    string apiName = App_Start.WebApiConfig.DEFAULT_ROUTE_NAME;
-        //    var response =
-        //        this.Request.CreateResponse<DrugProduct>(HttpStatusCode.Created, drugProductIngredient);
-        //    string uri = Url.Link(apiName, new { id = drugProductIngredient.DrugCode });
-        //    response.Headers.Location = new Uri(uri);
-        //    return response;
-        //}
-
-
-        //public bool PutPerson(DrugProductIngredient drugProductIngredient)
-        //{
-        //    if (!databasePlaceholder.Update(drugProductIngredient))
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-
-        //    return true;
-        //}
-
-
-        //public void DeleteDrugProductIngredient(int id)
-        //{
-        //    DrugProductIngredient drugProductIngredient = databasePlaceholder.Get(id);
-        //    if (drugProduct == null)
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    }
-        //    databasePlaceholder.Remove(id);
-        //}
     }
 }
