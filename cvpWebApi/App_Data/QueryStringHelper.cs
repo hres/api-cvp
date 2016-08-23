@@ -11,7 +11,7 @@ namespace cvp
     {
         public static string GetLang(this NameValueCollection queryString)
         {
-            return queryString.AllKeys.Any(x => x.ToLower() == "lang") ? queryString["lang"].Trim() : string.Empty;
+            return queryString.AllKeys.Any(x => x.ToLower() == "lang") ? queryString["lang"].Trim() : string.Empty;            
         }
 
         public static string GetGcpID(this NameValueCollection queryString)
@@ -22,6 +22,7 @@ namespace cvp
         {
             return queryString.AllKeys.Any(x => x.ToLower() == "brandname") ? queryString["brandName"].Trim() : string.Empty;
         }
+        
         public static string GetSearchTerm(this NameValueCollection queryString)
         {
             return queryString.AllKeys.Contains("term") ? queryString["term"] : string.Empty;

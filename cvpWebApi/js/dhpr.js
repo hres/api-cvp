@@ -22,19 +22,14 @@ function goCvpUrl(lang) {
     return searchUrl;
 }
 
+
+
 function goDhprLangUrl(lang, pType) {
     var term = getParameterByName("term");
     var langSwitch = lang == 'en' ? "fr" : "en";
-    var langUrl = lang == 'fr' ? "sommaire-decision-reglementaire-resultat.html" : "canada-vigilance-result.html";
+    var langUrl = langSwitch == 'fr' ? "canada-vigilance-resultat.html" : "canada-vigilance-result.html";
     langUrl += "?term=" + term + "&pType=" + pType + "&lang=" + langSwitch;
     return langUrl;
-}
-
-
-function goDhprUrlByID(lang, pType) {
-    var linkID = getParameterByName("linkID");
-    var searchUrl = dhpr + "linkID=" + linkID +  "&pType=" + pType + "&lang=" + lang;
-    return searchUrl;
 }
 
 function goCvpUrlByID(lang) {
@@ -62,10 +57,11 @@ function goDhprLangUrlByID(lang, pType) {
     return langUrl;
 }
 
-function goCvpLangUrlByID(lang) {
+function goCvpLangUrlByID(lang, pageName) {
     var linkID = getParameterByName("linkID");
-    var langSwitch = lang == 'en' ? "fr" : "en";
-    var langUrl = "canada-vigilance-result.html?" + langSwitch + ".html?linkID=" + linkID + "&lang=" + langSwitch;
+    var langSwitch = lang == 'en' ? "fr" : "en";    
+    var langUrl = pageName + ".html"+ "?linkID=" + linkID + "&lang=" + langSwitch;   
+    
     return langUrl;
 }
 

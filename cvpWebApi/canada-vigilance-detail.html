@@ -73,7 +73,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="list-inline margin-bottom-none">
-                            <li><a lang="fr" href="inspectionDetail-fr.html" id="langLink">Français</a></li>
+                            <li><a lang="fr" href="canada-vigilance-detail-fr.html" id="langLink">Français</a></li>
                         </ul>
                     </div>
                 </div>
@@ -184,27 +184,27 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Age Group:</strong></p>
-                            <div class="col-sm-8"><p id="AgeGroupEng"></p></div>
+                            <div class="col-sm-8"><p id="AgeGroup"></p></div>
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Type of Report:</strong></p>
-                            <div class="col-sm-8"><p id="ReportTypeEng"></p></div>
+                            <div class="col-sm-8"><p id="ReportType"></p></div>
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Reporter Type:</strong></p>
-                            <div class="col-sm-8"><p id="ReporterTypeEng"></p></div>
+                            <div class="col-sm-8"><p id="ReporterType"></p></div>
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Source of Report:</strong></p>
-                            <div class="col-sm-8"><p id="SourceEng"></p></div>
+                            <div class="col-sm-8"><p id="SourceName"></p></div>
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Report Outcome:</strong></p>
-                            <div class="col-sm-8"><p id="OutcomeEng"></p></div>
+                            <div class="col-sm-8"><p id="Outcome"></p></div>
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Gender:</strong></p>
-                            <div class="col-sm-8"><p id="GenderEng"></p></div>
+                            <div class="col-sm-8"><p id="Gender"></p></div>
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Weight:</strong></p>
@@ -216,7 +216,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Serious report?</strong></p>
-                            <div class="col-sm-8"><p id="SeriousnessEng"></p></div>
+                            <div class="col-sm-8"><p id="Seriousness"></p></div>
                         </div>
 
                         <div id="seriousSection">
@@ -311,6 +311,11 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
             </div>
         </main>
     </div>
+
+    <aside class="gc-nttvs container">
+        <h2>Government of Canada activities and initiatives</h2>
+        <div id="gcwb_prts" class="wb-eqht row" data-ajax-replace="//cdn.canada.ca/gcweb-cdn-live/features/features-en.html"><p class="mrgn-lft-md"><a href="http://www.canada.ca/activities.html">Access Government of Canada activities and initiatives</a></p> </div>
+    </aside>
   
     <footer role="contentinfo" id="wb-info">
         <nav role="navigation" class="container visible-sm visible-md visible-lg wb-navcurr">
@@ -410,7 +415,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
     <script>
         var lang = "en";
         var pType = "cvp";
-        $("a#langLink").attr('href', goCvpLangUrlByID(lang));
+        $("a#langLink").attr('href', goCvpLangUrlByID(lang,'canada-vigilance-detail-fr'));
         $.getJSON(goCvpUrlByID(lang), function (data) {
             if ($.trim(data.ReportId) == '') {
                 OnFail("");
@@ -421,13 +426,14 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                 $('#DateReceived').append(formatedDate(data.DateReceived));
                 $('#DateIntReceived').append(formatedDate(data.DateIntReceived));                
                 $('#MahNo').append(data.MahNo);
-                (data.AgeY != null && data.AgeY > 0) ? $('#AgeY').append(data.AgeY + " " + data.AgeUnit) : '';
-                $('#AgeGroupName').append(data.AgeGroupName);
-                $('#ReportTypeName').append(data.ReportTypeName);
+                (data.AgeY != null && data.AgeY > 0) ? $('#AgeY').append(data.AgeY + " " + data.AgeUnit) : '';                
+                $('#AgeGroup').append(data.AgeGroupName);
+                $('#ReportType').append(data.ReportTypeName);
+                
                 $('#ReporterType').append(data.ReporterType);
                 $('#SourceName').append(data.SourceName);
                 $('#Outcome').append(data.Outcome);
-                $('#GenderName').append(data.Gender);
+                $('#Gender').append(data.GenderName);
                 (data.Weight != null && data.Weight > 0) ? $('#Weight').append(data.Weight + " " + data.WeightUnit) : '';
                 (data.Height != null && data.Height > 0) ? $('#Height').append(data.Height + " " + data.HeightUnit) : '';
                 $('#Seriousness').append(data.Seriousness);
@@ -447,6 +453,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
         });
 
         $(document).ready(function () {
+            
             window["wb-tables"] = {
                 "processing": true,
                 "ajax": {
@@ -478,7 +485,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                             { "data": "IndicationName", sDefaultContent: "" }
                 ]
             }
-
+      
 
         //$(document).ready(function () {
             //$.ajax({
