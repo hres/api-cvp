@@ -49,7 +49,6 @@ namespace cvp
                     if (!string.IsNullOrWhiteSpace(linkId))
                     {
                         var adverseReport = new Report();
-                        //adverseReport = dbConnection.GetReportById(linkId, lang);
                         adverseReport = UtilityHelper.GetReportByID(linkId, lang);
                         if (!string.IsNullOrWhiteSpace(adverseReport.ReportNo))
                         {
@@ -63,14 +62,13 @@ namespace cvp
                     } else if (!string.IsNullOrWhiteSpace(drugsReportId))
                     {
                         List<ReportDrug> reportDrugs = new List<ReportDrug>();
-                        //reportDrugs = dbConnection.GetReportDrugsByReportId(drugsReportId, lang);
                         reportDrugs = UtilityHelper.GetReportDrugsById(drugsReportId, lang);
 
                         if (reportDrugs != null && reportDrugs.Count > 0)
                         {
                             jsonResult = JsonHelper.JsonSerializer<List<ReportDrug>>(reportDrugs);
                             jsonResult = "{\"data\":" + jsonResult + "}";
-                            Debug.WriteLine(jsonResult);
+                            //Debug.WriteLine(jsonResult);
                             context.Response.Write(jsonResult);
                         }
                         else
@@ -81,14 +79,13 @@ namespace cvp
                     } else
                     {
                         List<Reactions> reactions = new List<Reactions>();
-                        //reactions = dbConnection.GetReactionsByReportId(drugsReportId, lang);
-                        reactions = UtilityHelper.GetReactionsByReportId(drugsReportId, lang);
+                        reactions = UtilityHelper.GetReactionsByReportId(reactionsReportId, lang);
 
                         if (reactions != null && reactions.Count > 0)
                         {
                             jsonResult = JsonHelper.JsonSerializer<List<Reactions>>(reactions);
-                            jsonResult = "{\"data\":" + jsonResult + "}";
-                            Debug.WriteLine(jsonResult);
+                            //jsonResult = "{\"data\":" + jsonResult + "}";
+                            //Debug.WriteLine(jsonResult);
                             context.Response.Write(jsonResult);
                         }
                         else

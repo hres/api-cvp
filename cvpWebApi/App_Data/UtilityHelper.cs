@@ -1,10 +1,12 @@
 ﻿using cvpWebApi.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
@@ -126,19 +128,32 @@ namespace cvp
 
         public static List<ReportDrug> GetReportDrugsById(string reportId, string lang)
         {
-            var items = new List<ReportDrug>();
+            var reportDrugs = new List<ReportDrug>();
+            var reportDrug = new ReportDrug();
+
             var filteredList = new List<ReportDrug>();
             var json = string.Empty;
             var id = reportId;
-            var reportDrugJsonUrl = string.Format("{0}&id={1}&lang={2}", ConfigurationManager.AppSettings["reportDrugJsonUrl"].ToString(), id, lang);
+            var reportDrugJsonUrl = string.Format("{0}&reportId={1}&lang={2}", ConfigurationManager.AppSettings["reportDrugJsonUrl"].ToString(), id, lang);
             try
             {
                 using (var webClient = new System.Net.WebClient())
                 {
                     json = webClient.DownloadString(reportDrugJsonUrl);
+
                     if (!string.IsNullOrWhiteSpace(json))
                     {
-                        items = JsonConvert.DeserializeObject<List<ReportDrug>>(json);
+                        var token = JToken.Parse(json);
+                        if (token is JArray)
+                        {
+                            reportDrugs = JsonConvert.DeserializeObject<List<ReportDrug>>(json);
+                        }
+                        else //is single Object
+                        {
+                            reportDrug = JsonConvert.DeserializeObject<ReportDrug>(json);
+                            reportDrugs.Add(reportDrug);                            
+                        }
+
                     }
                 }
             }
@@ -151,8 +166,9 @@ namespace cvp
             {
 
             }
-            return items;
+            return reportDrugs;
         }
+
 
         public static List<Reactions> GetReactionsByReportId(string reportId, string lang)
         {
@@ -160,7 +176,8 @@ namespace cvp
             var filteredList = new List<Reactions>();
             var json = string.Empty;
             var id = reportId;
-            var reactionsJsonUrl = string.Format("{0}&id={1}&lang={2}", ConfigurationManager.AppSettings["reactionsJsonUrl"].ToString(), id, lang);
+            var reactionsJsonUrl = string.Format("{0}&reportId={1}&lang={2}", ConfigurationManager.AppSettings["reactionsJsonUrl"].ToString(), id, lang);
+            Debug.WriteLine("GetReactionsByReportId URL : " + reactionsJsonUrl);
             try
             {
                 using (var webClient = new System.Net.WebClient())

@@ -274,18 +274,20 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                             </div>
                         </section>
 
-
                         <section class="panel panel-default">
                             <header class="panel-heading">
                                 <h2 class="panel-title" id="title">Adverse Reaction Term Information</h2>
                             </header>
                             <div class="panel-body">
-                                <table id="reactionsTable" >
+                                <table class="table table-bordered" id="reactionsTable" >
                                     <thead>
                                         <tr class="active">
                                             <th>Adverse Reaction Term(s)</th>
                                             <th>Reaction Duration</th>
+                                        </tr>
                                     </thead>
+                                    <tbody>
+                                    </tbody>
                                 </table>
                             </div>
                         </section>
@@ -428,8 +430,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                 $('#MahNo').append(data.MahNo);
                 (data.AgeY != null && data.AgeY > 0) ? $('#AgeY').append(data.AgeY + " " + data.AgeUnit) : '';                
                 $('#AgeGroup').append(data.AgeGroupName);
-                $('#ReportType').append(data.ReportTypeName);
-                
+                $('#ReportType').append(data.ReportTypeName);                
                 $('#ReporterType').append(data.ReporterType);
                 $('#SourceName').append(data.SourceName);
                 $('#Outcome').append(data.Outcome);
@@ -452,8 +453,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
             }
         });
 
-        $(document).ready(function () {
-            
+//        $(document).ready(function () {
             window["wb-tables"] = {
                 "processing": true,
                 "ajax": {
@@ -463,7 +463,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                     //},
                     "error": OnFail
                 },
-                "order": [[1, "desc"]],
+                "order": [[0, "desc"]],
                 "columns": [
                             { "data": "DrugName", sDefaultContent: "" },
                             { "data": "DosageForm", sDefaultContent: "" },
@@ -485,35 +485,75 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                             { "data": "IndicationName", sDefaultContent: "" }
                 ]
             }
-      
+//        });
+
+        $.getJSON(goCvpReactionsUrlByID(lang), function (data) {
+            if ($.trim(data)) {
+                alert(" data returned : " + JSON.stringify(data));
+                var tbody = $("#reactionsTable > tbody").html("");
+                $.each(data, function (k, v) {
+                    var rowText = "<tr><td>" + v.PtName + "</td><td>" + (v.Duration != 0 ? v.Duration + " " + v.DurationUnit : "") + "</td></tr>";
+                    $(rowText).appendTo(tbody);
+                    //alert("count 1 " + v.PtName);
+                });
+            }
+
+        });
+
+        //$.getJSON(goCvpReactionsUrlByID(lang), function (data) {
+        //    if ($.trim(data)) {
+        //        alert("reactions exist, call the datatable");
+        //        $('#reactionsTable').dataTable({
+        //            data: data,
+        //            columns: [
+        //                    { "data": "PtName" },
+        //                    { "data": "Duration" }
+        //            ]
+        //        });
+        //    }
+        //});
+
+        //$(document).ready(function () {
+        //    $.ajax({
+        //        url: goCvpReactionsUrlByID(lang),
+        //        success: function (data) {
+        //            //$("#reactionsTable").dataTable({
+        //            //    data: data,
+        //            //    columns: [
+        //            //        { 'data': 'PtNameEng' },
+        //            //        { 'data': 'Duration' }
+        //            //    ]
+        //            //});
+        //            alert('success in calling ReportDrugUrlByID');
+        //        },
+        //        error: function () {
+        //            alert('error in callling ReportDrugUrlByID');
+        //        }
+        //    })
+        //});
 
         //$(document).ready(function () {
             //$.ajax({
             //    url: goCvpReactionsUrlByID(lang),
-            //    url: "./Controllers/dhprController.ashx?reportId=5",
             //    dataType: "json",
             //    method: 'post',
             //    success: function (data) {
-            //        $("#reactionsTable").dataTable({
+            //        alert('success in calling goCvpReactionsUrlByID');
+            //        alert("Data object : " + JSON.stringify(data));
+            //        $('#reactionsTable').DataTable({
             //            data: data,
             //            columns: [
-            //                { 'data': 'PtNameEng' },
-            //                { 'data': 'Duration' }
-
+            //                { "data": "PtName" },
+            //                { "data": "Duration" }
             //            ]
-            //            <th>Adverse Reaction Term(s)</th>
-            //            <th>Reaction Duration</th>
+            //        });
 
-            //        })
-            //        alert('success in calling ReportDrugUrlByID');
             //    },
             //    error: function () {
             //        alert('error in callling ReportDrugUrlByID');
             //    }
-            //})
+            //});
         //});
-        });
-
 
     </script>
 </body>
