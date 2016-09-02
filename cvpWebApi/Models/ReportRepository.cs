@@ -27,9 +27,15 @@ namespace cvpWebApi.Models
             _report = dbConnection.GetReportById(id, lang);
             return _report;
         }
-        public IEnumerable<Report> GetReportByCriteria(string drugName, string lang)
+        //public IEnumerable<Report> GetReportByCriteria(string drugName, string lang)
+        //{
+        //    _reports = dbConnection.GetReportByCriteria(drugName, lang);
+        //    return _reports;
+        //}
+
+        public IEnumerable<Report> GetReportByCriteria(string drugName, string adverseReaction, string lang)
         {
-            _reports = dbConnection.GetReportByCriteria(drugName, lang);
+            _reports = dbConnection.GetReportByAllCriteria(drugName, adverseReaction, lang);
             return _reports;
         }
 

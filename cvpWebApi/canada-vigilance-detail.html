@@ -489,7 +489,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
 
         $.getJSON(goCvpReactionsUrlByID(lang), function (data) {
             if ($.trim(data)) {
-                alert(" data returned : " + JSON.stringify(data));
+                //alert(" data returned : " + JSON.stringify(data));
                 var tbody = $("#reactionsTable > tbody").html("");
                 $.each(data, function (k, v) {
                     var rowText = "<tr><td>" + v.PtName + "</td><td>" + (v.Duration != 0 ? v.Duration + " " + v.DurationUnit : "") + "</td></tr>";

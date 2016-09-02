@@ -279,14 +279,14 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
                                 <h2 class="panel-title" id="title">Information sur les termes d'effet indésirable</h2>
                             </header>
                             <div class="panel-body">
-                                <table id="reactionsTable" class="wb-tables table table-striped table-hover table-bordered">
+                                <table class="table table-bordered" id="reactionsTable">
                                     <thead>
                                         <tr class="active">
                                             <th>Terme(s) d'effet indésirable</th>
                                             <th>Durée de la réaction</th>
                                         </tr>
                                     </thead>
-                                    <tbody id=""></tbody>
+                                    <tbody></tbody>
                                 </table>
                             </div>
                         </section>
@@ -452,39 +452,52 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
             }
         });
 
-        $(document).ready(function () {
-            window["wb-tables"] = {
-                "processing": true,
-                "ajax": {
-                    "url": goCvpReportDrugUrlByID(lang),
-                    //"success": function (data) {
-                    //    alert('ajax call a success');
-                    //},
-                    "error": OnFail
-                },
-                "order": [[1, "desc"]],
-                "columns": [
-                            { "data": "DrugName", sDefaultContent: "" },
-                            { "data": "DosageForm", sDefaultContent: "" },
-                            { "data": "DrugInvolvName", sDefaultContent: "" },
-                            { "data": "RouteAdminName", sDefaultContent: "" },
-                            {
-                                "data": null,
-                                "render": function (data, type, full) {
-                                    return data.UnitDoseQty + ' ' + data.DoseUnit;
-                                }
-                            },
-                            { "data": "FrequencyTime", sDefaultContent: "" },
-                            {
-                                "data": null,
-                                "render": function (data, type, full) {
-                                    return data.TherapyDuration + ' ' + data.TherapyDurationUnit;
-                                }
-                            },
-                            { "data": "IndicationName", sDefaultContent: "" }
-                ]
+        //$(document).ready(function () {
+        window["wb-tables"] = {
+            "processing": true,
+            "ajax": {
+                "url": goCvpReportDrugUrlByID(lang),
+                //"success": function (data) {
+                //    alert('ajax call a success');
+                //},
+                "error": OnFail
+            },
+            "order": [[1, "desc"]],
+            "columns": [
+                        { "data": "DrugName", sDefaultContent: "" },
+                        { "data": "DosageForm", sDefaultContent: "" },
+                        { "data": "DrugInvolvName", sDefaultContent: "" },
+                        { "data": "RouteAdminName", sDefaultContent: "" },
+                        {
+                            "data": null,
+                            "render": function (data, type, full) {
+                                return data.UnitDoseQty + ' ' + data.DoseUnit;
+                            }
+                        },
+                        { "data": "FrequencyTime", sDefaultContent: "" },
+                        {
+                            "data": null,
+                            "render": function (data, type, full) {
+                                return data.TherapyDuration + ' ' + data.TherapyDurationUnit;
+                            }
+                        },
+                        { "data": "IndicationName", sDefaultContent: "" }
+            ]
+        };
+        //});
+
+        $.getJSON(goCvpReactionsUrlByID(lang), function (data) {
+            if ($.trim(data)) {
+                //alert(" data returned : " + JSON.stringify(data));
+                var tbody = $("#reactionsTable > tbody").html("");
+                $.each(data, function (k, v) {
+                    var rowText = "<tr><td>" + v.PtName + "</td><td>" + (v.Duration != 0 ? v.Duration + " " + v.DurationUnit : "") + "</td></tr>";
+                    $(rowText).appendTo(tbody);
+                    //alert("count 1 " + v.PtName);
+                });
             }
 
+        });
 
         //$(document).ready(function () {
         //    $.ajax({
@@ -511,7 +524,7 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
         //        }
         //    })
         //});
-        });
+ 
 
 
     </script>

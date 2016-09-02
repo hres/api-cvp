@@ -102,7 +102,7 @@ namespace cvp
                     {
                         jsonResult = JsonHelper.JsonSerializer<List<Report>>(reports);
                         jsonResult = "{\"data\":" + jsonResult + "}";
-                        Debug.WriteLine(jsonResult);
+                        //Debug.WriteLine(jsonResult);
                         context.Response.Write(jsonResult);
                     }
                     else
