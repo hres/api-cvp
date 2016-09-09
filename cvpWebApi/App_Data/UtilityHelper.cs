@@ -11,6 +11,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
+using System.Text;
 
 namespace cvp
 {
@@ -78,6 +79,7 @@ namespace cvp
             {
                 using (var webClient = new System.Net.WebClient())
                 {
+                    webClient.Encoding = Encoding.UTF8;
                     json = webClient.DownloadString(reportJsonUrl);
                     if (!string.IsNullOrWhiteSpace(json))
                     {
@@ -99,7 +101,6 @@ namespace cvp
 
         public static Report GetReportByID(string reportId, string lang)
         {
-            // CertifySSL.EnableTrustedHosts();
             var item = new Report();
             var json = string.Empty;
             var postData = new Dictionary<string, string>();
@@ -109,6 +110,7 @@ namespace cvp
             {
                 using (var webClient = new System.Net.WebClient())
                 {
+                    webClient.Encoding = Encoding.UTF8;
                     json = webClient.DownloadString(reportJsonUrlbyID);
                     if (!string.IsNullOrWhiteSpace(json))
                     {
@@ -141,6 +143,7 @@ namespace cvp
             {
                 using (var webClient = new System.Net.WebClient())
                 {
+                    webClient.Encoding = Encoding.UTF8;
                     json = webClient.DownloadString(reportDrugJsonUrl);
 
                     if (!string.IsNullOrWhiteSpace(json))
@@ -179,11 +182,11 @@ namespace cvp
             var json = string.Empty;
             var id = reportId;
             var reactionsJsonUrl = string.Format("{0}&reportId={1}&lang={2}", ConfigurationManager.AppSettings["reactionsJsonUrl"].ToString(), id, lang);
-            Debug.WriteLine("GetReactionsByReportId URL : " + reactionsJsonUrl);
             try
             {
                 using (var webClient = new System.Net.WebClient())
                 {
+                    webClient.Encoding = Encoding.UTF8;
                     json = webClient.DownloadString(reactionsJsonUrl);
                     if (!string.IsNullOrWhiteSpace(json))
                     {

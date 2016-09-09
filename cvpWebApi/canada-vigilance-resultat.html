@@ -9,7 +9,7 @@
     <title>Drug &amp; health product register</title>
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <!-- Meta data -->
-    <meta name="dcterms.language" title="ISO639-2" content="eng" />
+    <meta name="dcterms.language" title="ISO639-2" content="fra" />
     <meta name="dcterms.title" content="Drug and health product inspections" />
     <meta name="description" content="Find the latest results from the Government's drug and health product inspections." />
     <meta name="dcterms.subject" title="scheme" content="" />
@@ -154,7 +154,9 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
 
             <section class="panel panel-default">
                 <header class="panel-heading">
-                    <h2 class="panel-title" id="title">Résultats de recherche (Version de MedDRA : v.19.0)</h2>
+                    <h2 class="panel-title" id="title">Résultats de recherche (Version de MedDRA : v.19.0)
+                        <a class="btn btn-default btn-xs mrgn-rght-md pull-right" href="canada-vigilance-fr.html" role="button">Nouvelle recherche</a>
+                    </h2>
                 </header>
 
                 <div class="panel-body">
@@ -162,23 +164,15 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
                     <div class="pull-right" id="btnDownload">
                         <ul class="list-unstyled">
                             <li class="btn-group btn-group-xs">
-                                <input type="button" name="btnExcel" value="Download csv" id="btnExcel" class="btn btn-default btn-xs mrgn-rght-md" />
-                                <input type="button" name="btnJson" value="Download json" id="btnJson" class="btn btn-default btn-xs mrgn-rght-md" />
-                                <input type="button" name="btnXml" value="Download xml" id="btnXml" class="btn btn-default btn-xs" />
+                                <input type="button" name="btnExcel" value="Télécharger csv" id="btnExcel" class="btn btn-default btn-xs mrgn-rght-md" />
+                                <input type="button" name="btnJson" value="Télécharger json" id="btnJson" class="btn btn-default btn-xs mrgn-rght-md" />
+                                <input type="button" name="btnXml" value="Télécharger xml" id="btnXml" class="btn btn-default btn-xs" />
                             </li>
                         </ul>
                     </div>
                     <table id="cvpTable" class="wb-tables table table-striped table-hover table-bordered">
                         <thead>
                             <tr class="active">
-                                <!--<th>Adverse Reaction Report Number</th>
-                                <th>Medicinal ingredient</th>
-                                <th>Manufacturer</th>
-                                <th>Outcome</th>
-                                <th>Decision date</th>
-                                <th>Control number</th>
-                                <th>Type of submission</th>-->
-
                                 <th>Numéro d'identification de déclaration d'effet indésirable</th>
                                 <th>Numéro de la DEI du détenteur d'autorisation de mise en marché</th>
                                 <th>Date de réception initiale</th>
@@ -189,6 +183,11 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
                         </thead>
                         <tbody id="tbodyMain"></tbody>
                     </table>
+                    <div class="panel-footer text-center">
+                        <div class="form-group mrgn-bttm-0">
+                            <a class="btn btn-default" href="canada-vigilance-fr.html" role="button">Nouvelle recherche</a>
+                        </div>
+                    </div>
                 </div>
             </section>
             <div class="row pagedetails">
@@ -310,7 +309,7 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
     <!--<![endif]-->
 
     <script>
-        var lang = " en";
+        var lang = " fr";
         var pType = "cvp";
         $('#btnDownload').hide();
         $("a#langLink").attr('href', goDhprLangUrl(lang, pType));
@@ -329,7 +328,7 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
                                 {
                                     "data": null,
                                     "render": function (data, type, full) {
-                                        return '<a href=canada-vigilance-detail-fr.html?lang=en&linkID=' + data.ReportId + '>' + data.ReportNo + '</a>';
+                                        return '<a href=canada-vigilance-detail-fr.html?lang=fr&linkID=' + data.ReportId + '>' + data.ReportNo + '</a>';
                                               }
                                 },
                                 { "data": "MahNo" },

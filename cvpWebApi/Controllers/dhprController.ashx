@@ -24,7 +24,7 @@ namespace cvp
 
             try
             {
-                var jsonResult = string.Empty;
+                var jsonResult = string.Empty;                
                 var lang = string.IsNullOrEmpty(context.Request.QueryString.GetLang().Trim()) ? "en" : context.Request.QueryString.GetLang().Trim();
                 if (lang == "en")
                 {
@@ -37,8 +37,6 @@ namespace cvp
 
                 //Get All the QueryStrings
                 var term  = context.Request.QueryString.GetSearchTerm().ToLower().Trim();
-                //var pType = string.IsNullOrEmpty(context.Request.QueryString.GetProgramType().Trim()) ? programType.dhpr : (programType)Enum.Parse(typeof(programType), context.Request.QueryString.GetProgramType().Trim());
-                //var linkId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetLinkID().Trim())? string.Empty: context.Request.QueryString.GetLinkID().Trim();
                 var linkId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetLinkID().Trim())? string.Empty: context.Request.QueryString.GetLinkID().Trim();
                 var drugsReportId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetDrugsReportID().Trim())? string.Empty: context.Request.QueryString.GetDrugsReportID().Trim();
                 var reactionsReportId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetReactionsReportID().Trim())? string.Empty: context.Request.QueryString.GetReactionsReportID().Trim();
@@ -85,7 +83,6 @@ namespace cvp
                         {
                             jsonResult = JsonHelper.JsonSerializer<List<Reactions>>(reactions);
                             //jsonResult = "{\"data\":" + jsonResult + "}";
-                            //Debug.WriteLine(jsonResult);
                             context.Response.Write(jsonResult);
                         }
                         else
@@ -102,7 +99,6 @@ namespace cvp
                     {
                         jsonResult = JsonHelper.JsonSerializer<List<Report>>(reports);
                         jsonResult = "{\"data\":" + jsonResult + "}";
-                        //Debug.WriteLine(jsonResult);
                         context.Response.Write(jsonResult);
                     }
                     else

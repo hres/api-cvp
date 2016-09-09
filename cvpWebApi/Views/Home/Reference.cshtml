@@ -66,7 +66,7 @@
                         <th scope="col">Notes</th>
                     </tr>
                     <tr>
-                        <td><span class="nowrap">/api/<search param>/<code>lang</code></span></td>
+                        <td><span class="nowrap">/api-v1/<search param>/<code>lang</code></span></td>
                         <td>Changes language</td>
                         <td>
                             <ul class="list-unstyled mrgn-lft-0 nowrap">
@@ -80,8 +80,8 @@
                 </table>
                 <p>Drug Product data can be accessed via these URIs:</p>
                 <ul>
-                    <li><a href="http://api.hres.ca/dpd/api/drugproduct/?lang=en">http://api.hres.ca/dpd/api/drugproduct/?lang=en</a></li>
-                    <li><a href="http://api.hres.ca/dpd/api/drugproduct/?lang=fr">http://api.hres.ca/dpd/api/drugproduct/?lang=fr</a></li>
+                    <li><a href="http://api.hres.ca/dpd/api-v1/drugproduct/?lang=en">http://api.hres.ca/dpd/api-v1/drugproduct/?lang=en</a></li>
+                    <li><a href="http://api.hres.ca/dpd/api-v1/drugproduct/?lang=fr">http://api.hres.ca/dpd/api-v1/drugproduct/?lang=fr</a></li>
                 </ul>
             </section>
         </section>
@@ -187,7 +187,7 @@
             <p>Example for a function that appends a list of the most recent recalls of all categories to an element with id &quot;#responses&quot;, given a language selection:</p>
             <pre class="prettify prettyprint linenums">function getRecent(lang) {
     var base = 'http://api.hres.ca/dpd/....';
-    var uri = base + '/api/drugproduct/' + lang;
+    var uri = base + '/api-v1/drugproduct/' + lang;
     $.ajax({
         url:uri,
         type:'GET',
