@@ -5,7 +5,7 @@ using System.Web;
 
 namespace cvpWebApi.Models
 {
-    public class Reactions
+    public class Reaction
     {
         public int ReactionId { get; set; }
         public int ReportId { get; set; }

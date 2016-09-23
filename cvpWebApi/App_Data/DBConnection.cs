@@ -1181,9 +1181,9 @@ namespace cvp
             return items;
         }
 
-        public List<Reactions> GetAllReactions(string lang)
+        public List<Reaction> GetAllReaction(string lang)
         {
-            var items = new List<Reactions>();
+            var items = new List<Reaction>();
             string commandText = "SELECT DISTINCT REACTION_ID, REPORT_ID, DURATION, MEDDRA_VERSION, ";
             if (lang.Equals("fr"))
             {
@@ -1208,7 +1208,7 @@ namespace cvp
                         {
                             while (dr.Read())
                             {
-                                var item = new Reactions();
+                                var item = new Reaction();
                                 item.ReactionId = dr["REACTION_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REACTION_ID"]);
                                 item.ReportId = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
                                 item.Duration = dr["DURATION"] == DBNull.Value ? 0 : Convert.ToInt32(dr["DURATION"]);
@@ -1224,7 +1224,7 @@ namespace cvp
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetAllReactions()");
+                    string errorMessages = string.Format("DbConnection.cs - GetAllReaction()");
                     ExceptionHelper.LogException(ex, errorMessages);
                     Console.WriteLine(errorMessages);
                 }
@@ -1237,9 +1237,9 @@ namespace cvp
             return items;
         }
 
-        public Reactions GetReactionsById(int id, string lang)
+        public Reaction GetReactionById(int id, string lang)
         {
-            var reactions = new Reactions();
+            var reactions = new Reaction();
             string commandText = "SELECT DISTINCT REACTION_ID, REPORT_ID, DURATION, MEDDRA_VERSION, ";
             if (lang.Equals("fr"))
             {
@@ -1267,7 +1267,7 @@ namespace cvp
                         {
                             while (dr.Read())
                             {
-                                var item = new Reactions();
+                                var item = new Reaction();
                                 item.ReactionId = dr["REACTION_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REACTION_ID"]);
                                 item.ReportId = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
                                 item.Duration = dr["DURATION"] == DBNull.Value ? 0 : Convert.ToInt32(dr["DURATION"]);
@@ -1283,7 +1283,7 @@ namespace cvp
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetReactionsById()");
+                    string errorMessages = string.Format("DbConnection.cs - GetReactionById()");
                     ExceptionHelper.LogException(ex, errorMessages);
                     Console.WriteLine(errorMessages);
                 }
@@ -1296,9 +1296,9 @@ namespace cvp
             return reactions;
         }
 
-        public List<Reactions> GetReactionsByReportId(string reportId, string lang)
+        public List<Reaction> GetReactionByReportId(string reportId, string lang)
         {
-            var reactions = new List<Reactions>();
+            var reaction = new List<Reaction>();
             string commandText = "SELECT DISTINCT REACTION_ID, REPORT_ID, DURATION, MEDDRA_VERSION, ";
             if (lang.Equals("fr"))
             {
@@ -1327,7 +1327,7 @@ namespace cvp
                         {
                             while (dr.Read())
                             {
-                                var item = new Reactions();
+                                var item = new Reaction();
                                 //item.ReactionId = dr["REACTION_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REACTION_ID"]);
                                 item.ReportId = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
                                 item.Duration = dr["DURATION"] == DBNull.Value ? 0 : Convert.ToInt32(dr["DURATION"]);
@@ -1336,14 +1336,14 @@ namespace cvp
                                 item.SocName = dr["SOC_NAME"] == DBNull.Value ? string.Empty : dr["SOC_NAME"].ToString().Trim();
                                 item.MeddraVersion = dr["MEDDRA_VERSION"] == DBNull.Value ? string.Empty : dr["MEDDRA_VERSION"].ToString().Trim();
 
-                                reactions.Add(item);
+                                reaction.Add(item);
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetReactionsByReportId(reportId, lang)");
+                    string errorMessages = string.Format("DbConnection.cs - GetReactionByReportId(reportId, lang)");
                     ExceptionHelper.LogException(ex, errorMessages);
                     Console.WriteLine(errorMessages);
                 }
@@ -1353,7 +1353,7 @@ namespace cvp
                         con.Close();
                 }
             }
-            return reactions;
+            return reaction;
         }
 
         public List<OutcomeLx> GetAllOutcomeLx(string lang)

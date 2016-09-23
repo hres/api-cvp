@@ -175,10 +175,10 @@ namespace cvp
         }
 
 
-        public static List<Reactions> GetReactionsByReportId(string reportId, string lang)
+        public static List<Reaction> GetReactionsByReportId(string reportId, string lang)
         {
-            var items = new List<Reactions>();
-            var filteredList = new List<Reactions>();
+            var items = new List<Reaction>();
+            var filteredList = new List<Reaction>();
             var json = string.Empty;
             var id = reportId;
             var reactionsJsonUrl = string.Format("{0}&reportId={1}&lang={2}", ConfigurationManager.AppSettings["reactionsJsonUrl"].ToString(), id, lang);
@@ -190,7 +190,7 @@ namespace cvp
                     json = webClient.DownloadString(reactionsJsonUrl);
                     if (!string.IsNullOrWhiteSpace(json))
                     {
-                        items = JsonConvert.DeserializeObject<List<Reactions>>(json);
+                        items = JsonConvert.DeserializeObject<List<Reaction>>(json);
                     }
                 }
             }
