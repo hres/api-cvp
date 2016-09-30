@@ -325,7 +325,7 @@
     <Compile Include="Controllers\SourceLxController.cs" />
     <Compile Include="Controllers\SeriousnessLxController.cs" />
     <Compile Include="Controllers\ReactionController.cs" />
-    <Compile Include="Controllers\ReportLinksController.cs" />
+    <Compile Include="Controllers\ReportLinkController.cs" />
     <Compile Include="Controllers\OutcomeLxController.cs" />
     <Compile Include="Controllers\GenderLxController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -345,7 +345,7 @@
     <Compile Include="Models\IOutcomeLxRepository.cs" />
     <Compile Include="Models\IReportDrugIndicationRepository.cs" />
     <Compile Include="Models\IReportDrugRepository.cs" />
-    <Compile Include="Models\IReportLinksRepository.cs" />
+    <Compile Include="Models\IReportLinkRepository.cs" />
     <Compile Include="Models\IReportTypeLxRepository.cs" />
     <Compile Include="Models\ISeriousnessLxRepository.cs" />
     <Compile Include="Models\ISourceLxRepository.cs" />
@@ -365,8 +365,8 @@
     <Compile Include="Models\ReportDrugRepository.cs" />
     <Compile Include="Models\ReportInfo.cs" />
     <Compile Include="Models\ReportInfoRepository.cs" />
-    <Compile Include="Models\ReportLinks.cs" />
-    <Compile Include="Models\ReportLinksRepository.cs" />
+    <Compile Include="Models\ReportLink.cs" />
+    <Compile Include="Models\ReportLinkRepository.cs" />
     <Compile Include="Models\ReportRepository.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\DrugProductIngredient.cs" />

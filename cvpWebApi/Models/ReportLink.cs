@@ -5,7 +5,7 @@ using System.Web;
 
 namespace cvpWebApi.Models
 {
-    public class ReportLinks
+    public class ReportLink
     {
         public int ReportLinkId { get; set; }
         public int ReportId { get; set; }

@@ -8,20 +8,20 @@ using cvpWebApi.Models;
 
 namespace cvpWebApi.Controllers
 {
-    public class ReportLinksController : ApiController
+    public class ReportLinkController : ApiController
     {
-        static readonly IReportLinksRepository databasePlaceholder = new ReportLinksRepository();
+        static readonly IReportLinkRepository databasePlaceholder = new ReportLinkRepository();
 
-        public IEnumerable<ReportLinks> GetAllReportLinks(string lang)
+        public IEnumerable<ReportLink> GetAllReportLink(string lang)
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public ReportLinks GetReportLinksByID(int id, string lang)
+        public ReportLink GetReportLinkByID(int id, string lang)
         {
-            ReportLinks report = databasePlaceholder.Get(id, lang);
+            ReportLink report = databasePlaceholder.Get(id, lang);
             if (report == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);

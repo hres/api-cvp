@@ -14,8 +14,8 @@ namespace cvpWebApi.Models
 
         public IEnumerable<Reaction> GetAll(string lang)
         {
-            _reaction = dbConnection.GetAllReaction(lang);
-            return _reaction;
+            _reactions = dbConnection.GetAllReaction(lang);
+            return _reactions;
         }
 
         public Reaction Get(int id, string lang)
@@ -25,8 +25,8 @@ namespace cvpWebApi.Models
         }
         public IEnumerable<Reaction> GetReactionByReportId(string reportId, string lang)
         {
-            _reaction = dbConnection.GetReactionByReportId(reportId, lang);
-            return _reaction;
+            _reactions = dbConnection.GetReactionByReportId(reportId, lang);
+            return _reactions;
         }
     }
 }

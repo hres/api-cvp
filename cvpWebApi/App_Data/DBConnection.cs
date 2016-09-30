@@ -270,7 +270,7 @@ namespace cvp
             string commandText = "SELECT REPORT_ID, REPORT_NO, VERSION_NO, DATRECEIVED, DATINTRECEIVED, MAH_NO, REPORT_TYPE_CODE, GENDER_CODE, ";
             commandText += " AGE, AGE_Y, AGE_UNIT_CODE, AGE_UNIT_CODE, AGE_GROUP_CODE, OUTCOME_CODE, WEIGHT, WEIGHT_UNIT_CODE, HEIGHT, HEIGHT_UNIT_CODE, ";
             commandText += " SERIOUSNESS_CODE, DEATH, DISABILITY, CONGENITAL_ANOMALY,LIFE_THREATENING, HOSP_REQUIRED, OTHER_MEDICALLY_IMP_COND, DURATION, ";
-            commandText += " REPORTER_TYPE_CODE, SOURCE_CODE, REPORT_LINK_FLG, AER_ID, DRUGNAME";
+            commandText += " REPORTER_TYPE_CODE, SOURCE_CODE, REPORT_LINK_FLG, AER_ID, DRUGNAME, ";
 
             if (lang.Equals("fr"))
             {
@@ -1362,7 +1362,7 @@ namespace cvp
             string commandText = "SELECT DISTINCT OUTCOME_LX_ID, OUTCOME_CODE, ";
             if (lang.Equals("fr"))
             {
-                commandText += " FR_DESC as OUTCOME,";
+                commandText += " FR_DESC as OUTCOME";
 
             }
             else
@@ -1387,7 +1387,7 @@ namespace cvp
                                 var item = new OutcomeLx();
                                 item.OutcomeLxId = dr["OUTCOME_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["OUTCOME_LX_ID"]);
                                 item.OutcomeCode =dr["OUTCOME_CODE"] == DBNull.Value ? string.Empty : dr["OUTCOME_CODE"].ToString().Trim();
-                                item.OutcomeName = dr["OUTCOME"] == DBNull.Value ? string.Empty : dr["EN_DESC"].ToString().Trim();
+                                item.OutcomeName = dr["OUTCOME"] == DBNull.Value ? string.Empty : dr["OUTCOME"].ToString().Trim();
                                 
                                 items.Add(item);
                             }
@@ -1470,7 +1470,7 @@ namespace cvp
             string commandText = "SELECT DISTINCT GENDER_LX_ID, GENDER_CODE, ";
             if (lang.Equals("fr"))
             {
-                commandText += " FR_DESC as GENDER,";
+                commandText += " FR_DESC as GENDER";
             }
             else
             {
@@ -1521,7 +1521,7 @@ namespace cvp
             string commandText = "SELECT DISTINCT GENDER_LX_ID, GENDER_CODE, ";
             if (lang.Equals("fr"))
             {
-                commandText += " FR_DESC as GENDER,";
+                commandText += " FR_DESC as GENDER";
             }
             else
             {
@@ -1573,7 +1573,7 @@ namespace cvp
             string commandText = "SELECT DISTINCT REPORT_TYPE_LX_ID, REPORT_TYPE_CODE, ";
             if (lang.Equals("fr"))
             {
-                commandText += " FR_DESC as REPORT_TYPE,";
+                commandText += " FR_DESC as REPORT_TYPE";
             }
             else
             {
@@ -1623,7 +1623,7 @@ namespace cvp
             string commandText = "SELECT DISTINCT REPORT_TYPE_LX_ID, REPORT_TYPE_CODE, ";
             if (lang.Equals("fr"))
             {
-                commandText += " FR_DESC as REPORT_TYPE,";
+                commandText += " FR_DESC as REPORT_TYPE";
             }
             else
             {
@@ -1676,7 +1676,7 @@ namespace cvp
             string commandText = "SELECT DISTINCT SERIOUSNESS_LX_ID, SERIOUSNESS_CODE, ";
             if (lang.Equals("fr"))
             {
-                commandText += " FR_DESC as SERIOUSNESS,";
+                commandText += " FR_DESC as SERIOUSNESS";
             }
             else
             {
@@ -1727,7 +1727,7 @@ namespace cvp
             string commandText = "SELECT DISTINCT SERIOUSNESS_LX_ID, SERIOUSNESS_CODE, ";
             if (lang.Equals("fr"))
             {
-                commandText += " FR_DESC as SERIOUSNESS,";
+                commandText += " FR_DESC as SERIOUSNESS";
             }
             else
             {
@@ -1780,7 +1780,7 @@ namespace cvp
             string commandText = "SELECT DISTINCT SOURCE_LX_ID, SOURCE_CODE,";
             if (lang.Equals("fr"))
             {
-                commandText += " FR_DESC as SOURCE,";
+                commandText += " FR_DESC as SOURCE";
             }
             else
             {
@@ -1832,7 +1832,7 @@ namespace cvp
             string commandText = "SELECT DISTINCT SOURCE_LX_ID, SOURCE_CODE,";
             if (lang.Equals("fr"))
             {
-                commandText += " FR_DESC as SOURCE,";
+                commandText += " FR_DESC as SOURCE";
             }
             else
             {
@@ -1877,17 +1877,17 @@ namespace cvp
             return sourceLx;
         }
 
-        public List<ReportLinks> GetAllReportLinks(string lang)
+        public List<ReportLink> GetAllReportLink(string lang)
         {
-            var items = new List<ReportLinks>();
+            var items = new List<ReportLink>();
             string commandText = "SELECT DISTINCT REPORT_LINK_ID, REPORT_ID, REPORT_LINK,";
             if (lang.Equals("fr"))
             {
-                commandText += " RECORD_TYPE_ENG as RECORD_TYPE,";
+                commandText += " RECORD_TYPE_FR as RECORD_TYPE";
             }
             else
             {
-                commandText += " RECORD_TYPE_FR as RECORD_TYPE";
+                commandText += " RECORD_TYPE_ENG as RECORD_TYPE";
             }
             commandText += " FROM CVPONL_OWNER.REPORT_LINKS";
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
@@ -1902,7 +1902,7 @@ namespace cvp
                         {
                             while (dr.Read())
                             {
-                                var item = new ReportLinks();
+                                var item = new ReportLink();
                                 item.ReportLinkId = dr["REPORT_LINK_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_LINK_ID"]);
                                 item.ReportId = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
                                 item.RecordType = dr["RECORD_TYPE"] == DBNull.Value ? string.Empty : dr["RECORD_TYPE"].ToString().Trim();
@@ -1928,17 +1928,17 @@ namespace cvp
             return items;
         }
 
-        public ReportLinks GetReportLinksById(int id, string lang)
+        public ReportLink GetReportLinkById(int id, string lang)
         {
-            var reportLinks = new ReportLinks();
+            var reportLinks = new ReportLink();
             string commandText = "SELECT DISTINCT REPORT_LINK_ID, REPORT_ID, REPORT_LINK,";
             if (lang.Equals("fr"))
             {
-                commandText += " RECORD_TYPE_ENG as RECORD_TYPE,";
+                commandText += " RECORD_TYPE_FR as RECORD_TYPE";
             }
             else
             {
-                commandText += " RECORD_TYPE_FR as RECORD_TYPE";
+                commandText += " RECORD_TYPE_ENG as RECORD_TYPE";
             }
             commandText += " FROM CVPONL_OWNER.REPORT_LINKS WHERE REPORT_LINK_ID = " + id;
 
@@ -1956,7 +1956,7 @@ namespace cvp
                         {
                             while (dr.Read())
                             {
-                                var item = new ReportLinks();
+                                var item = new ReportLink();
                                 item.ReportLinkId = dr["REPORT_LINK_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_LINK_ID"]);
                                 item.ReportId = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
                                 item.RecordType = dr["RECORD_TYPE"] == DBNull.Value ? string.Empty : dr["RECORD_TYPE"].ToString().Trim();
@@ -1985,7 +1985,7 @@ namespace cvp
         public List<ReportDrug> GetAllReportDrug(string lang)
         {
             var items = new List<ReportDrug>();
-            string commandText = "SELECT DISTINCT REPORT_DRUG_ID, REPORT_ID, DRUG_PRODUCT_ID, DRUGNAME";
+            string commandText = "SELECT DISTINCT REPORT_DRUG_ID, REPORT_ID, DRUG_PRODUCT_ID, DRUGNAME, UNIT_DOSE_QTY, FREQUENCY, FREQ_TIME, THERAPY_DURATION, ";
             if (lang.Equals("fr"))
             {
                 commandText += " DRUGINVOLV_FR as DRUGINVOLV, ROUTEADMIN_FR AS ROUTEADMIN, DOSE_UNIT_FR as DOSE_UNIT, FREQUENCY_TIME_FR as FREQUENCY_TIME, ";
@@ -2016,9 +2016,9 @@ namespace cvp
                                 item.DrugProductId = dr["DRUG_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["DRUG_PRODUCT_ID"]);
                                 item.DrugName = dr["DRUGNAME"] == DBNull.Value ? string.Empty : dr["DRUGNAME"].ToString().Trim();
                                 item.DrugInvolvName = dr["DRUGINVOLV"] == DBNull.Value ? string.Empty : dr["DRUGINVOLV"].ToString().Trim();
-                                item.RouteAdminName = dr["ROUTEADMIN_ENG"] == DBNull.Value ? string.Empty : dr["ROUTEADMIN_ENG"].ToString().Trim();
+                                item.RouteAdminName = dr["ROUTEADMIN"] == DBNull.Value ? string.Empty : dr["ROUTEADMIN"].ToString().Trim();
                                 item.UnitDoseQty = dr["UNIT_DOSE_QTY"] == DBNull.Value ? 0 : Convert.ToInt32(dr["UNIT_DOSE_QTY"]);
-                                item.DoseUnit = dr["DOSE_UNIT_ENG"] == DBNull.Value ? string.Empty : dr["DOSE_UNIT_ENG"].ToString().Trim();
+                                item.DoseUnit = dr["DOSE_UNIT"] == DBNull.Value ? string.Empty : dr["DOSE_UNIT"].ToString().Trim();
                                 item.Frequency = dr["FREQUENCY"] == DBNull.Value ? 0 : Convert.ToInt32(dr["FREQUENCY"]);
                                 item.FreqTime = dr["FREQ_TIME"] == DBNull.Value ? 0 : Convert.ToInt32(dr["FREQ_TIME"]);
                                 item.FrequencyTime = dr["FREQUENCY_TIME"] == DBNull.Value ? string.Empty : dr["FREQUENCY_TIME"].ToString().Trim();
@@ -2182,7 +2182,7 @@ namespace cvp
         {
             var items = new List<ReportDrugIndication>();
             
-            string commandText = "SELECT DISTINCT REPORT_DRUG_ID, REPORT_ID, DRUG_PRODUCT_ID, DRUGNAME";
+            string commandText = "SELECT DISTINCT REPORT_DRUG_ID, REPORT_ID, DRUG_PRODUCT_ID, DRUGNAME, ";
             if (lang.Equals("fr"))
             {
                 commandText += " INDICATION_NAME_FR as INDICATION_NAME";
@@ -2235,7 +2235,7 @@ namespace cvp
         public ReportDrugIndication GetReportDrugIndicationById(int id, string lang)
         {
             var reportDrugIndication = new ReportDrugIndication();
-            string commandText = "SELECT DISTINCT REPORT_DRUG_ID, REPORT_ID, DRUG_PRODUCT_ID, DRUGNAME";
+            string commandText = "SELECT DISTINCT REPORT_DRUG_ID, REPORT_ID, DRUG_PRODUCT_ID, DRUGNAME, ";
             if (lang.Equals("fr"))
             {
                 commandText += " INDICATION_NAME_FR as INDICATION_NAME";
