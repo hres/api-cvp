@@ -8,20 +8,20 @@ using cvpWebApi.Models;
 
 namespace cvpWebApi.Controllers
 {
-    public class SourceLxController : ApiController
+    public class SourceController : ApiController
     {
-        static readonly ISourceLxRepository databasePlaceholder = new SourceLxRepository();
+        static readonly ISourceRepository databasePlaceholder = new SourceRepository();
 
-        public IEnumerable<SourceLx> GetAllSourceLx(string lang)
+        public IEnumerable<Source> GetAllSource(string lang)
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public SourceLx GetSourceLxByID(int id, string lang)
+        public Source GetSourceByID(int id, string lang)
         {
-            SourceLx source = databasePlaceholder.Get(id, lang);
+            Source source = databasePlaceholder.Get(id, lang);
             if (source == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);

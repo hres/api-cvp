@@ -8,20 +8,20 @@ using cvpWebApi.Models;
 
 namespace cvpWebApi.Controllers
 {
-    public class ReportTypeLxController : ApiController
+    public class ReportTypeController : ApiController
     {
-        static readonly IReportTypeLxRepository databasePlaceholder = new ReportTypeLxRepository();
+        static readonly IReportTypeRepository databasePlaceholder = new ReportTypeRepository();
 
-        public IEnumerable<ReportTypeLx> GetAllReportTypeLx(string lang)
+        public IEnumerable<ReportType> GetAllReportType(string lang)
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public ReportTypeLx GetReportTypeLxByID(int id, string lang)
+        public ReportType GetReportTypeByID(int id, string lang)
         {
-            ReportTypeLx reporttype = databasePlaceholder.Get(id, lang);
+            ReportType reporttype = databasePlaceholder.Get(id, lang);
             if (reporttype == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);

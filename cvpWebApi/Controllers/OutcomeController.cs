@@ -8,20 +8,20 @@ using cvpWebApi.Models;
 
 namespace cvpWebApi.Controllers
 {
-    public class OutcomeLxController : ApiController
+    public class OutcomeController : ApiController
     {
-        static readonly IOutcomeLxRepository databasePlaceholder = new OutcomeLxRepository();
+        static readonly IOutcomeRepository databasePlaceholder = new OutcomeRepository();
 
-        public IEnumerable<OutcomeLx> GetAllOutcomeLx(string lang)
+        public IEnumerable<Outcome> GetAllOutcome(string lang)
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public OutcomeLx GetReportByID(int id, string lang)
+        public Outcome GetOutcomeByID(int id, string lang)
         {
-            OutcomeLx outcome = databasePlaceholder.Get(id, lang);
+            Outcome outcome = databasePlaceholder.Get(id, lang);
             if (outcome == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);

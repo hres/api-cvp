@@ -8,20 +8,20 @@ using cvpWebApi.Models;
 
 namespace cvpWebApi.Controllers
 {
-    public class SeriousnessLxController : ApiController
+    public class SeriousnessController : ApiController
     {
-        static readonly ISeriousnessLxRepository databasePlaceholder = new SeriousnessLxRepository();
+        static readonly ISeriousnessRepository databasePlaceholder = new SeriousnessRepository();
 
-        public IEnumerable<SeriousnessLx> GetAllSeriousnessLx(string lang)
+        public IEnumerable<Seriousness> GetAllSeriousness(string lang)
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public SeriousnessLx GetSeriousnessLxByID(int id, string lang)
+        public Seriousness GetSeriousnessByID(int id, string lang)
         {
-            SeriousnessLx seriousness = databasePlaceholder.Get(id, lang);
+            Seriousness seriousness = databasePlaceholder.Get(id, lang);
             if (seriousness == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);

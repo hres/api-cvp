@@ -8,63 +8,50 @@ namespace cvpWebApi.Models
 {
     public class Report
     {
-        public int ReportId { get; set; }
-        public string ReportNo { get; set; }
-        public int VersionNo { get; set; }
-        public DateTime? DateReceived { get; set; }
-        public DateTime? DateIntReceived { get; set; }
-        public string MahNo { get; set; }
-        public string ReportTypeCode { get; set; }
-        public string ReportTypeName { get; set; }
-        public string GenderCode { get; set; }
-        public string GenderName { get; set; }
-        public int Age { get; set; }
-        public int AgeY { get; set; }
-        public string AgeUnitCode { get; set; }
-        public string AgeUnit { get; set; }
-        public string AgeGroupCode { get; set; }
-        public string AgeGroupName { get; set; }
-        public string OutcomeCode { get; set; }
-        public string Outcome { get; set; }
-        public int Weight { get; set; }
-        public string WeightUnitCode { get; set; }
-        public string WeightUnit { get; set; }
-        public int Height { get; set; }
-        public string HeightUnitCode { get; set; }
-        public string HeightUnit { get; set; }
-         public string SeriousnessCode { get; set; }
-        public string Seriousness { get; set; }
-        public string Death { get; set; }
-        public string Disability { get; set; }
-        public string CongenitalAnomaly { get; set; }
-        public string LifeThreatening { get; set; }
-        public string HospRequired { get; set; }
-        public string OtherMedicallyImpCond { get; set; }
-        public string ReporterTypeCode { get; set; }
-        public string ReporterType { get; set; }
-         public string SourceCode { get; set; }
-        public string SourceName { get; set; }
-         public int ReportLinkFlg { get; set; }
-        public long AerId { get; set; }
-        public string PtName { get; set; }
-         public string SocName { get; set; }
-         public int Duration { get; set; }
-        public string DurationUnit { get; set; }
-        public string DrugName { get; set; }
+        public int report_id { get; set; }
+        public string report_no { get; set; }
+        public int version_no { get; set; }
+        public DateTime? date_received { get; set; }
+        public DateTime? date_int_received { get; set; }
+        public string mah_no { get; set; }
+        public string report_type_code { get; set; }
+        public string report_type_name { get; set; }
+        public string gender_code { get; set; }
+        public string gender_name { get; set; }
+        public int age { get; set; }
+        public int age_y { get; set; }
+        public string age_unit_code { get; set; }
+        public string age_unit { get; set; }
+        public string age_group_code { get; set; }
+        public string age_group_name { get; set; }
+        public string outcome_code { get; set; }
+        public string outcome { get; set; }
+        public int weight { get; set; }
+        public string weight_unit_code { get; set; }
+        public string weight_unit { get; set; }
+        public int height { get; set; }
+        public string height_unit_code { get; set; }
+        public string height_unit { get; set; }
+         public string seriousness_code { get; set; }
+        public string seriousness { get; set; }
+        public string death { get; set; }
+        public string disability { get; set; }
+        public string congenital_anomaly { get; set; }
+        public string life_threatening { get; set; }
+        public string hosp_required { get; set; }
+        public string other_medically_imp_cond { get; set; }
+        public string reporter_type_code { get; set; }
+        public string reporter_type { get; set; }
+         public string source_code { get; set; }
+        public string source_name { get; set; }
+         public int report_link_flg { get; set; }
+        public long aer_id { get; set; }
+        public string pt_name { get; set; }
+         public string soc_name { get; set; }
+         public int duration { get; set; }
+        public string duration_unit { get; set; }
+        public string drug_name { get; set; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public int CpdFlag { get; set; }
+        public int cpd_flag { get; set; }
     }
 }

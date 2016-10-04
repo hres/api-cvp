@@ -307,7 +307,7 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
                 <div class="col-sm-5 col-xs-12 datemod">
                     <dl id="wb-dtmd">
                         <dt>Date de modification :</dt>
-                        <dd><time property="dateModified">2016-09-23</time></dd>
+                        <dd><time property="dateModified">2016-10-04</time></dd>
                     </dl>
                 </div>
                 <div class="clear visible-xs"></div>
@@ -426,34 +426,33 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
         var pType = "cvp";
         $("a#langLink").attr('href', goCvpLangUrlByID(lang, 'canada-vigilance-detail'));
         $.getJSON(goCvpUrlByID(lang), function (data) {
-            if ($.trim(data.ReportId) == '') {
+            if ($.trim(data.report_id) == '') {
                 OnFail("");
             }
             else {
-                $('#ReportNo').append(data.ReportNo);
-                (data.VersionNo != null && data.VersionNo > 0) ? $('#VersionNo').append(data.VersionNo) : '';
-                $('#DateReceived').append(formatedDate(data.DateReceived));
-                $('#DateIntReceived').append(formatedDate(data.DateIntReceived));
-                $('#MahNo').append(data.MahNo);
-                (data.AgeY != null && data.AgeY > 0) ? $('#AgeY').append(data.AgeY + " " + data.AgeUnit) : '';
-                $('#AgeGroup').append(data.AgeGroupName);
-                $('#ReportType').append(data.ReportTypeName);
-
-                $('#ReporterType').append(data.ReporterType);
-                $('#SourceName').append(data.SourceName);
-                $('#Outcome').append(data.Outcome);
-                $('#Gender').append(data.GenderName);
-                (data.Weight != null && data.Weight > 0) ? $('#Weight').append(data.Weight + " " + data.WeightUnit) : '';
-                (data.Height != null && data.Height > 0) ? $('#Height').append(data.Height + " " + data.HeightUnit) : '';
-                $('#Seriousness').append(data.Seriousness);
-                if ((data.SeriousnessCode) == 01) {
+                $('#ReportNo').append(data.report_no);
+                (data.version_no != null && data.version_no > 0) ? $('#VersionNo').append(data.version_no) : '';
+                $('#DateReceived').append(formatedDate(data.date_received));
+                $('#DateIntReceived').append(formatedDate(data.date_int_received));
+                $('#MahNo').append(data.mah_no);
+                (data.age_y != null && data.age_y > 0) ? $('#AgeY').append(data.age_y + " " + data.age_unit) : '';
+                $('#AgeGroup').append(data.age_group_name);
+                $('#ReportType').append(data.report_type_name);
+                $('#ReporterType').append(data.reporter_type);
+                $('#SourceName').append(data.source_name);
+                $('#Outcome').append(data.outcome);
+                $('#Gender').append(data.gender_name);
+                (data.weight != null && data.weight > 0) ? $('#Weight').append(data.weight + " " + data.weight_unit) : '';
+                (data.height != null && data.height > 0) ? $('#Height').append(data.height + " " + data.height_unit) : '';
+                $('#Seriousness').append(data.seriousness);
+                if ((data.seriousness_code) == 01) {
                     $("#seriousSection").show();
-                    data.Death == 1 ? $('#Death').append("Oui") : '';
-                    data.HospRequired == 1 ? $('#HospRequired').append("Oui") : '';
-                    data.LifeThreatening == 1 ? $('#LifeThreatening').append("Oui") : '';
-                    data.CongenitalAnomaly == 1 ? $('#CongenitalAnomaly').append("Oui") : '';
-                    data.Disability == 1 ? $('#Disability').append("Oui") : '';
-                    data.OtherMedicallyImpCond == 1 ? $('#OtherMedicallyImpCond').append("Oui") : '';
+                    data.death == 1 ? $('#Death').append("Yes") : '';
+                    data.hosp_required == 1 ? $('#HospRequired').append("Yes") : '';
+                    data.life_threatening == 1 ? $('#LifeThreatening').append("Yes") : '';
+                    data.congenital_anomaly == 1 ? $('#CongenitalAnomaly').append("Yes") : '';
+                    data.disability == 1 ? $('#Disability').append("Yes") : '';
+                    data.other_medically_imp_cond == 1 ? $('#OtherMedicallyImpCond').append("Yes") : '';
                 } else {
                     $("#seriousSection").hide();
                 }
@@ -473,24 +472,24 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
             },
             "order": [[1, "desc"]],
             "columns": [
-                        { "data": "DrugName", sDefaultContent: "" },
-                        { "data": "DosageForm", sDefaultContent: "" },
-                        { "data": "DrugInvolvName", sDefaultContent: "" },
-                        { "data": "RouteAdminName", sDefaultContent: "" },
-                        {
-                            "data": null,
-                            "render": function (data, type, full) {
-                                return data.UnitDoseQty + ' ' + data.DoseUnit;
-                            }
-                        },
-                        { "data": "FrequencyTime", sDefaultContent: "" },
-                        {
-                            "data": null,
-                            "render": function (data, type, full) {
-                                return data.TherapyDuration + ' ' + data.TherapyDurationUnit;
-                            }
-                        },
-                        { "data": "IndicationName", sDefaultContent: "" }
+                            { "data": "drug_name", sDefaultContent: "" },
+                            { "data": "dosage_form", sDefaultContent: "" },
+                            { "data": "drug_involv_name", sDefaultContent: "" },
+                            { "data": "route_admin_name", sDefaultContent: "" },
+                            {
+                                "data": null,
+                                "render": function (data, type, full) {
+                                    return data.unit_dose_qty + ' ' + data.dose_unit;
+                                }
+                            },
+                            { "data": "frequency_time", sDefaultContent: "" },
+                            {
+                                "data": null,
+                                "render": function (data, type, full) {
+                                    return data.therapy_duration + ' ' + data.therapy_duration_unit;
+                                }
+                            },
+                            { "data": "indication_name", sDefaultContent: "" }
             ]
         };
         //});
@@ -500,9 +499,9 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
                 //alert(" data returned : " + JSON.stringify(data));
                 var tbody = $("#reactionsTable > tbody").html("");
                 $.each(data, function (k, v) {
-                    var rowText = "<tr><td>" + v.PtName + "</td><td>" + (v.Duration != 0 ? v.Duration + " " + v.DurationUnit : "") + "</td></tr>";
+                    var rowText = "<tr><td>" + v.pt_name + "</td><td>" + (v.duration != 0 ? v.duration + " " + v.duration_unit : "") + "</td></tr>";
                     $(rowText).appendTo(tbody);
-                    //alert("count 1 " + v.PtName);
+                    //alert("count 1 " + v.pt_name);
                 });
             }
 

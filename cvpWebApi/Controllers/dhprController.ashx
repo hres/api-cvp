@@ -38,17 +38,17 @@ namespace cvp
                 //Get All the QueryStrings
                 var term  = context.Request.QueryString.GetSearchTerm().ToLower().Trim();
                 var linkId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetLinkID().Trim())? string.Empty: context.Request.QueryString.GetLinkID().Trim();
-                var drugsReportId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetDrugsReportID().Trim())? string.Empty: context.Request.QueryString.GetDrugsReportID().Trim();
-                var reactionsReportId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetReactionsReportID().Trim())? string.Empty: context.Request.QueryString.GetReactionsReportID().Trim();
+                var drugReportId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetDrugsReportID().Trim())? string.Empty: context.Request.QueryString.GetDrugsReportID().Trim();
+                var reactionReportId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetReactionsReportID().Trim())? string.Empty: context.Request.QueryString.GetReactionsReportID().Trim();
 
-                if( !string.IsNullOrWhiteSpace(linkId) || !string.IsNullOrWhiteSpace(drugsReportId) || !string.IsNullOrWhiteSpace(reactionsReportId) )
+                if( !string.IsNullOrWhiteSpace(linkId) || !string.IsNullOrWhiteSpace(drugReportId) || !string.IsNullOrWhiteSpace(reactionReportId) )
                 {
 
                     if (!string.IsNullOrWhiteSpace(linkId))
                     {
                         var adverseReport = new Report();
                         adverseReport = UtilityHelper.GetReportByID(linkId, lang);
-                        if (!string.IsNullOrWhiteSpace(adverseReport.ReportNo))
+                        if (!string.IsNullOrWhiteSpace(adverseReport.report_no))
                         {
                             jsonResult = JsonHelper.JsonSerializer<Report>(adverseReport);
                             context.Response.Write(jsonResult);
@@ -57,10 +57,10 @@ namespace cvp
                         {
                             context.Response.Write("{\"id\":\"\"}");
                         }
-                    } else if (!string.IsNullOrWhiteSpace(drugsReportId))
+                    } else if (!string.IsNullOrWhiteSpace(drugReportId))
                     {
                         List<ReportDrug> reportDrugs = new List<ReportDrug>();
-                        reportDrugs = UtilityHelper.GetReportDrugsById(drugsReportId, lang);
+                        reportDrugs = UtilityHelper.GetReportDrugById(drugReportId, lang);
 
                         if (reportDrugs != null && reportDrugs.Count > 0)
                         {
@@ -76,12 +76,12 @@ namespace cvp
 
                     } else
                     {
-                        List<Reactions> reactions = new List<Reactions>();
-                        reactions = UtilityHelper.GetReactionsByReportId(reactionsReportId, lang);
+                        List<Reaction> reactions = new List<Reaction>();
+                        reactions = UtilityHelper.GetReactionByReportId(reactionReportId, lang);
 
                         if (reactions != null && reactions.Count > 0)
                         {
-                            jsonResult = JsonHelper.JsonSerializer<List<Reactions>>(reactions);
+                            jsonResult = JsonHelper.JsonSerializer<List<Reaction>>(reactions);
                             //jsonResult = "{\"data\":" + jsonResult + "}";
                             context.Response.Write(jsonResult);
                         }

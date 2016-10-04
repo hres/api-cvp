@@ -8,17 +8,17 @@ namespace cvpWebApi.Models
 {
     public class ReportInfo
     {
-        public int ReportId { get; set; }
-        public string ReportNo { get; set; }
-        public DateTime? DateReceived { get; set; }
-        public DateTime? DateIntReceived { get; set; }
-        public string MahNo { get; set; }
-        public string GenderName { get; set; }
-        public int Age { get; set; }
-        public string AgeUnit { get; set; }
-        public string PtName { get; set; }
-        public string SocName { get; set; }
-        public string DrugName { get; set; }
+        public int report_id { get; set; }
+        public string report_no { get; set; }
+        public DateTime? date_received { get; set; }
+        public DateTime? date_int_received { get; set; }
+        public string mah_no { get; set; }
+        public string gender_name { get; set; }
+        public int age { get; set; }
+        public string age_unit { get; set; }
+        public string pt_name { get; set; }
+        public string soc_name { get; set; }
+        public string drug_name { get; set; }
 
     }
 }

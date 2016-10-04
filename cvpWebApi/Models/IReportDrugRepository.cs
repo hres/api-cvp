@@ -10,7 +10,7 @@ namespace cvpWebApi.Models
     {
         IEnumerable<ReportDrug> GetAll(string lang);
         ReportDrug Get(int id, string lang);
-        IEnumerable<ReportDrug> GetReportDrugsById(string reportId, string lang);
+        IEnumerable<ReportDrug> GetReportDrugById(string reportId, string lang);
 
     }
 }

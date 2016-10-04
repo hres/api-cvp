@@ -130,7 +130,7 @@ namespace cvp
             return item;
         }
 
-        public static List<ReportDrug> GetReportDrugsById(string reportId, string lang)
+        public static List<ReportDrug> GetReportDrugById(string reportId, string lang)
         {
             var reportDrugs = new List<ReportDrug>();
             var reportDrug = new ReportDrug();
@@ -175,7 +175,7 @@ namespace cvp
         }
 
 
-        public static List<Reaction> GetReactionsByReportId(string reportId, string lang)
+        public static List<Reaction> GetReactionByReportId(string reportId, string lang)
         {
             var items = new List<Reaction>();
             var filteredList = new List<Reaction>();

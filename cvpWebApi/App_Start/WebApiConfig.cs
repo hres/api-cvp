@@ -15,7 +15,7 @@ namespace cvpWebApi
             // config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
                 name: "ApiMultiParamPathExtension ID",
-                routeTemplate: "api-v1/{controller}/{id}/{no}/{drugname}.{ext}",
+                routeTemplate: "api-v1/{controller}/{id}/{no}/{drug_name}.{ext}",
                 defaults: new { id = RouteParameter.Optional, ext = RouteParameter.Optional });
             
             config.Routes.MapHttpRoute(

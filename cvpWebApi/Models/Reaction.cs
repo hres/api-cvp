@@ -7,13 +7,13 @@ namespace cvpWebApi.Models
 {
     public class Reaction
     {
-        public int ReactionId { get; set; }
-        public int ReportId { get; set; }
-        public int Duration { get; set; }
-        public String DurationUnit { get; set; }
-        public String PtName { get; set; }
-        public String SocName { get; set; }
-        public String MeddraVersion { get; set; }
+        public long reaction_id { get; set; }
+        public int report_id { get; set; }
+        public int duration { get; set; }
+        public String duration_unit { get; set; }
+        public String pt_name { get; set; }
+        public String soc_name { get; set; }
+        public String meddra_version { get; set; }
 
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace cvpWebApi.Models
 {
-    interface ISourceLxRepository
+    interface IReportTypeRepository
     {
-        IEnumerable<SourceLx> GetAll(string lang);
-        SourceLx Get(int id, string lang);
+        IEnumerable<ReportType> GetAll(string lang);
+        ReportType Get(int id, string lang);
     }
 }

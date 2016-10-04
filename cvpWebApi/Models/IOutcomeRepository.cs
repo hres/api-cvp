@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace cvpWebApi.Models
 {
-    interface IGenderLxRepository
+    interface IOutcomeRepository
     {
-        IEnumerable<GenderLx> GetAll(string lang);
-        GenderLx Get(int id, string lang);
+        IEnumerable<Outcome> GetAll(string lang);
+        Outcome Get(int id, string lang);
     }
 }

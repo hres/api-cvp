@@ -24,9 +24,9 @@ namespace cvpWebApi.Models
             return _reportDrug;
         }
 
-        public IEnumerable<ReportDrug> GetReportDrugsById(string reportId, string lang)
+        public IEnumerable<ReportDrug> GetReportDrugById(string reportId, string lang)
         {
-            _reportDrugs = dbConnection.GetReportDrugsByReportId(reportId, lang);
+            _reportDrugs = dbConnection.GetReportDrugByReportId(reportId, lang);
             return _reportDrugs;
         }
     }

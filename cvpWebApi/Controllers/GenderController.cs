@@ -8,20 +8,20 @@ using cvpWebApi.Models;
 
 namespace cvpWebApi.Controllers
 {
-    public class GenderLxController : ApiController
+    public class GenderController : ApiController
     {
-        static readonly IGenderLxRepository databasePlaceholder = new GenderLxRepository();
+        static readonly IGenderRepository databasePlaceholder = new GenderRepository();
 
-        public IEnumerable<GenderLx> GetAllGender(string lang)
+        public IEnumerable<Gender> GetAllGender(string lang)
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public GenderLx GetGenderLxByID(int id, string lang)
+        public Gender GetGenderByID(int id, string lang)
         {
-            GenderLx gender = databasePlaceholder.Get(id, lang);
+            Gender gender = databasePlaceholder.Get(id, lang);
             if (gender == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
