@@ -174,7 +174,7 @@ namespace cvp
         {
             var items = new List<DrugProductIngredient>();
             string commandText = "SELECT * FROM CVPONL_OWNER.DRUG_PRODUCT_INGREDIENTS";
-            
+
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
@@ -334,7 +334,7 @@ namespace cvp
                                 item.source_code = dr["SOURCE_CODE"] == DBNull.Value ? string.Empty : dr["SOURCE_CODE"].ToString().Trim();
                                 item.source_name = dr["SOURCE"] == DBNull.Value ? string.Empty : dr["SOURCE"].ToString().Trim();
                                 item.report_link_flg = dr["REPORT_LINK_FLG"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_LINK_FLG"]);
-                                item.aer_id= dr["AER_ID"] == DBNull.Value ? 0 : Convert.ToInt64(dr["AER_ID"]);
+                                item.aer_id = dr["AER_ID"] == DBNull.Value ? 0 : Convert.ToInt64(dr["AER_ID"]);
                                 item.pt_name = dr["PT_NAME"] == DBNull.Value ? string.Empty : dr["PT_NAME"].ToString().Trim();
                                 item.soc_name = dr["SOC_NAME"] == DBNull.Value ? string.Empty : dr["SOC_NAME"].ToString().Trim();
                                 item.duration = dr["DURATION"] == DBNull.Value ? 0 : Convert.ToInt32(dr["DURATION"]);
@@ -977,7 +977,7 @@ namespace cvp
         {
             var items = new List<ReportInfo>();
             string commandText = "SELECT REPORT_ID, REPORT_NO, DATRECEIVED, DATINTRECEIVED, MAH_NO, AGE, DRUGNAME,";
-            
+
             if (lang.Equals("fr"))
             {
                 commandText += " GENDER_FR as GENDER, AGE_UNIT_FR as AGE_UNIT, PT_NAME_FR as PT_NAME, SOC_NAME_FR as SOC_NAME";
@@ -1237,7 +1237,7 @@ namespace cvp
 
             }
             commandText += " FROM CVPONL_OWNER.REACTIONS WHERE REACTION_ID = " + id;
-            
+
             using (
 
                 OracleConnection con = new OracleConnection(DpdDBConnection))
@@ -1355,7 +1355,7 @@ namespace cvp
                 commandText += " EN_DESC as OUTCOME";
 
             }
-            commandText += " FROM CVPONL_OWNER.OUTCOME_LX"; 
+            commandText += " FROM CVPONL_OWNER.OUTCOME_LX";
 
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
@@ -1371,9 +1371,9 @@ namespace cvp
                             {
                                 var item = new Outcome();
                                 item.outcome_id = dr["OUTCOME_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["OUTCOME_LX_ID"]);
-                                item.outcome_code =dr["OUTCOME_CODE"] == DBNull.Value ? string.Empty : dr["OUTCOME_CODE"].ToString().Trim();
+                                item.outcome_code = dr["OUTCOME_CODE"] == DBNull.Value ? string.Empty : dr["OUTCOME_CODE"].ToString().Trim();
                                 item.outcome_name = dr["OUTCOME"] == DBNull.Value ? string.Empty : dr["OUTCOME"].ToString().Trim();
-                                
+
                                 items.Add(item);
                             }
                         }
@@ -1462,7 +1462,7 @@ namespace cvp
                 commandText += " EN_DESC as GENDER";
             }
             commandText += " FROM CVPONL_OWNER.GENDER_LX";
-            
+
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
@@ -1615,7 +1615,7 @@ namespace cvp
                 commandText += " EN_DESC as REPORT_TYPE";
             }
             commandText += " FROM CVPONL_OWNER.REPORT_TYPE_LX WHERE REPORT_TYPE_LX_ID = " + id;
-            
+
             using (
 
                 OracleConnection con = new OracleConnection(DpdDBConnection))
@@ -1685,7 +1685,7 @@ namespace cvp
                                 item.seriousness_id = dr["SERIOUSNESS_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["SERIOUSNESS_LX_ID"]);
                                 item.seriousness_code = dr["SERIOUSNESS_CODE"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_CODE"].ToString().Trim();
                                 item.seriousness = dr["SERIOUSNESS"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS"].ToString().Trim();
-                                
+
                                 items.Add(item);
                             }
                         }
@@ -1719,7 +1719,7 @@ namespace cvp
                 commandText += " EN_DESC as SERIOUSNESS";
             }
             commandText += " FROM CVPONL_OWNER.SERIOUSNESS_LX WHERE SERIOUSNESS_LX_ID = " + id;
-            
+
             using (
 
                 OracleConnection con = new OracleConnection(DpdDBConnection))
@@ -1789,7 +1789,7 @@ namespace cvp
                                 item.source_id = dr["SOURCE_LX_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["SOURCE_LX_ID"]);
                                 item.source_code = dr["SOURCE_CODE"] == DBNull.Value ? string.Empty : dr["SOURCE_CODE"].ToString().Trim();
                                 item.source = dr["SOURCE"] == DBNull.Value ? string.Empty : dr["SOURCE"].ToString().Trim();
-                         
+
                                 items.Add(item);
                             }
                         }
@@ -1979,7 +1979,7 @@ namespace cvp
             else
             {
                 commandText += " DRUGINVOLV_ENG as DRUGINVOLV, ROUTEADMIN_ENG AS ROUTEADMIN, DOSE_UNIT_ENG as DOSE_UNIT, FREQUENCY_TIME_ENG as FREQUENCY_TIME, ";
-                commandText += " FREQ_TIME_UNIT_ENG as FREQ_TIME_UNIT, THERAPY_DURATION_UNIT_ENG as THERAPY_DURATION_UNIT, DOSAGEFORM_ENG as DOSAGEFORM"; 
+                commandText += " FREQ_TIME_UNIT_ENG as FREQ_TIME_UNIT, THERAPY_DURATION_UNIT_ENG as THERAPY_DURATION_UNIT, DOSAGEFORM_ENG as DOSAGEFORM";
             }
             commandText += " FROM CVPONL_OWNER.REPORT_DRUG";
 
@@ -2011,7 +2011,7 @@ namespace cvp
                                 item.therapy_duration = dr["THERAPY_DURATION"] == DBNull.Value ? 0 : Convert.ToInt32(dr["THERAPY_DURATION"]);
                                 item.therapy_duration_unit = dr["THERAPY_DURATION_UNIT"] == DBNull.Value ? string.Empty : dr["THERAPY_DURATION_UNIT"].ToString().Trim();
                                 item.dosage_form = dr["DOSAGEFORM"] == DBNull.Value ? string.Empty : dr["DOSAGEFORM"].ToString().Trim();
-                                
+
                                 items.Add(item);
                             }
                         }
@@ -2044,7 +2044,7 @@ namespace cvp
             else
             {
                 commandText += " DRUGINVOLV_ENG as DRUGINVOLV, ROUTEADMIN_ENG AS ROUTEADMIN, DOSE_UNIT_ENG as DOSE_UNIT, FREQUENCY_TIME_ENG as FREQUENCY_TIME, ";
-                commandText += " FREQ_TIME_UNIT_ENG as FREQ_TIME_UNIT, THERAPY_DURATION_UNIT_ENG as THERAPY_DURATION_UNIT, DOSAGEFORM_ENG as DOSAGEFORM"; 
+                commandText += " FREQ_TIME_UNIT_ENG as FREQ_TIME_UNIT, THERAPY_DURATION_UNIT_ENG as THERAPY_DURATION_UNIT, DOSAGEFORM_ENG as DOSAGEFORM";
             }
             commandText += " FROM CVPONL_OWNER.REPORT_DRUG WHERE REPORT_ID = " + reportId;
 
@@ -2163,7 +2163,7 @@ namespace cvp
             return reportDrug;
         }
 
-
+    } 
         
 
 }

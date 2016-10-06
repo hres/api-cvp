@@ -342,7 +342,6 @@
     <Compile Include="Models\GenderRepository.cs" />
     <Compile Include="Models\IGenderRepository.cs" />
     <Compile Include="Models\IOutcomeRepository.cs" />
-    <Compile Include="Models\IReportDrugIndicationRepository.cs" />
     <Compile Include="Models\IReportDrugRepository.cs" />
     <Compile Include="Models\IReportLinkRepository.cs" />
     <Compile Include="Models\IReportTypeRepository.cs" />
