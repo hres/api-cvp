@@ -151,6 +151,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
     <div class="container">
         <main role="main" property="mainContentOfPage" class="container">
             <h1 property="name" id="wb-cont">Canada Vigilance Adverse Reaction Database</h1>
+            <div class="text-info"><strong>Brand/Drug Name and Active Ingredient search results for:</strong> <span id="searchTerm"></span></div>
             
             <section class="panel panel-default">
                 <header class="panel-heading">
@@ -311,7 +312,8 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
     <script>
         var lang = "en";
         var pType = "cvp";
-        //var searchTerm = getURLParameter('term');
+        var searchTerm = getParameterByName("term");
+        $('#searchTerm').append("'" + searchTerm + "'");
         $('#btnDownload').hide();
         $("a#langLink").attr('href', goDhprLangUrl(lang, pType));            
         

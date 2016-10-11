@@ -36,6 +36,7 @@ namespace cvpWebApi.Models
         public IEnumerable<Report> GetReportByCriteria(string drugName, string adverseReaction, string lang)
         {
             _reports = dbConnection.GetReportByAllCriteria(drugName, adverseReaction, lang);
+            //_reports = dbConnection.GetAllReportByIngredientName(drugName);
             return _reports;
         }
 

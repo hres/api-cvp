@@ -473,25 +473,44 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                     "error": OnFail
                 },
                 "order": [[0, "desc"]],
+                "paginate": false,
+                "filter": false,
                 "columns": [
                             { "data": "drug_name", sDefaultContent: "" },
-                            { "data": "dosage_form", sDefaultContent: "" },
-                            { "data": "drug_involv_name", sDefaultContent: "" },
-                            { "data": "route_admin_name", sDefaultContent: "" },
+                            {
+                                "data": "dosage_form", sDefaultContent: "",
+                                "sortable": false
+                            },
+                            {
+                                "data": "drug_involv_name", sDefaultContent: "",
+                                "sortable": false
+                            },
+                            {
+                                "data": "route_admin_name", sDefaultContent: "",
+                                "sortable": false
+                            },
                             {
                                 "data": null,
                                 "render": function (data, type, full) {
                                     return data.unit_dose_qty + ' ' + data.dose_unit;
-                                }
+                                },
+                                "sortable": false
                             },
-                            { "data": "frequency_time", sDefaultContent: "" },
+                            {
+                                "data": "frequency_time", sDefaultContent: "",
+                                "sortable": false
+                            },
                             {
                                 "data": null,
                                 "render": function (data, type, full) {
                                     return data.therapy_duration + ' ' + data.therapy_duration_unit;
-                                }
+                                },
+                                "sortable": false
                             },
-                            { "data": "indication_name", sDefaultContent: "" }
+                            {
+                                "data": "indication_name", sDefaultContent: "",
+                                "sortable": false
+                            }
                 ]
             }
 //        });
