@@ -43,6 +43,12 @@ namespace cvp
         {
             return queryString.AllKeys.Contains("pType") ? queryString["pType"] : string.Empty;
         }
+
+        public static string GetGender(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("gender") ? queryString["gender"] : string.Empty;
+        }
+
         //public static string GetControlNumber(this NameValueCollection queryString)
         //{
         //    return queryString.AllKeys.Any(x => x.ToLower() == "contnum") ? queryString["contnum"].Trim() : string.Empty;

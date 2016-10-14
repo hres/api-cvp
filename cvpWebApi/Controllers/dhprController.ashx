@@ -40,6 +40,9 @@ namespace cvp
                 var linkId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetLinkID().Trim())? string.Empty: context.Request.QueryString.GetLinkID().Trim();
                 var drugReportId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetDrugsReportID().Trim())? string.Empty: context.Request.QueryString.GetDrugsReportID().Trim();
                 var reactionReportId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetReactionsReportID().Trim())? string.Empty: context.Request.QueryString.GetReactionsReportID().Trim();
+                
+                // Search results filters                
+                var gender = context.Request.QueryString.GetGender().ToLower().Trim();
 
                 if( !string.IsNullOrWhiteSpace(linkId) || !string.IsNullOrWhiteSpace(drugReportId) || !string.IsNullOrWhiteSpace(reactionReportId) )
                 {

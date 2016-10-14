@@ -565,12 +565,29 @@ namespace cvp
         }
 
 
-        public List<Report> GetAllReportByIngredientName(string ingredientName)
+        public List<Report> GetAllReportByIngredientName(string ingredientName, string lang)
         {
             var items = new List<Report>();
             string strDrugNames = "'%" + ingredientName.Replace(",", "','") + "%'";
-            string commandText = " SELECT rp.* FROM REPORTS rp WHERE rp.REPORT_ID IN (SELECT DISTINCT r.REPORT_ID ";
-            //commandText += "from ADR_MV r, REPORT_DRUGS_MV rd, (SELECT DISTINCT report_id COL1 from REPORT_DRUGS_MV where UPPER(DRUGNAME) IN (SELECT DISTINCT dp.DRUGNAME FROM DRUG_PRODUCTS dp where dp.DRUGNAME IN (" + strDrugNames.ToUpper() + "))) TEMP1 ";
+            string commandText = "SELECT rp.REPORT_ID, rp.REPORT_NO, rp.VERSION_NO, rp.DATRECEIVED, rp.DATINTRECEIVED, rp.MAH_NO, rp.REPORT_TYPE_CODE, rp.GENDER_CODE, ";
+            commandText += " rp.AGE, rp.AGE_Y, rp.AGE_UNIT_CODE, rp.AGE_UNIT_CODE, rp.AGE_GROUP_CODE, rp.OUTCOME_CODE, rp.WEIGHT, rp.WEIGHT_UNIT_CODE, rp.HEIGHT, rp.HEIGHT_UNIT_CODE, ";
+            commandText += " rp.SERIOUSNESS_CODE, rp.DEATH, rp.DISABILITY, rp.CONGENITAL_ANOMALY, rp.LIFE_THREATENING, rp.HOSP_REQUIRED, rp.OTHER_MEDICALLY_IMP_COND, rp.DURATION, ";
+            commandText += " rp.REPORTER_TYPE_CODE, rp.SOURCE_CODE, rp.REPORT_LINK_FLG, rp.AER_ID, rp.DRUGNAME,";
+
+            if (lang.Equals("fr"))
+            {
+                commandText += " rp.REPORT_TYPE_FR as REPORT_TYPE, rp.GENDER_FR as GENDER, rp.AGE_UNIT_FR as AGE_UNIT, rp.AGE_GROUP_FR as AGE_GROUP, ";
+                commandText += " rp.OUTCOME_FR as OUTCOME, rp.WEIGHT_UNIT_FR as WEIGHT_UNIT, rp.HEIGHT_UNIT_FR as HEIGHT_UNIT, rp.SERIOUSNESS_FR as SERIOUSNESS, ";
+                commandText += " rp.REPORTER_TYPE_FR as REPORTER_TYPE, rp.SOURCE_FR as SOURCE, rp.PT_NAME_FR as PT_NAME, rp.SOC_NAME_FR as SOC_NAME, rp.DURATION_UNIT_FR as DURATION_UNIT ";
+            }
+            else {
+                commandText += " rp.REPORT_TYPE_ENG as REPORT_TYPE, rp.GENDER_ENG as GENDER, rp.AGE_UNIT_ENG as AGE_UNIT, rp.AGE_GROUP_ENG as AGE_GROUP, ";
+                commandText += " rp.OUTCOME_ENG as OUTCOME, rp.WEIGHT_UNIT_ENG as WEIGHT_UNIT, rp.HEIGHT_UNIT_ENG as HEIGHT_UNIT, rp.SERIOUSNESS_ENG as SERIOUSNESS, ";
+                commandText += " rp.REPORTER_TYPE_ENG as REPORTER_TYPE, rp.SOURCE_ENG as SOURCE, rp.PT_NAME_ENG as PT_NAME, rp.SOC_NAME_ENG as SOC_NAME, rp.DURATION_UNIT_ENG as DURATION_UNIT ";
+            }
+
+            commandText += "FROM REPORTS rp WHERE rp.REPORT_ID IN (SELECT DISTINCT r.REPORT_ID ";
+
             commandText += "from ADR_MV r, REPORT_DRUGS_MV rd, (SELECT DISTINCT report_id COL1 from REPORT_DRUGS_MV where UPPER(DRUGNAME) IN (SELECT DISTINCT dpi.DRUGNAME FROM DRUG_PRODUCT_INGREDIENTS dpi where UPPER(dpi.ACTIVE_INGREDIENT_NAME) LIKE " + strDrugNames.ToUpper() + ")) TEMP1 ";
             commandText += "where r.datreceived BETWEEN TO_DATE('1965-01-01', 'YYYY/MM/DD') AND TO_DATE('2015-09-30', 'YYYY/MM/DD')and r.REPORT_ID = TEMP1.COL1 AND r.REPORT_ID = rd.REPORT_ID) ";
             commandText += "ORDER BY rp.report_id, rp.datreceived";
@@ -597,25 +614,25 @@ namespace cvp
                                 item.date_int_received = dr["DATINTRECEIVED"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["DATINTRECEIVED"]);
                                 item.mah_no = dr["MAH_NO"] == DBNull.Value ? string.Empty : dr["MAH_NO"].ToString().Trim();
                                 item.report_type_code = dr["REPORT_TYPE_CODE"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_CODE"].ToString().Trim();
-                                item.report_type_name = dr["REPORT_TYPE_ENG"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_ENG"].ToString().Trim();
+                                item.report_type_name = dr["REPORT_TYPE"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE"].ToString().Trim();
                                 item.gender_code = dr["GENDER_CODE"] == DBNull.Value ? string.Empty : dr["GENDER_CODE"].ToString().Trim();
-                                item.gender_name = dr["GENDER_ENG"] == DBNull.Value ? string.Empty : dr["GENDER_ENG"].ToString().Trim();
+                                item.gender_name = dr["GENDER"] == DBNull.Value ? string.Empty : dr["GENDER"].ToString().Trim();
                                 item.age = dr["AGE"] == DBNull.Value ? 0 : Convert.ToInt32(dr["AGE"]);
                                 item.age_y = dr["AGE_Y"] == DBNull.Value ? 0 : Convert.ToInt32(dr["AGE_Y"]);
                                 item.age_unit_code = dr["AGE_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["AGE_UNIT_CODE"].ToString().Trim();
-                                item.age_unit = dr["AGE_UNIT_ENG"] == DBNull.Value ? string.Empty : dr["AGE_UNIT_ENG"].ToString().Trim();
+                                item.age_unit = dr["AGE_UNIT"] == DBNull.Value ? string.Empty : dr["AGE_UNIT"].ToString().Trim();
                                 item.age_group_code = dr["AGE_GROUP_CODE"] == DBNull.Value ? string.Empty : dr["AGE_GROUP_CODE"].ToString().Trim();
-                                item.age_group_name = dr["AGE_GROUP_ENG"] == DBNull.Value ? string.Empty : dr["AGE_GROUP_ENG"].ToString().Trim();
+                                item.age_group_name = dr["AGE_GROUP"] == DBNull.Value ? string.Empty : dr["AGE_GROUP"].ToString().Trim();
                                 item.outcome_code = dr["OUTCOME_CODE"] == DBNull.Value ? string.Empty : dr["OUTCOME_CODE"].ToString().Trim();
-                                item.outcome = dr["OUTCOME_ENG"] == DBNull.Value ? string.Empty : dr["OUTCOME_ENG"].ToString().Trim();
+                                item.outcome = dr["OUTCOME"] == DBNull.Value ? string.Empty : dr["OUTCOME"].ToString().Trim();
                                 item.weight = dr["WEIGHT"] == DBNull.Value ? 0 : Convert.ToInt32(dr["WEIGHT"]);
                                 item.weight_unit_code = dr["WEIGHT_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["WEIGHT_UNIT_CODE"].ToString().Trim();
-                                item.weight_unit = dr["WEIGHT_UNIT_ENG"] == DBNull.Value ? string.Empty : dr["WEIGHT_UNIT_ENG"].ToString().Trim();
+                                item.weight_unit = dr["WEIGHT_UNIT"] == DBNull.Value ? string.Empty : dr["WEIGHT_UNIT"].ToString().Trim();
                                 item.height = dr["HEIGHT"] == DBNull.Value ? 0 : Convert.ToInt32(dr["HEIGHT"]);
                                 item.height_unit_code = dr["HEIGHT_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["HEIGHT_UNIT_CODE"].ToString().Trim();
-                                item.height_unit = dr["HEIGHT_UNIT_ENG"] == DBNull.Value ? string.Empty : dr["HEIGHT_UNIT_ENG"].ToString().Trim();
+                                item.height_unit = dr["HEIGHT_UNIT"] == DBNull.Value ? string.Empty : dr["HEIGHT_UNIT"].ToString().Trim();
                                 item.seriousness_code = dr["SERIOUSNESS_CODE"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_CODE"].ToString().Trim();
-                                item.seriousness = dr["SERIOUSNESS_ENG"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_ENG"].ToString().Trim();
+                                item.seriousness = dr["SERIOUSNESS"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS"].ToString().Trim();
                                 item.death = dr["DEATH"] == DBNull.Value ? string.Empty : dr["DEATH"].ToString().Trim();
                                 item.disability = dr["DISABILITY"] == DBNull.Value ? string.Empty : dr["DISABILITY"].ToString().Trim();
                                 item.congenital_anomaly = dr["CONGENITAL_ANOMALY"] == DBNull.Value ? string.Empty : dr["CONGENITAL_ANOMALY"].ToString().Trim();
@@ -623,15 +640,15 @@ namespace cvp
                                 item.hosp_required = dr["HOSP_REQUIRED"] == DBNull.Value ? string.Empty : dr["HOSP_REQUIRED"].ToString().Trim();
                                 item.other_medically_imp_cond = dr["OTHER_MEDICALLY_IMP_COND"] == DBNull.Value ? string.Empty : dr["OTHER_MEDICALLY_IMP_COND"].ToString().Trim();
                                 item.reporter_type_code = dr["REPORTER_TYPE_CODE"] == DBNull.Value ? string.Empty : dr["REPORTER_TYPE_CODE"].ToString().Trim();
-                                item.reporter_type = dr["REPORTER_TYPE_ENG"] == DBNull.Value ? string.Empty : dr["REPORTER_TYPE_ENG"].ToString().Trim();
+                                item.reporter_type = dr["REPORTER_TYPE"] == DBNull.Value ? string.Empty : dr["REPORTER_TYPE"].ToString().Trim();
                                 item.source_code = dr["SOURCE_CODE"] == DBNull.Value ? string.Empty : dr["SOURCE_CODE"].ToString().Trim();
-                                item.source_name = dr["SOURCE_ENG"] == DBNull.Value ? string.Empty : dr["SOURCE_ENG"].ToString().Trim();
+                                item.source_name = dr["SOURCE"] == DBNull.Value ? string.Empty : dr["SOURCE"].ToString().Trim();
                                 item.report_link_flg = dr["REPORT_LINK_FLG"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_LINK_FLG"]);
                                 item.aer_id = dr["AER_ID"] == DBNull.Value ? 0 : Convert.ToInt64(dr["AER_ID"]);
-                                item.pt_name = dr["PT_NAME_ENG"] == DBNull.Value ? string.Empty : dr["PT_NAME_ENG"].ToString().Trim();
-                                item.soc_name = dr["SOC_NAME_ENG"] == DBNull.Value ? string.Empty : dr["SOC_NAME_ENG"].ToString().Trim();
+                                item.pt_name = dr["PT_NAME"] == DBNull.Value ? string.Empty : dr["PT_NAME"].ToString().Trim();
+                                item.soc_name = dr["SOC_NAME"] == DBNull.Value ? string.Empty : dr["SOC_NAME"].ToString().Trim();
                                 item.duration = dr["DURATION"] == DBNull.Value ? 0 : Convert.ToInt32(dr["DURATION"]);
-                                item.duration_unit = dr["DURATION_UNIT_ENG"] == DBNull.Value ? string.Empty : dr["DURATION_UNIT_ENG"].ToString().Trim();
+                                item.duration_unit = dr["DURATION_UNIT"] == DBNull.Value ? string.Empty : dr["DURATION_UNIT"].ToString().Trim();
                                 item.drug_name = dr["DRUGNAME"] == DBNull.Value ? string.Empty : dr["DRUGNAME"].ToString().Trim();
 
                                 items.Add(item);
@@ -846,105 +863,7 @@ namespace cvp
             }
             return items;
         }
-        //public List<Report> GetReportByCriteria(string drugName, string lang)
-        //{
-        //    var items = new List<Report>();
-        //    string commandText = "SELECT REPORT_ID, REPORT_NO, VERSION_NO, DATRECEIVED, DATINTRECEIVED, MAH_NO, REPORT_TYPE_CODE, GENDER_CODE, ";
-        //    commandText += " AGE, AGE_Y, AGE_UNIT_CODE, AGE_UNIT_CODE, AGE_GROUP_CODE, OUTCOME_CODE, WEIGHT, WEIGHT_UNIT_CODE, HEIGHT, HEIGHT_UNIT_CODE, ";
-        //    commandText += " SERIOUSNESS_CODE, DEATH, DISABILITY, CONGENITAL_ANOMALY,LIFE_THREATENING, HOSP_REQUIRED, OTHER_MEDICALLY_IMP_COND, DURATION, ";
-        //    commandText += " REPORTER_TYPE_CODE, SOURCE_CODE, REPORT_LINK_FLG, AER_ID, DRUGNAME,";
 
-        //    if (lang.Equals("fr"))
-        //    {
-        //        commandText += " REPORT_TYPE_FR as REPORT_TYPE, GENDER_FR as GENDER, AGE_UNIT_FR as AGE_UNIT, AGE_GROUP_FR as AGE_GROUP, ";
-        //        commandText += " OUTCOME_FR as OUTCOME, WEIGHT_UNIT_FR as WEIGHT_UNIT, HEIGHT_UNIT_FR as HEIGHT_UNIT, SERIOUSNESS_FR as SERIOUSNESS, ";
-        //        commandText += " REPORTER_TYPE_FR as REPORTER_TYPE, SOURCE_FR as SOURCE, PT_NAME_FR as PT_NAME, SOC_NAME_FR as SOC_NAME, DURATION_UNIT_FR as DURATION_UNIT";
-        //    }
-        //    else {
-        //        commandText += " REPORT_TYPE_ENG as REPORT_TYPE, GENDER_ENG as GENDER, AGE_UNIT_ENG as AGE_UNIT, AGE_GROUP_ENG as AGE_GROUP, ";
-        //        commandText += " OUTCOME_ENG as OUTCOME, WEIGHT_UNIT_ENG as WEIGHT_UNIT, HEIGHT_UNIT_ENG as HEIGHT_UNIT, SERIOUSNESS_ENG as SERIOUSNESS, ";
-        //        commandText += " REPORTER_TYPE_ENG as REPORTER_TYPE, SOURCE_ENG as SOURCE, PT_NAME_ENG as PT_NAME, SOC_NAME_ENG as SOC_NAME, DURATION_UNIT_ENG as DURATION_UNIT";
-        //    }
-        //    commandText += " FROM CVPONL_OWNER.REPORTS WHERE UPPER(DRUGNAME) LIKE ('%" + drugName.ToUpper() + "%')";
-
-        //    using (
-
-        //        OracleConnection con = new OracleConnection(DpdDBConnection))
-        //    {
-        //        OracleCommand cmd = new OracleCommand(commandText, con);
-        //        try
-        //        {
-        //            con.Open();
-        //            using (OracleDataReader dr = cmd.ExecuteReader())
-        //            {
-        //                if (dr.HasRows)
-        //                {
-        //                    while (dr.Read())
-        //                    {
-        //                        var item = new Report();
-        //                        item.ReportId = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
-        //                        item.ReportNo = dr["REPORT_NO"] == DBNull.Value ? string.Empty : dr["REPORT_NO"].ToString().Trim();
-        //                        item.VersionNo = dr["VERSION_NO"] == DBNull.Value ? 0 : Convert.ToInt32(dr["VERSION_NO"]);
-        //                        item.DateReceived = dr["DATRECEIVED"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["DATRECEIVED"]);
-        //                        item.DateIntReceived = dr["DATINTRECEIVED"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["DATINTRECEIVED"]);
-        //                        item.MahNo = dr["MAH_NO"] == DBNull.Value ? string.Empty : dr["MAH_NO"].ToString().Trim();
-        //                        item.ReportTypeCode = dr["REPORT_TYPE_CODE"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_CODE"].ToString().Trim();
-        //                        item.ReportTypeName = dr["REPORT_TYPE"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE"].ToString().Trim();
-        //                        item.GenderCode = dr["GENDER_CODE"] == DBNull.Value ? string.Empty : dr["GENDER_CODE"].ToString().Trim();
-        //                        item.GenderName = dr["GENDER"] == DBNull.Value ? string.Empty : dr["GENDER"].ToString().Trim();
-        //                        item.Age = dr["AGE"] == DBNull.Value ? 0 : Convert.ToInt32(dr["AGE"]);
-        //                        item.AgeY = dr["AGE_Y"] == DBNull.Value ? 0 : Convert.ToInt32(dr["AGE_Y"]);
-        //                        item.AgeUnitCode = dr["AGE_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["AGE_UNIT_CODE"].ToString().Trim();
-        //                        item.AgeUnit = dr["AGE_UNIT"] == DBNull.Value ? string.Empty : dr["AGE_UNIT"].ToString().Trim();
-        //                        item.AgeGroupCode = dr["AGE_GROUP_CODE"] == DBNull.Value ? string.Empty : dr["AGE_GROUP_CODE"].ToString().Trim();
-        //                        item.AgeGroupName = dr["AGE_GROUP"] == DBNull.Value ? string.Empty : dr["AGE_GROUP"].ToString().Trim();
-        //                        item.OutcomeCode = dr["OUTCOME_CODE"] == DBNull.Value ? string.Empty : dr["OUTCOME_CODE"].ToString().Trim();
-        //                        item.Outcome = dr["OUTCOME"] == DBNull.Value ? string.Empty : dr["OUTCOME"].ToString().Trim();
-        //                        item.Weight = dr["WEIGHT"] == DBNull.Value ? 0 : Convert.ToInt32(dr["WEIGHT"]);
-        //                        item.WeightUnitCode = dr["WEIGHT_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["WEIGHT_UNIT_CODE"].ToString().Trim();
-        //                        item.WeightUnit = dr["WEIGHT_UNIT"] == DBNull.Value ? string.Empty : dr["WEIGHT_UNIT"].ToString().Trim();
-        //                        item.Height = dr["HEIGHT"] == DBNull.Value ? 0 : Convert.ToInt32(dr["HEIGHT"]);
-        //                        item.HeightUnitCode = dr["HEIGHT_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["HEIGHT_UNIT_CODE"].ToString().Trim();
-        //                        item.HeightUnit = dr["HEIGHT_UNIT"] == DBNull.Value ? string.Empty : dr["HEIGHT_UNIT"].ToString().Trim();
-        //                        item.SeriousnessCode = dr["SERIOUSNESS_CODE"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_CODE"].ToString().Trim();
-        //                        item.Seriousness = dr["SERIOUSNESS"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS"].ToString().Trim();
-        //                        item.Death = dr["DEATH"] == DBNull.Value ? string.Empty : dr["DEATH"].ToString().Trim();
-        //                        item.Disability = dr["DISABILITY"] == DBNull.Value ? string.Empty : dr["DISABILITY"].ToString().Trim();
-        //                        item.CongenitalAnomaly = dr["CONGENITAL_ANOMALY"] == DBNull.Value ? string.Empty : dr["CONGENITAL_ANOMALY"].ToString().Trim();
-        //                        item.LifeThreatening = dr["LIFE_THREATENING"] == DBNull.Value ? string.Empty : dr["LIFE_THREATENING"].ToString().Trim();
-        //                        item.HospRequired = dr["HOSP_REQUIRED"] == DBNull.Value ? string.Empty : dr["HOSP_REQUIRED"].ToString().Trim();
-        //                        item.OtherMedicallyImpCond = dr["OTHER_MEDICALLY_IMP_COND"] == DBNull.Value ? string.Empty : dr["OTHER_MEDICALLY_IMP_COND"].ToString().Trim();
-        //                        item.ReporterTypeCode = dr["REPORTER_TYPE_CODE"] == DBNull.Value ? string.Empty : dr["REPORTER_TYPE_CODE"].ToString().Trim();
-        //                        item.ReporterType = dr["REPORTER_TYPE"] == DBNull.Value ? string.Empty : dr["REPORTER_TYPE"].ToString().Trim();
-        //                        item.SourceCode = dr["SOURCE_CODE"] == DBNull.Value ? string.Empty : dr["SOURCE_CODE"].ToString().Trim();
-        //                        item.SourceName = dr["SOURCE"] == DBNull.Value ? string.Empty : dr["SOURCE"].ToString().Trim();
-        //                        item.ReportLinkFlg = dr["REPORT_LINK_FLG"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_LINK_FLG"]);
-        //                        item.AerId = dr["AER_ID"] == DBNull.Value ? 0 : Convert.ToInt64(dr["AER_ID"]);
-        //                        item.PtName = dr["PT_NAME"] == DBNull.Value ? string.Empty : dr["PT_NAME"].ToString().Trim();
-        //                        item.SocName = dr["SOC_NAME"] == DBNull.Value ? string.Empty : dr["SOC_NAME"].ToString().Trim();
-        //                        item.Duration = dr["DURATION"] == DBNull.Value ? 0 : Convert.ToInt32(dr["DURATION"]);
-        //                        item.DurationUnit = dr["DURATION_UNIT"] == DBNull.Value ? string.Empty : dr["DURATION_UNIT"].ToString().Trim();
-        //                        item.DrugName = dr["DRUGNAME"] == DBNull.Value ? string.Empty : dr["DRUGNAME"].ToString().Trim();
-
-        //                        items.Add(item);
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            string errorMessages = string.Format("DbConnection.cs - GetReportByDrugName()");
-        //            ExceptionHelper.LogException(ex, errorMessages);
-        //            Console.WriteLine(errorMessages);
-        //        }
-        //        finally
-        //        {
-        //            if (con.State == ConnectionState.Open)
-        //                con.Close();
-        //        }
-        //    }
-        //    return items;
-        //}
 
         public List<Report> GetReportByAllCriteria(string searchTerm, string adverseReaction, string lang)
         {
@@ -1076,14 +995,16 @@ namespace cvp
                         con.Close();
                 }
             }
-            ingredientReports = GetAllReportByIngredientName(searchTerm);
+            ingredientReports = GetAllReportByIngredientName(searchTerm, lang);
             if (ingredientReports != null && ingredientReports.Count > 0)
             {
-                //brandNameReports.Union(ingredientReports);
-                brandNameReports.AddRange(ingredientReports);
+                var mergedList = brandNameReports.Union(ingredientReports, new ReportComparer());
+                items = mergedList.ToList();
+            } else
+            {
+                items = brandNameReports;
             }
 
-            items = brandNameReports;
             return items;
         }
 

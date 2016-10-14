@@ -357,6 +357,7 @@
     <Compile Include="Models\OutcomeRepository.cs" />
     <Compile Include="Models\Reaction.cs" />
     <Compile Include="Models\ReactionRepository.cs" />
+    <Compile Include="Models\ReportComparer.cs" />
     <Compile Include="Models\ReportDrug.cs" />
     <Compile Include="Models\ReportDrugRepository.cs" />
     <Compile Include="Models\ReportInfo.cs" />
@@ -371,6 +372,7 @@
     <Compile Include="Models\IDrugProductRepository.cs" />
     <Compile Include="Models\ReportType.cs" />
     <Compile Include="Models\ReportTypeRepository.cs" />
+    <Compile Include="Models\SearchResultFilter.cs" />
     <Compile Include="Models\Seriousness.cs" />
     <Compile Include="Models\SeriousnessRepository.cs" />
     <Compile Include="Models\Source.cs" />
