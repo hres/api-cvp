@@ -50,6 +50,9 @@
                 results = regex.exec(location.search);
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
+        //alert(getParameterByName("term"));
+        //alert(getParameterByName("gender"));
+        //$("#gender").val(getParameterByName("gender"));
     </script>
 </head>
 
@@ -161,53 +164,30 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
 
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-4 alert alert-info">
-                            <label for="gender" class="col-sm-8 control-label">Gender</label>
+                        <div class="col-md-3" id="gender-filter-section">
+                            <label for="gender">Gender</label>
                             <select class="form-control" name="gender" id="gender">
-                                <option label=" "></option>
+                                <option value="">All</option>
                                 <option value="2">Female</option>
                                 <option value="1">Male</option>
                             </select>
+                            <!--<h3>Gender</h3>
+                            <a href="#">Both</a>
+                            <a href="#">Female</a>
+                            <a href="#">Male</a>-->
                         </div>
-                        <!--<div class="col-sm-4 alert alert-info">
-                            <label for="gender" class="col-sm-4 control-label">Gender</label>
-                            <select class="form-control" name="gender" id="gender">
-                                <option label=" "></option>
-                                <option value="AB">Alberta</option>
-                                <option value="BC">British Columbia</option>
-                                <option value="MB">Manitoba</option>
-                                <option value="NB">New Brunswick</option>
-                                <option value="NL">Newfoundland and Labrador</option>
-                                <option value="NT">Northwest Territories</option>
-                                <option value="NS">Nova Scotia</option>
-                                <option value="NU">Nunavut</option>
-                                <option value="ON">Ontario</option>
-                                <option value="PE">Prince Edward Island</option>
-                                <option value="QC">Quebec</option>
-                                <option value="SK">Saskatchewan</option>
-                                <option value="YT">Yukon</option>
+                        <div class="col-md-3" id="seriousReport-filter-section">
+                            <label for="seriousReport">Serious Report?</label>
+                            <select class="form-control" name="seriousReport" id="seriousReport">
+                                <option value="">Both</option>
+                                <option value="01">Yes</option>
+                                <option value="02">No</option>
                             </select>
                         </div>
-                        <div class="col-sm-4 alert alert-info">
-                            <label for="gender" class="col-sm-4 control-label">Gender</label>
-                            <select class="form-control" name="gender" id="gender">
-                                <option label=" "></option>
-                                <option value="AB">Alberta</option>
-                                <option value="BC">British Columbia</option>
-                                <option value="MB">Manitoba</option>
-                                <option value="NB">New Brunswick</option>
-                                <option value="NL">Newfoundland and Labrador</option>
-                                <option value="NT">Northwest Territories</option>
-                                <option value="NS">Nova Scotia</option>
-                                <option value="NU">Nunavut</option>
-                                <option value="ON">Ontario</option>
-                                <option value="PE">Prince Edward Island</option>
-                                <option value="QC">Quebec</option>
-                                <option value="SK">Saskatchewan</option>
-                                <option value="YT">Yukon</option>
-                            </select>
-                        </div>-->
+                        <div class="col-md-3" id="age-filter-section">
 
+
+                        </div>
                     </div>     
 
                     <p id="subParam1">Matched list of the adverse reaction reports</p>
@@ -364,12 +344,35 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
         var searchTerm = getParameterByName("term");
         $('#searchTerm').append("'" + searchTerm + "'");
         $('#btnDownload').hide();
-        $("a#langLink").attr('href', goDhprLangUrl(lang, pType));
+        $("a#langLink").attr('href', goDhprLangUrl(lang, pType)); ""
+        //setting filter dropdowns to current value
+        $("#gender").val(getParameterByName("gender"));
+        $("#seriousReport").val(getParameterByName("seriousReport"));
 
         $('#gender').change(function () {
-            alert('i changed the gender dropdown box');
-            alert(window.location.href);
-        })
+            //alert('i changed the gender dropdown box and here is the value : ' + $('#gender').val());
+            //alert(window.location.href);
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("gender"));
+            var sendUrl = currentUrl.replace("&gender=" + currentVal, "&gender=" + $('#gender').val());
+            window.location.href = sendUrl;
+        });
+
+        $('#seriousReport').change(function () {
+            //alert('i changed the Serious Report dropdown box and here is the value : ' + $('#seriousReport').val());
+            //alert(window.location.href);
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("seriousReport"));
+            var sendUrl = currentUrl.replace("&seriousReport=" + currentVal, "&seriousReport=" + $('#seriousReport').val());
+            //alert("my send url is : " + sendUrl);
+            window.location.href = sendUrl;
+        });
+
+        //$('#gender-filter-section a').click(function (e) {
+        //    e.preventDefault();
+        //    alert('some link was clicked');
+        //    return false;
+        //});
         
             window["wb-tables"] = {
                 "processing": true,

@@ -43,6 +43,8 @@ namespace cvp
                 
                 // Search results filters                
                 var gender = context.Request.QueryString.GetGender().ToLower().Trim();
+                var seriousReport = context.Request.QueryString.GetSeriousness().ToLower().Trim();
+
 
                 if( !string.IsNullOrWhiteSpace(linkId) || !string.IsNullOrWhiteSpace(drugReportId) || !string.IsNullOrWhiteSpace(reactionReportId) )
                 {
@@ -97,7 +99,7 @@ namespace cvp
                 else
                 {
                     List<Report> reports = new List<Report>();
-                    reports = UtilityHelper.GetReportByCriteria(lang, term);
+                    reports = UtilityHelper.GetReportByCriteria(lang, term, gender, seriousReport);
                     if (reports != null && reports.Count > 0)
                     {
                         jsonResult = JsonHelper.JsonSerializer<List<Report>>(reports);

@@ -162,6 +162,8 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                                                 <strong class="required">(required)</strong>
                                             </label>
                                             <input name="term" type="text" id="term" list="list-liste" placeholder="[Enter text here to search by Brand/Drug Name or Active Ingredient]" class="full-width" required="required">
+                                            <input name="gender" type="hidden" id="gender"/>
+                                            <input name="seriousReport" type="hidden" id="seriousReport"/>
                                             <datalist id="list-liste" data-ajax-replace=".././list-liste-eng.txt" class="wb-data-ajax-replace-inited"> </datalist>
                                         </div>
 
@@ -294,38 +296,7 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
     <script src="./js/jquery.xdomainrequest.min.js"></script>
     <!--<![endif]-->  
     <script>
-        //$("#myButton").on("click", function (e) {
-        //    e.preventDefault();
-        //    var aData = [];
-        //    aData[0] = $("#ddlSelectYear").val();
-        //    $("#contentHolder").empty();
-        //    var jsonData = JSON.stringify({ aData: aData });
-        //    $.ajax({
-        //        type: "POST",
-        //        //getListOfCars is my webmethod   
-        //        url: "WebService.asmx/getListOfCars",
-        //        data: jsonData,
-        //        contentType: "application/json; charset=utf-8",
-        //        dataType: "json", // dataType is json format
-        //        success: OnSuccess,
-        //        error: OnErrorCall
-        //    });
 
-        //    function OnSuccess(response) {
-        //        console.log(response.d);
-            //var items = response.d;
-            //var fragment = "<ul>"
-            //$.each(items, function (index, val) {
-
-            //    var carName = val.carName;
-            //    var carRating = val.carRating;
-            //    var carYear = val.carYear;
-            //    fragment += "<li> " + carName + " :: " + carRating + " - " + carYear + "</li>";
-            //});
-        //$("#contentHolder").append(fragment);
-        //    }
-        //    function OnErrorCall(response) { console.log(error); }
-        //});
     </script>
        
 </body>

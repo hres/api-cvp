@@ -48,6 +48,10 @@ namespace cvp
         {
             return queryString.AllKeys.Contains("gender") ? queryString["gender"] : string.Empty;
         }
+        public static string GetSeriousness(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("seriousReport") ? queryString["seriousReport"] : string.Empty;
+        }
 
         //public static string GetControlNumber(this NameValueCollection queryString)
         //{

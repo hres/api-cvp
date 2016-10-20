@@ -565,7 +565,7 @@ namespace cvp
         }
 
 
-        public List<Report> GetAllReportByIngredientName(string ingredientName, string lang)
+        public List<Report> GetAllReportByIngredientName(string ingredientName, string gender, string seriousReport, string lang)
         {
             var items = new List<Report>();
             string strDrugNames = "'%" + ingredientName.Replace(",", "','") + "%'";
@@ -590,7 +590,15 @@ namespace cvp
 
             commandText += "from ADR_MV r, REPORT_DRUGS_MV rd, (SELECT DISTINCT report_id COL1 from REPORT_DRUGS_MV where UPPER(DRUGNAME) IN (SELECT DISTINCT dpi.DRUGNAME FROM DRUG_PRODUCT_INGREDIENTS dpi where UPPER(dpi.ACTIVE_INGREDIENT_NAME) LIKE " + strDrugNames.ToUpper() + ")) TEMP1 ";
             commandText += "where r.datreceived BETWEEN TO_DATE('1965-01-01', 'YYYY/MM/DD') AND TO_DATE('2015-09-30', 'YYYY/MM/DD')and r.REPORT_ID = TEMP1.COL1 AND r.REPORT_ID = rd.REPORT_ID) ";
-            commandText += "ORDER BY rp.report_id, rp.datreceived";
+            if (!String.IsNullOrEmpty(gender))
+            {
+                commandText += " AND r.GENDER_CODE = " + gender;
+            }
+            if (!String.IsNullOrEmpty(seriousReport))
+            {
+                commandText += " AND r.SERIOUSNESS_CODE = " + seriousReport;
+            }
+            commandText += " ORDER BY rp.report_id, rp.datreceived";
 
             using (
 
@@ -865,7 +873,7 @@ namespace cvp
         }
 
 
-        public List<Report> GetReportByAllCriteria(string searchTerm, string adverseReaction, string lang)
+        public List<Report> GetReportByAllCriteria(string searchTerm, string gender, string seriousReport, string lang)
         {
             var items = new List<Report>();
             var brandNameReports = new List<Report>();
@@ -891,6 +899,14 @@ namespace cvp
             if (!String.IsNullOrEmpty(searchTerm))
             {
                 commandText += "UPPER(DRUGNAME) LIKE ('%" + searchTerm.ToUpper() + "%')";
+            }
+            if (!String.IsNullOrEmpty(gender))
+            {
+                commandText += " AND GENDER_CODE = " + gender;
+            }
+            if (!String.IsNullOrEmpty(seriousReport))
+            {
+                commandText += " AND SERIOUSNESS_CODE = " + seriousReport;
             }
             //if (!String.IsNullOrEmpty(adverseReaction))
             //{
@@ -995,7 +1011,7 @@ namespace cvp
                         con.Close();
                 }
             }
-            ingredientReports = GetAllReportByIngredientName(searchTerm, lang);
+            ingredientReports = GetAllReportByIngredientName(searchTerm, gender, seriousReport, lang);
             if (ingredientReports != null && ingredientReports.Count > 0)
             {
                 var mergedList = brandNameReports.Union(ingredientReports, new ReportComparer());

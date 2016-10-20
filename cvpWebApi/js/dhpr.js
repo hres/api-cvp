@@ -18,7 +18,9 @@ function goDhprUrl(lang, pType) {
 
 function goCvpUrl(lang) {
     var term = getParameterByName("term");
-    var searchUrl = dhpr + "term=" + term + "&lang=" + lang;
+    var gender = getParameterByName("gender");
+    var seriousReport = getParameterByName("seriousReport");
+    var searchUrl = dhpr + "term=" + term + "&gender=" + gender + "&seriousReport=" + seriousReport + "&lang=" + lang;
     return searchUrl;
 }
 
