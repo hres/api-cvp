@@ -163,7 +163,18 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                 </header>
 
                 <div class="panel-body">
-                    <div class="row">
+                    <div class="row bg-info">
+                        <div class="col-md-3" id="age-filter-section">
+                            <label for="ageRange">Age Range</label>
+                            <select class="form-control" name="ageRange" id="ageRange">
+                                <option value="">All</option>
+                                <option value="0-20">0-20</option>
+                                <option value="21-40">21-40</option>
+                                <option value="41-60">41-60</option>
+                                <option value="61-80">61-80</option>
+                                <option value="80">80+</option>
+                            </select>
+                        </div>
                         <div class="col-md-3" id="gender-filter-section">
                             <label for="gender">Gender</label>
                             <select class="form-control" name="gender" id="gender">
@@ -184,9 +195,13 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                                 <option value="02">No</option>
                             </select>
                         </div>
-                        <div class="col-md-3" id="age-filter-section">
-
-
+                        <div class="col-md-3" id="section3-filter-section">
+                            <label for="searchCriteria">Health Product Search Criteria</label>
+                            <select class="form-control" name="searchCriteria" id="searchCriteria">
+                                <option value="">Both</option>
+                                <option value="activeIngredient">Active Ingredient Only</option>
+                                <option value="brandName">Brand Name Only</option>
+                            </select>
                         </div>
                     </div>     
 
@@ -348,6 +363,16 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
         //setting filter dropdowns to current value
         $("#gender").val(getParameterByName("gender"));
         $("#seriousReport").val(getParameterByName("seriousReport"));
+        $("#ageRange").val(getParameterByName("ageRange"));
+
+
+        $('#ageRange').change(function () {
+            //alert('i changed the age range dropdown box and here is the value : ' + $('#ageRange').val());
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("ageRange"));
+            var sendUrl = currentUrl.replace("&ageRange=" + currentVal, "&ageRange=" + $('#ageRange').val());
+            window.location.href = sendUrl;
+        });
 
         $('#gender').change(function () {
             //alert('i changed the gender dropdown box and here is the value : ' + $('#gender').val());
@@ -367,6 +392,8 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
             //alert("my send url is : " + sendUrl);
             window.location.href = sendUrl;
         });
+
+
 
         //$('#gender-filter-section a').click(function (e) {
         //    e.preventDefault();

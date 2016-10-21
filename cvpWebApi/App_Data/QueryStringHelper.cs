@@ -52,6 +52,10 @@ namespace cvp
         {
             return queryString.AllKeys.Contains("seriousReport") ? queryString["seriousReport"] : string.Empty;
         }
+        public static string GetAgeRange(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("ageRange") ? queryString["ageRange"] : string.Empty;
+        }
 
         //public static string GetControlNumber(this NameValueCollection queryString)
         //{

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Data;
 //using System.Data.SqlClient;
-using System.Text;
 using System.Configuration;
 using cvpWebApi.Models;
-using System.Data.Odbc;
 using Oracle.ManagedDataAccess.Client;
 namespace cvp
 {
@@ -564,8 +561,8 @@ namespace cvp
             return report;
         }
 
-
-        public List<Report> GetAllReportByIngredientName(string ingredientName, string gender, string seriousReport, string lang)
+        //used by simple search
+        public List<Report> GetAllReportByIngredientName(string ingredientName, string ageRange, string gender, string seriousReport, string lang)
         {
             var items = new List<Report>();
             string strDrugNames = "'%" + ingredientName.Replace(",", "','") + "%'";
@@ -598,7 +595,33 @@ namespace cvp
             {
                 commandText += " AND r.SERIOUSNESS_CODE = " + seriousReport;
             }
+            if (!String.IsNullOrEmpty(ageRange))
+            {
+                var ageFrom = "";
+                var ageTo = "";
+                var stringLength = ageRange.Length;
+                //check if there is a hyphen
+                if (ageRange.IndexOf("-") > 0)
+                {
+                    var hyphenPosition = ageRange.IndexOf("-");
+                    //parse both sides of the hyphen to get range
+                    ageFrom = ageRange.Substring(0, hyphenPosition);
+                    ageTo = ageRange.Substring(hyphenPosition + 1, (stringLength - (hyphenPosition + 1)));
+                }
+                else
+                {
+                    //no upper limit to age
+                    ageFrom = ageRange.Substring(0, stringLength);
+                }
+                commandText += " AND r.AGE_Y >= " + ageFrom;
+                if (!string.IsNullOrEmpty(ageTo))
+                {
+                    commandText += " AND r.AGE_Y <= " + ageTo;
+                }
+            }
+
             commandText += " ORDER BY rp.report_id, rp.datreceived";
+
 
             using (
 
@@ -873,7 +896,8 @@ namespace cvp
         }
 
 
-        public List<Report> GetReportByAllCriteria(string searchTerm, string gender, string seriousReport, string lang)
+        //used by simple search
+        public List<Report> GetReportByAllCriteria(string searchTerm, string ageRange, string gender, string seriousReport, string lang)
         {
             var items = new List<Report>();
             var brandNameReports = new List<Report>();
@@ -904,9 +928,32 @@ namespace cvp
             {
                 commandText += " AND GENDER_CODE = " + gender;
             }
-            if (!String.IsNullOrEmpty(seriousReport))
+            if (!string.IsNullOrEmpty(seriousReport))
             {
                 commandText += " AND SERIOUSNESS_CODE = " + seriousReport;
+            }
+            if (!String.IsNullOrEmpty(ageRange))
+            {
+                var ageFrom = "";
+                var ageTo = "";
+                var stringLength = ageRange.Length;
+                //check if there is a hyphen
+                if (ageRange.IndexOf("-") > 0)
+                {
+                    var hyphenPosition = ageRange.IndexOf("-");
+                    //parse both sides of the hyphen to get range
+                    ageFrom = ageRange.Substring(0, hyphenPosition);
+                    ageTo = ageRange.Substring(hyphenPosition + 1, (stringLength - (hyphenPosition + 1)));
+                } else
+                {
+                    //no upper limit to age
+                    ageFrom = ageRange.Substring(0, stringLength);
+                }
+                commandText += " AND AGE_Y >= " + ageFrom;
+                if (!string.IsNullOrEmpty(ageTo))
+                {
+                    commandText += " AND AGE_Y <= " + ageTo;
+                }
             }
             //if (!String.IsNullOrEmpty(adverseReaction))
             //{
@@ -1011,7 +1058,7 @@ namespace cvp
                         con.Close();
                 }
             }
-            ingredientReports = GetAllReportByIngredientName(searchTerm, gender, seriousReport, lang);
+            ingredientReports = GetAllReportByIngredientName(searchTerm, ageRange, gender, seriousReport, lang);
             if (ingredientReports != null && ingredientReports.Count > 0)
             {
                 var mergedList = brandNameReports.Union(ingredientReports, new ReportComparer());
@@ -2213,6 +2260,16 @@ namespace cvp
             }
             return reportDrug;
         }
+
+        //private Tuple<string, string> GetAgeRange(string ageRange)
+        //{
+        //    var ageFrom = "";
+        //    var ageTo = "";
+        //    Tuple<string, string> ageRange;
+
+        //    return ageRange;
+            
+        //}
 
     } 
         
