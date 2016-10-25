@@ -481,12 +481,13 @@ namespace cvp
                 commandText += " OUTCOME_ENG as OUTCOME, WEIGHT_UNIT_ENG as WEIGHT_UNIT, HEIGHT_UNIT_ENG as HEIGHT_UNIT, SERIOUSNESS_ENG as SERIOUSNESS, ";
                 commandText += " REPORTER_TYPE_ENG as REPORTER_TYPE, SOURCE_ENG as SOURCE, PT_NAME_ENG as PT_NAME, SOC_NAME_ENG as SOC_NAME, DURATION_UNIT_ENG as DURATION_UNIT";
             }
-            commandText += " FROM CVPONL_OWNER.REPORTS WHERE REPORT_ID = " + id;
+            commandText += " FROM CVPONL_OWNER.REPORTS WHERE REPORT_ID = :id ";
             using (
 
             OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
+                cmd.Parameters.Add(":id", id);
                 try
                 {
                     con.Open();
@@ -1405,14 +1406,12 @@ namespace cvp
             if (lang.Equals("fr"))
             {
                 commandText += " DURATION_UNIT_FR as DURATION_UNIT, PT_NAME_FR as PT_NAME, SOC_NAME_FR as SOC_NAME";
-
             }
             else
             {
                 commandText += " DURATION_UNIT_ENG as DURATION_UNIT, PT_NAME_ENG as PT_NAME, SOC_NAME_ENG as SOC_NAME";
-
             }
-            commandText += " FROM CVPONL_OWNER.REACTIONS WHERE REPORT_ID = " + reportId;
+            commandText += " FROM CVPONL_OWNER.REACTIONS WHERE REPORT_ID = :reportId ";
             commandText += " ORDER BY UPPER(PT_NAME) ";
 
             using (
@@ -1420,6 +1419,7 @@ namespace cvp
             OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
+                cmd.Parameters.Add(":reportId", reportId);
                 try
                 {
                     con.Open();
@@ -2163,11 +2163,12 @@ namespace cvp
                 commandText += " DRUGINVOLV_ENG as DRUGINVOLV, ROUTEADMIN_ENG AS ROUTEADMIN, DOSE_UNIT_ENG as DOSE_UNIT, FREQUENCY_TIME_ENG as FREQUENCY_TIME, ";
                 commandText += " FREQ_TIME_UNIT_ENG as FREQ_TIME_UNIT, THERAPY_DURATION_UNIT_ENG as THERAPY_DURATION_UNIT, DOSAGEFORM_ENG as DOSAGEFORM";
             }
-            commandText += " FROM CVPONL_OWNER.REPORT_DRUG WHERE REPORT_ID = " + reportId;
+            commandText += " FROM CVPONL_OWNER.REPORT_DRUG WHERE REPORT_ID = :reportId ";
 
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
+                cmd.Parameters.Add(":reportId", reportId);
                 try
                 {
                     con.Open();
