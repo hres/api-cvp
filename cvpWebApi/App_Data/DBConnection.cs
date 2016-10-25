@@ -378,13 +378,14 @@ namespace cvp
                 commandText += " OUTCOME_ENG as OUTCOME, WEIGHT_UNIT_ENG as WEIGHT_UNIT, HEIGHT_UNIT_ENG as HEIGHT_UNIT, SERIOUSNESS_ENG as SERIOUSNESS, ";
                 commandText += " REPORTER_TYPE_ENG as REPORTER_TYPE, SOURCE_ENG as SOURCE, PT_NAME_ENG as PT_NAME, SOC_NAME_ENG as SOC_NAME, DURATION_UNIT_ENG as DURATION_UNIT";
             }
-            commandText += " FROM CVPONL_OWNER.REPORTS WHERE REPORT_ID = " + id;
+            commandText += " FROM CVPONL_OWNER.REPORTS WHERE REPORT_ID = :id ";
 
             using (
 
             OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
+                cmd.Parameters.Add(":id", id);
                 try
                 {
                     con.Open();
@@ -565,7 +566,9 @@ namespace cvp
         public List<Report> GetAllReportByIngredientName(string ingredientName, string ageRange, string gender, string seriousReport, string lang)
         {
             var items = new List<Report>();
-            string strDrugNames = "'%" + ingredientName.Replace(",", "','") + "%'";
+            var ageFrom = "";
+            var ageTo = "";
+            string strDrugNames = ingredientName.Replace(",", "','");
             string commandText = "SELECT rp.REPORT_ID, rp.REPORT_NO, rp.VERSION_NO, rp.DATRECEIVED, rp.DATINTRECEIVED, rp.MAH_NO, rp.REPORT_TYPE_CODE, rp.GENDER_CODE, ";
             commandText += " rp.AGE, rp.AGE_Y, rp.AGE_UNIT_CODE, rp.AGE_UNIT_CODE, rp.AGE_GROUP_CODE, rp.OUTCOME_CODE, rp.WEIGHT, rp.WEIGHT_UNIT_CODE, rp.HEIGHT, rp.HEIGHT_UNIT_CODE, ";
             commandText += " rp.SERIOUSNESS_CODE, rp.DEATH, rp.DISABILITY, rp.CONGENITAL_ANOMALY, rp.LIFE_THREATENING, rp.HOSP_REQUIRED, rp.OTHER_MEDICALLY_IMP_COND, rp.DURATION, ";
@@ -585,20 +588,22 @@ namespace cvp
 
             commandText += "FROM REPORTS rp WHERE rp.REPORT_ID IN (SELECT DISTINCT r.REPORT_ID ";
 
-            commandText += "from ADR_MV r, REPORT_DRUGS_MV rd, (SELECT DISTINCT report_id COL1 from REPORT_DRUGS_MV where UPPER(DRUGNAME) IN (SELECT DISTINCT dpi.DRUGNAME FROM DRUG_PRODUCT_INGREDIENTS dpi where UPPER(dpi.ACTIVE_INGREDIENT_NAME) LIKE " + strDrugNames.ToUpper() + ")) TEMP1 ";
+            //commandText += "from ADR_MV r, REPORT_DRUGS_MV rd, (SELECT DISTINCT report_id COL1 from REPORT_DRUGS_MV where UPPER(DRUGNAME) IN (SELECT DISTINCT dpi.DRUGNAME FROM DRUG_PRODUCT_INGREDIENTS dpi where UPPER(dpi.ACTIVE_INGREDIENT_NAME) LIKE '%" + strDrugNames.ToUpper() + "%')) TEMP1 ";
+            commandText += "from ADR_MV r, REPORT_DRUGS_MV rd, (SELECT DISTINCT report_id COL1 from REPORT_DRUGS_MV where UPPER(DRUGNAME) IN (SELECT DISTINCT dpi.DRUGNAME FROM DRUG_PRODUCT_INGREDIENTS dpi where UPPER(dpi.ACTIVE_INGREDIENT_NAME) LIKE '%' || :strDrugNames || '%' )) TEMP1 ";
             commandText += "where r.datreceived BETWEEN TO_DATE('1965-01-01', 'YYYY/MM/DD') AND TO_DATE('2015-09-30', 'YYYY/MM/DD')and r.REPORT_ID = TEMP1.COL1 AND r.REPORT_ID = rd.REPORT_ID) ";
-            if (!String.IsNullOrEmpty(gender))
+
+            if (!string.IsNullOrEmpty(gender))
             {
-                commandText += " AND r.GENDER_CODE = " + gender;
+                //commandText += " AND r.GENDER_CODE = " + gender;
+                commandText += " AND rp.GENDER_CODE = :gender ";
             }
-            if (!String.IsNullOrEmpty(seriousReport))
+            if (!string.IsNullOrEmpty(seriousReport))
             {
-                commandText += " AND r.SERIOUSNESS_CODE = " + seriousReport;
+                //commandText += " AND r.SERIOUSNESS_CODE = " + seriousReport;
+                commandText += " AND rp.SERIOUSNESS_CODE = :seriousReport ";
             }
-            if (!String.IsNullOrEmpty(ageRange))
+            if (!string.IsNullOrEmpty(ageRange))
             {
-                var ageFrom = "";
-                var ageTo = "";
                 var stringLength = ageRange.Length;
                 //check if there is a hyphen
                 if (ageRange.IndexOf("-") > 0)
@@ -613,10 +618,12 @@ namespace cvp
                     //no upper limit to age
                     ageFrom = ageRange.Substring(0, stringLength);
                 }
-                commandText += " AND r.AGE_Y >= " + ageFrom;
+                //commandText += " AND r.AGE_Y >= " + ageFrom;
+                commandText += " AND rp.AGE_Y >= :ageFrom ";
                 if (!string.IsNullOrEmpty(ageTo))
                 {
-                    commandText += " AND r.AGE_Y <= " + ageTo;
+                    //commandText += " AND r.AGE_Y <= " + ageTo;
+                    commandText += " AND rp.AGE_Y <= :ageTo ";
                 }
             }
 
@@ -628,6 +635,21 @@ namespace cvp
                 OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
+                cmd.Parameters.Add(":strDrugNames", strDrugNames.ToUpper().Trim());
+                if (!string.IsNullOrEmpty(gender))
+                {
+                    cmd.Parameters.Add(":gender", gender);
+                }
+                if (!string.IsNullOrEmpty(seriousReport))
+                {
+                    cmd.Parameters.Add(":seriousReport", seriousReport);
+                }
+                if (!string.IsNullOrEmpty(ageRange))
+                {
+                    cmd.Parameters.Add(":ageFrom", ageFrom);
+                    cmd.Parameters.Add(":ageTo", ageTo);
+                }
+
                 try
                 {
                     con.Open();
@@ -689,7 +711,7 @@ namespace cvp
                 }
                 catch (Exception ex)
                 {
-                    string errorMessages = string.Format("DbConnection.cs - GetReportByDrugName()");
+                    string errorMessages = string.Format("DbConnection.cs - GetAllReportByIngredientName()");
                     ExceptionHelper.LogException(ex, errorMessages);
                     Console.WriteLine(errorMessages);
                 }
@@ -902,6 +924,8 @@ namespace cvp
             var items = new List<Report>();
             var brandNameReports = new List<Report>();
             var ingredientReports = new List<Report>();
+            var ageFrom = "";
+            var ageTo = "";
             string commandText = "SELECT REPORT_ID, REPORT_NO, VERSION_NO, DATRECEIVED, DATINTRECEIVED, MAH_NO, REPORT_TYPE_CODE, GENDER_CODE, ";
             commandText += " AGE, AGE_Y, AGE_UNIT_CODE, AGE_UNIT_CODE, AGE_GROUP_CODE, OUTCOME_CODE, WEIGHT, WEIGHT_UNIT_CODE, HEIGHT, HEIGHT_UNIT_CODE, ";
             commandText += " SERIOUSNESS_CODE, DEATH, DISABILITY, CONGENITAL_ANOMALY,LIFE_THREATENING, HOSP_REQUIRED, OTHER_MEDICALLY_IMP_COND, DURATION, ";
@@ -920,22 +944,24 @@ namespace cvp
             }
             commandText += " FROM CVPONL_OWNER.REPORTS WHERE ";
 
-            if (!String.IsNullOrEmpty(searchTerm))
+            if (!string.IsNullOrEmpty(searchTerm))
             {
-                commandText += "UPPER(DRUGNAME) LIKE ('%" + searchTerm.ToUpper() + "%')";
+                //commandText += "UPPER(DRUGNAME) LIKE ('%" + searchTerm.ToUpper() + "%')";
+                commandText += "UPPER(DRUGNAME) LIKE '%' || :searchTerm || '%' ";
             }
-            if (!String.IsNullOrEmpty(gender))
+            if (!string.IsNullOrEmpty(gender))
             {
-                commandText += " AND GENDER_CODE = " + gender;
+                //commandText += " AND GENDER_CODE = " + gender;
+                commandText += "AND GENDER_CODE = :gender ";
             }
             if (!string.IsNullOrEmpty(seriousReport))
             {
-                commandText += " AND SERIOUSNESS_CODE = " + seriousReport;
+                //commandText += " AND SERIOUSNESS_CODE = " + seriousReport;
+                commandText += "AND SERIOUSNESS_CODE = :seriousReport ";
             }
-            if (!String.IsNullOrEmpty(ageRange))
+            if (!string.IsNullOrEmpty(ageRange))
             {
-                var ageFrom = "";
-                var ageTo = "";
+
                 var stringLength = ageRange.Length;
                 //check if there is a hyphen
                 if (ageRange.IndexOf("-") > 0)
@@ -949,45 +975,38 @@ namespace cvp
                     //no upper limit to age
                     ageFrom = ageRange.Substring(0, stringLength);
                 }
-                commandText += " AND AGE_Y >= " + ageFrom;
+                //commandText += " AND AGE_Y >= " + ageFrom;
+                commandText += " AND AGE_Y >= :ageFrom ";
                 if (!string.IsNullOrEmpty(ageTo))
                 {
-                    commandText += " AND AGE_Y <= " + ageTo;
+                    //commandText += " AND AGE_Y <= " + ageTo;
+                    commandText += " AND AGE_Y <= :ageTo ";
                 }
             }
-            //if (!String.IsNullOrEmpty(adverseReaction))
-            //{
-            //    if (!String.IsNullOrEmpty(drugName))
-            //    {
-            //        commandText += " OR ";
-            //        commandText += "UPPER(PT_NAME_ENG) LIKE ('%" + adverseReaction.ToUpper() + "%') ";
-            //        commandText += "OR UPPER(PT_NAME_FR) LIKE ('%" + adverseReaction.ToUpper() + "%')";
-            //    }
-
-            //}
-
-            //if (!String.IsNullOrEmpty(drugName))
-            //{
-            //    commandText += "UPPER(DRUGNAME) LIKE ('%" + drugName.ToUpper() + "%')";
-            //}
-            //if (!String.IsNullOrEmpty(activeIngredient))
-            //{
-            //    if (!String.IsNullOrEmpty(drugName))
-            //    {
-            //        commandText += " OR ";
-            //        commandText += "UPPER(PT_NAME_ENG) LIKE ('%" + activeIngredient.ToUpper() + "%') ";
-            //        commandText += "OR UPPER(PT_NAME_FR) LIKE ('%" + activeIngredient.ToUpper() + "%')";
-            //    }
-
-            //}
-
 
             using (
 
                 OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
-                try
+
+                //cmd.Parameters.Add(new OracleParameter("searchTerm", searchTerm));
+                cmd.Parameters.Add(":searchTerm", searchTerm.ToUpper().Trim());
+                if (!string.IsNullOrEmpty(gender))
+                {
+                    cmd.Parameters.Add(":gender", gender);
+                }
+                if (!string.IsNullOrEmpty(seriousReport))
+                {
+                    cmd.Parameters.Add(":seriousReport", seriousReport);
+                }
+                if (!string.IsNullOrEmpty(ageRange))
+                {
+                    cmd.Parameters.Add(":ageFrom", ageFrom);
+                    cmd.Parameters.Add(":ageTo", ageTo);
+                }
+
+                    try
                 {
                     con.Open();
                     using (OracleDataReader dr = cmd.ExecuteReader())
