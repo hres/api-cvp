@@ -151,6 +151,7 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
     <div class="container">
         <main role="main" property="mainContentOfPage" class="container">
             <h1 property="name" id="wb-cont">Base de données en ligne des effets indésirables de Canada Vigilance</h1>
+            <div class="text-info"><strong>Brand/Drug Name and Active Ingredient search results for (FR):</strong> <span id="searchTerm"></span></div>
 
             <section class="panel panel-default">
                 <header class="panel-heading">
@@ -160,8 +161,45 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
                 </header>
 
                 <div class="panel-body">
+                    <div class="row bg-info">
+                        <div class="col-md-3" id="age-filter-section">
+                            <label for="ageRange">Groupe d'âge</label>
+                            <select class="form-control" name="ageRange" id="ageRange">
+                                <option value="">Tous les</option>
+                                <option value="0-20">0-20</option>
+                                <option value="21-40">21-40</option>
+                                <option value="41-60">41-60</option>
+                                <option value="61-80">61-80</option>
+                                <option value="80">80+</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3" id="gender-filter-section">
+                            <label for="gender">Sexe</label>
+                            <select class="form-control" name="gender" id="gender">
+                                <option value="">Tous les</option>
+                                <option value="2">Femme</option>
+                                <option value="1">Homme</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3" id="seriousReport-filter-section">
+                            <label for="seriousReport">Déclaration grave?</label>
+                            <select class="form-control" name="seriousReport" id="seriousReport">
+                                <option value="">Les deux</option>
+                                <option value="01">Oui</option>
+                                <option value="02">Non</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3" id="section3-filter-section">
+                            <!--<label for="searchCriteria">Critères de recherche d'un produit de santé soupçonné</label>
+                            <select class="form-control" name="searchCriteria" id="searchCriteria">
+                                <option value="">Les deux</option>
+                                <option value="activeIngredient">Par ingrédient actif seulement</option>
+                                <option value="brandName">Par nom commercial seulement</option>
+                            </select>-->
+                        </div>
+                    </div>
                     <p id="subParam1">Liste des déclarations d'effets indésirables</p>
-                    <div class="pull-right" id="btnDownload">
+                    <!--<div class="pull-right" id="btnDownload">
                         <ul class="list-unstyled">
                             <li class="btn-group btn-group-xs">
                                 <input type="button" name="btnExcel" value="Télécharger csv" id="btnExcel" class="btn btn-default btn-xs mrgn-rght-md" />
@@ -169,7 +207,7 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
                                 <input type="button" name="btnXml" value="Télécharger xml" id="btnXml" class="btn btn-default btn-xs" />
                             </li>
                         </ul>
-                    </div>
+                    </div>-->
                     <table id="cvpTable" class="wb-tables table table-striped table-hover table-bordered">
                         <thead>
                             <tr class="active">
@@ -311,8 +349,37 @@ var autoCompletionOptions = { 'validLanguages' : 'fr', };
     <script>
         var lang = " fr";
         var pType = "cvp";
+        var searchTerm = getParameterByName("term");
+        $('#searchTerm').append("'" + searchTerm + "'");
         $('#btnDownload').hide();
         $("a#langLink").attr('href', goDhprLangUrl(lang, pType));
+
+        //setting filter dropdowns to current value
+        $("#gender").val(getParameterByName("gender"));
+        $("#seriousReport").val(getParameterByName("seriousReport"));
+        $("#ageRange").val(getParameterByName("ageRange"));
+
+        $('#ageRange').change(function () {
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("ageRange"));
+            var sendUrl = currentUrl.replace("&ageRange=" + currentVal, "&ageRange=" + $('#ageRange').val());
+            window.location.href = sendUrl;
+        });
+
+        $('#gender').change(function () {
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("gender"));
+            var sendUrl = currentUrl.replace("&gender=" + currentVal, "&gender=" + $('#gender').val());
+            window.location.href = sendUrl;
+        });
+
+        $('#seriousReport').change(function () {
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("seriousReport"));
+            var sendUrl = currentUrl.replace("&seriousReport=" + currentVal, "&seriousReport=" + $('#seriousReport').val());
+            window.location.href = sendUrl;
+        });
+
 
             window["wb-tables"] = {
                 "processing": true,

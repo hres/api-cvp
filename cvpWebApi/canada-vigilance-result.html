@@ -50,9 +50,6 @@
                 results = regex.exec(location.search);
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
-        //alert(getParameterByName("term"));
-        //alert(getParameterByName("gender"));
-        //$("#gender").val(getParameterByName("gender"));
     </script>
 </head>
 
@@ -196,12 +193,12 @@ var autoCompletionOptions = { 'validLanguages' : 'en', };
                             </select>
                         </div>
                         <div class="col-md-3" id="section3-filter-section">
-                            <label for="searchCriteria">Health Product Search Criteria</label>
+                            <!--<label for="searchCriteria">Health Product Search Criteria</label>
                             <select class="form-control" name="searchCriteria" id="searchCriteria">
                                 <option value="">Both</option>
                                 <option value="activeIngredient">Active Ingredient Only</option>
                                 <option value="brandName">Brand Name Only</option>
-                            </select>
+                            </select>-->
                         </div>
                     </div>     
 
