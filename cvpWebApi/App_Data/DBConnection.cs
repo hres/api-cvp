@@ -462,6 +462,7 @@ namespace cvp
             return report;
         }
 
+        //used by detail page
         public Report GetReportById(string id, string lang)
         {
             var report = new Report();
@@ -605,25 +606,13 @@ namespace cvp
             }
             if (!string.IsNullOrEmpty(ageRange))
             {
-                var stringLength = ageRange.Length;
-                //check if there is a hyphen
-                if (ageRange.IndexOf("-") > 0)
-                {
-                    var hyphenPosition = ageRange.IndexOf("-");
-                    //parse both sides of the hyphen to get range
-                    ageFrom = ageRange.Substring(0, hyphenPosition);
-                    ageTo = ageRange.Substring(hyphenPosition + 1, (stringLength - (hyphenPosition + 1)));
-                }
-                else
-                {
-                    //no upper limit to age
-                    ageFrom = ageRange.Substring(0, stringLength);
-                }
-                //commandText += " AND r.AGE_Y >= " + ageFrom;
+                List<string> ageRangeSelected = GetAgeRange(ageRange);
+                ageFrom = ageRangeSelected[0];
+                ageTo = ageRangeSelected[1];
+
                 commandText += " AND rp.AGE_Y >= :ageFrom ";
                 if (!string.IsNullOrEmpty(ageTo))
                 {
-                    //commandText += " AND r.AGE_Y <= " + ageTo;
                     commandText += " AND rp.AGE_Y <= :ageTo ";
                 }
             }
@@ -648,7 +637,10 @@ namespace cvp
                 if (!string.IsNullOrEmpty(ageRange))
                 {
                     cmd.Parameters.Add(":ageFrom", ageFrom);
-                    cmd.Parameters.Add(":ageTo", ageTo);
+                    if (!string.IsNullOrEmpty(ageTo))
+                    {
+                        cmd.Parameters.Add(":ageTo", ageTo);
+                    }
                 }
 
                 try
@@ -962,25 +954,13 @@ namespace cvp
             }
             if (!string.IsNullOrEmpty(ageRange))
             {
-
-                var stringLength = ageRange.Length;
-                //check if there is a hyphen
-                if (ageRange.IndexOf("-") > 0)
-                {
-                    var hyphenPosition = ageRange.IndexOf("-");
-                    //parse both sides of the hyphen to get range
-                    ageFrom = ageRange.Substring(0, hyphenPosition);
-                    ageTo = ageRange.Substring(hyphenPosition + 1, (stringLength - (hyphenPosition + 1)));
-                } else
-                {
-                    //no upper limit to age
-                    ageFrom = ageRange.Substring(0, stringLength);
-                }
-                //commandText += " AND AGE_Y >= " + ageFrom;
+                List<string> ageRangeSelected = GetAgeRange(ageRange);
+                ageFrom = ageRangeSelected[0];
+                ageTo = ageRangeSelected[1];
+        
                 commandText += " AND AGE_Y >= :ageFrom ";
                 if (!string.IsNullOrEmpty(ageTo))
                 {
-                    //commandText += " AND AGE_Y <= " + ageTo;
                     commandText += " AND AGE_Y <= :ageTo ";
                 }
             }
@@ -1004,7 +984,9 @@ namespace cvp
                 if (!string.IsNullOrEmpty(ageRange))
                 {
                     cmd.Parameters.Add(":ageFrom", ageFrom);
-                    cmd.Parameters.Add(":ageTo", ageTo);
+                    if (!string.IsNullOrEmpty(ageTo)) {
+                        cmd.Parameters.Add(":ageTo", ageTo);
+                    }
                 }
 
                     try
@@ -1399,6 +1381,7 @@ namespace cvp
             return reactions;
         }
 
+        //used by detail page
         public List<Reaction> GetReactionByReportId(string reportId, string lang)
         {
             var reaction = new List<Reaction>();
@@ -2149,6 +2132,7 @@ namespace cvp
             return items;
         }
 
+        //used by detail page
         public List<ReportDrug> GetReportDrugByReportId(string reportId, string lang)
         {
             var items = new List<ReportDrug>();
@@ -2281,17 +2265,39 @@ namespace cvp
             return reportDrug;
         }
 
-        //private Tuple<string, string> GetAgeRange(string ageRange)
-        //{
-        //    var ageFrom = "";
-        //    var ageTo = "";
-        //    Tuple<string, string> ageRange;
+        /// <summary>
+        /// Method that parses and age range string and returns the "to" and "from"
+        /// values in the List
+        /// </summary>
+        /// <param name="ageRangeSelected"></param>
+        /// <returns>List of two strings</returns>
+        private List<string> GetAgeRange(string ageRangeSelected)
+        {
+            List<string> ageRange = new List<string>();
+            var ageFrom = "";
+            var ageTo = "";
+            var stringLength = ageRangeSelected.Length;
+            //check if there is a hyphen
+            if (ageRangeSelected.IndexOf("-") > 0)
+            {
+                var hyphenPosition = ageRangeSelected.IndexOf("-");
+                //parse both sides of the hyphen to get range
+                ageFrom = ageRangeSelected.Substring(0, hyphenPosition);
+                ageTo = ageRangeSelected.Substring(hyphenPosition + 1, (stringLength - (hyphenPosition + 1)));
+            }
+            else
+            {
+                //no upper limit to age
+                ageFrom = ageRangeSelected.Substring(0, stringLength);
+            }
 
-        //    return ageRange;
+            ageRange.Add(ageFrom);
+            ageRange.Add(ageTo);
             
-        //}
+            return ageRange;
+        }
 
-    } 
-        
+    }
+
 
 }
