@@ -428,8 +428,6 @@
     <Content Include="Libraries\GoC.WebTemplateMVC.dll" />
     <Content Include="Libraries\WebTemplateCore.dll" />
     <Content Include="canada-vigilance-detail.html" />
-    <Content Include="searchReport-en.html" />
-    <Content Include="searchReport_en.html" />
     <Content Include="StaticFallbackFiles\gcweb\footer-en.html" />
     <Content Include="StaticFallbackFiles\gcweb\footer-fr.html" />
     <Content Include="StaticFallbackFiles\gcweb\prefooter-en.html" />
@@ -487,8 +485,6 @@
     <Content Include="Controllers\dhprController.ashx" />
     <None Include="Properties\PublishProfiles\cvp.pubxml" />
     <Content Include="Views\Home\Reference.cshtml" />
-    <Content Include="Views\Home\SearchReport.cshtml" />
-    <Content Include="Views\Home\SearchResultEn.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
