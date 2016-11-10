@@ -565,7 +565,7 @@ namespace cvp
         }
 
         //used by simple search
-        public List<Report> GetAllReportByIngredientName(string ingredientName, string ageRange, string gender, string seriousReport, string lang)
+        public List<Report> GetAllReportByIngredientName(string ingredientName, string ageRange, string gender, string seriousReport, string startDate, string endDate, string lang)
         {
             var items = new List<Report>();
             var ageFrom = "";
@@ -617,6 +617,15 @@ namespace cvp
                 }
             }
 
+            if (!string.IsNullOrEmpty(startDate))
+            {
+                commandText += " AND rp.DATINTRECEIVED >= :startDate ";
+            }
+            if (!string.IsNullOrEmpty(endDate))
+            {
+                commandText += " AND rp.DATINTRECEIVED <= :endDate ";
+            }
+
             commandText += " ORDER BY rp.report_id, rp.datreceived";
 
 
@@ -641,6 +650,14 @@ namespace cvp
                     {
                         cmd.Parameters.Add(":ageTo", ageTo);
                     }
+                }
+                if (!string.IsNullOrEmpty(startDate))
+                {
+                    cmd.Parameters.Add(":startDate", startDate);
+                }
+                if (!string.IsNullOrEmpty(endDate))
+                {
+                    cmd.Parameters.Add(":endDate", endDate);
                 }
 
                 try
@@ -912,7 +929,7 @@ namespace cvp
 
 
         //used by simple search
-        public List<Report> GetReportByAllCriteria(string searchTerm, string ageRange, string gender, string seriousReport, string lang)
+        public List<Report> GetReportByAllCriteria(string searchTerm, string ageRange, string gender, string seriousReport, string startDate, string endDate, string lang)
         {
             var items = new List<Report>();
             var brandNameReports = new List<Report>();
@@ -964,6 +981,15 @@ namespace cvp
                     commandText += " AND AGE_Y <= :ageTo ";
                 }
             }
+            if (!string.IsNullOrEmpty(startDate))
+            {
+                commandText += " AND DATINTRECEIVED >= :startDate ";
+            }
+            if (!string.IsNullOrEmpty(endDate))
+            {
+                commandText += " AND DATINTRECEIVED <= :endDate ";
+            }
+
 
             using (
 
@@ -988,8 +1014,16 @@ namespace cvp
                         cmd.Parameters.Add(":ageTo", ageTo);
                     }
                 }
+                if (!string.IsNullOrEmpty(startDate))
+                {
+                    cmd.Parameters.Add(":startDate", startDate);
+                }
+                if (!string.IsNullOrEmpty(endDate))
+                {
+                    cmd.Parameters.Add(":endDate", endDate);
+                }
 
-                    try
+                try
                 {
                     con.Open();
                     using (OracleDataReader dr = cmd.ExecuteReader())
@@ -1060,7 +1094,7 @@ namespace cvp
                         con.Close();
                 }
             }
-            ingredientReports = GetAllReportByIngredientName(searchTerm, ageRange, gender, seriousReport, lang);
+            ingredientReports = GetAllReportByIngredientName(searchTerm, ageRange, gender, seriousReport, startDate, endDate, lang);
             if (ingredientReports != null && ingredientReports.Count > 0)
             {
                 var mergedList = brandNameReports.Union(ingredientReports, new ReportComparer());

@@ -56,6 +56,14 @@ namespace cvp
         {
             return queryString.AllKeys.Contains("ageRange") ? queryString["ageRange"] : string.Empty;
         }
+        public static string GetStartDate(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("startDate") ? queryString["startDate"] : string.Empty;
+        }
+        public static string GetEndDate(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("endDate") ? queryString["endDate"] : string.Empty;
+        }
 
         //public static string GetControlNumber(this NameValueCollection queryString)
         //{

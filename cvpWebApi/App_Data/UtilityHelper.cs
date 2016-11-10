@@ -66,7 +66,7 @@ namespace cvp
             }
             return items;
         }
-        public static List<Report> GetReportByCriteria(string lang, string term, string ageRange, string gender, string seriousReport)
+        public static List<Report> GetReportByCriteria(string lang, string term, string ageRange, string gender, string seriousReport, string startdate, string endDate)
         {
             var items = new List<Report>();
             var filteredList = new List<Report>();
@@ -74,7 +74,7 @@ namespace cvp
             var drugname = term;
             var adverseReaction = term;
             //var reportJsonUrl = string.Format("{0}&drugname={1}&lang={2}", ConfigurationManager.AppSettings["reportJsonUrl"].ToString(), drugname, lang);
-            var reportJsonUrl = string.Format("{0}&drugname={1}&ageRange={2}&gender={3}&seriousReport={4}&lang={5}", ConfigurationManager.AppSettings["reportJsonUrl"].ToString(), drugname, ageRange, gender, seriousReport, lang);
+            var reportJsonUrl = string.Format("{0}&drugname={1}&ageRange={2}&gender={3}&seriousReport={4}&startdate={5}&endDate={6}&lang={7}", ConfigurationManager.AppSettings["reportJsonUrl"].ToString(), drugname, ageRange, gender, seriousReport, startdate, endDate, lang);
             //var reportJsonUrl = string.Format("{0}&drugname={1}&adverseReaction={2}&lang={3}", ConfigurationManager.AppSettings["reportJsonUrl"].ToString(), drugname, adverseReaction, lang);
             try
             {

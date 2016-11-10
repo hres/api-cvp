@@ -34,9 +34,9 @@ namespace cvpWebApi.Controllers
         //    return databasePlaceholder.GetReportByCriteria(drugName, lang);
         //}
 
-        public IEnumerable<Report> GetReportByCriteria(string drugName, string ageRange, string gender, string seriousReport, string lang)
+        public IEnumerable<Report> GetReportByCriteria(string drugName, string ageRange, string gender, string seriousReport, string startdate, string endDate, string lang)
         {
-            return databasePlaceholder.GetReportByCriteria(drugName, ageRange, gender, seriousReport, lang);
+            return databasePlaceholder.GetReportByCriteria(drugName, ageRange, gender, seriousReport, startdate, endDate, lang);
         }
 
     }

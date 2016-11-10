@@ -24,7 +24,7 @@ namespace cvp
 
             try
             {
-                var jsonResult = string.Empty;                
+                var jsonResult = string.Empty;
                 var lang = string.IsNullOrEmpty(context.Request.QueryString.GetLang().Trim()) ? "en" : context.Request.QueryString.GetLang().Trim();
                 if (lang == "en")
                 {
@@ -40,12 +40,13 @@ namespace cvp
                 var linkId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetLinkID().Trim())? string.Empty: context.Request.QueryString.GetLinkID().Trim();
                 var drugReportId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetDrugsReportID().Trim())? string.Empty: context.Request.QueryString.GetDrugsReportID().Trim();
                 var reactionReportId = string.IsNullOrWhiteSpace(context.Request.QueryString.GetReactionsReportID().Trim())? string.Empty: context.Request.QueryString.GetReactionsReportID().Trim();
-                
+
                 // Search results filters                
+                var ageRange =  context.Request.QueryString.GetAgeRange().ToLower().Trim();
                 var gender = context.Request.QueryString.GetGender().ToLower().Trim();
                 var seriousReport = context.Request.QueryString.GetSeriousness().ToLower().Trim();
-                var ageRange =  context.Request.QueryString.GetAgeRange().ToLower().Trim();
-
+                var startDate = context.Request.QueryString.GetStartDate().Trim();
+                var endDate = context.Request.QueryString.GetEndDate().Trim();
 
 
                 if( !string.IsNullOrWhiteSpace(linkId) || !string.IsNullOrWhiteSpace(drugReportId) || !string.IsNullOrWhiteSpace(reactionReportId) )
@@ -101,7 +102,7 @@ namespace cvp
                 else
                 {
                     List<Report> reports = new List<Report>();
-                    reports = UtilityHelper.GetReportByCriteria(lang, term, ageRange, gender, seriousReport);
+                    reports = UtilityHelper.GetReportByCriteria(lang, term, ageRange, gender, seriousReport, startDate, endDate);
                     if (reports != null && reports.Count > 0)
                     {
                         jsonResult = JsonHelper.JsonSerializer<List<Report>>(reports);

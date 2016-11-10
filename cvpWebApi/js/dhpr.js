@@ -21,7 +21,10 @@ function goCvpUrl(lang) {
     var gender = getParameterByName("gender");
     var seriousReport = getParameterByName("seriousReport");
     var ageRange = getParameterByName("ageRange");
-    var searchUrl = dhpr + "term=" + term + "&ageRange=" + ageRange + "&gender=" + gender + "&seriousReport=" + seriousReport + "&lang=" + lang;
+    var startDate = getParameterByName("startDate");
+    var endDate = getParameterByName("endDate");
+    var searchUrl = dhpr + "term=" + term + "&ageRange=" + ageRange + "&gender=" + gender +
+        "&seriousReport=" + seriousReport + "&startDate=" + startDate + "&endDate=" + endDate + "&lang=" + lang;
     return searchUrl;
 }
 
