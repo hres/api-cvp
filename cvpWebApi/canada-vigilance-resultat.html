@@ -128,14 +128,18 @@
                                 <option value="02">Non</option>
                             </select>
                         </div>
-                        <div class="col-md-3" id="section3-filter-section">
-                            <!--<label for="searchCriteria">Critères de recherche d'un produit de santé soupçonné</label>
-                            <select class="form-control" name="searchCriteria" id="searchCriteria">
-                                <option value="">Les deux</option>
-                                <option value="activeIngredient">Par ingrédient actif seulement</option>
-                                <option value="brandName">Par nom commercial seulement</option>
-                            </select>-->
+
+
+                        <div class="col-sm-3 col-sm-3 form-group" id="date-filter-section">
+                            <span class="field-name">Date de réception initiale</span>
+                            <label for="startDate" control-label"><span class="field-name">De</span><span class="datepicker-format"> (<abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour">aaaa-mm-jj</abbr>)</span> :</label>
+                            <input class="form-control" type="date" id="startDate" name="startDate" min="1965-01-01" data-rule-dateiso="true" />
+
+                            <label for="endDate" control-label"><span class="field-name">à</span><span class="datepicker-format"> (<abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour">aaaa-mm-jj</abbr>)</span> :</label>
+                            <input class="form-control" type="date" id="endDate" name="endDate" data-rule-dateISO="true" />
                         </div>
+
+
                     </div>
                     <p id="subParam1">Liste des déclarations d'effets indésirables</p>
                     <!--<div class="pull-right" id="btnDownload">
@@ -222,6 +226,9 @@
         $("#gender").val(getParameterByName("gender"));
         $("#seriousReport").val(getParameterByName("seriousReport"));
         $("#ageRange").val(getParameterByName("ageRange"));
+        $("#startDate").val(getParameterByName("startDate"));
+        $("#endDate").val(getParameterByName("endDate"));
+
 
         $('#ageRange').change(function () {
             var currentUrl = window.location.href;
@@ -241,6 +248,20 @@
             var currentUrl = window.location.href;
             var currentVal = $.trim(getParameterByName("seriousReport"));
             var sendUrl = currentUrl.replace("&seriousReport=" + currentVal, "&seriousReport=" + $('#seriousReport').val());
+            window.location.href = sendUrl;
+        });
+
+        $('#startDate').change(function () {
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("startDate"));
+            var sendUrl = currentUrl.replace("&startDate=" + currentVal, "&startDate=" + $('#startDate').val());
+            window.location.href = sendUrl;
+        });
+
+        $('#endDate').change(function () {
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("endDate"));
+            var sendUrl = currentUrl.replace("&endDate=" + currentVal, "&endDate=" + $('#endDate').val());
             window.location.href = sendUrl;
         });
 
@@ -264,7 +285,7 @@
                                 },
                                 { "data": "mah_no" },
                                 {
-                                    "data": "date_received",
+                                    "data": "date_int_received",
                                     "render": function (data, type, full, meta) {
                                         return formatedDate(data);
                                     }

@@ -134,13 +134,13 @@
 
                                 
                             <div class="col-sm-3 col-sm-3 form-group" id="date-filter-section">
-                                <label for="startDate" control-label"><span class="field-name">Start date</span><span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span>:</label>
+                                <span class="field-name">Initial Received Date</span>
+                                <label for="startDate" control-label"><span class="field-name">From</span><span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span>:</label>
                                 <input class="form-control" type="date" id="startDate" name="startDate" min="1965-01-01" data-rule-dateiso="true" />
 
-                                <label for="endDate" control-label"><span class="field-name">End date</span><span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span>:</label>
+                                <label for="endDate" control-label"><span class="field-name">To</span><span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span>:</label>
                                 <input class="form-control" type="date" id="endDate" name="endDate" data-rule-dateISO="true" />
                             </div>
-
 
                             <!--</form>
                         </div>-->
@@ -268,7 +268,6 @@
             var currentUrl = window.location.href;
             var currentVal = $.trim(getParameterByName("startDate"));
             var sendUrl = currentUrl.replace("&startDate=" + currentVal, "&startDate=" + $('#startDate').val());
-            alert("START date send url : " + sendUrl);
             window.location.href = sendUrl;
         });
 
@@ -276,7 +275,6 @@
             var currentUrl = window.location.href;
             var currentVal = $.trim(getParameterByName("endDate"));
             var sendUrl = currentUrl.replace("&endDate=" + currentVal, "&endDate=" + $('#endDate').val());
-            alert("END date send url : " + sendUrl);
             window.location.href = sendUrl;
         });
 
@@ -302,7 +300,7 @@
                                 },
                                 { "data": "mah_no" },
                                 {
-                                    "data": "date_received",
+                                    "data": "date_int_received",
                                     "render": function (data, type, full, meta) {
                                        return formatedDate(data);
                                     }

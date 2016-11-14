@@ -619,11 +619,11 @@ namespace cvp
 
             if (!string.IsNullOrEmpty(startDate))
             {
-                commandText += " AND rp.DATINTRECEIVED >= :startDate ";
+                commandText += " AND rp.DATINTRECEIVED >= TO_DATE(:startDate, 'YYYY/MM/DD') ";
             }
             if (!string.IsNullOrEmpty(endDate))
             {
-                commandText += " AND rp.DATINTRECEIVED <= :endDate ";
+                commandText += " AND rp.DATINTRECEIVED <= TO_DATE(:endDate, 'YYYY/MM/DD') ";
             }
 
             commandText += " ORDER BY rp.report_id, rp.datreceived";
@@ -983,11 +983,11 @@ namespace cvp
             }
             if (!string.IsNullOrEmpty(startDate))
             {
-                commandText += " AND DATINTRECEIVED >= :startDate ";
+                commandText += " AND DATINTRECEIVED >= TO_DATE(:startDate, 'YYYY/MM/DD') ";
             }
             if (!string.IsNullOrEmpty(endDate))
             {
-                commandText += " AND DATINTRECEIVED <= :endDate ";
+                commandText += " AND DATINTRECEIVED <= TO_DATE(:endDate, 'YYYY/MM/DD') ";
             }
 
 
@@ -1099,7 +1099,8 @@ namespace cvp
             {
                 var mergedList = brandNameReports.Union(ingredientReports, new ReportComparer());
                 items = mergedList.ToList();
-            } else
+            }
+            else
             {
                 items = brandNameReports;
             }
