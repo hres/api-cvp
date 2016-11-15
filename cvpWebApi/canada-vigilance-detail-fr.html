@@ -309,12 +309,12 @@
                 $('#Seriousness').append(data.seriousness);
                 if ((data.seriousness_code) == 01) {
                     $("#seriousSection").show();
-                    data.death == 1 ? $('#Death').append("Yes") : '';
-                    data.hosp_required == 1 ? $('#HospRequired').append("Yes") : '';
-                    data.life_threatening == 1 ? $('#LifeThreatening').append("Yes") : '';
-                    data.congenital_anomaly == 1 ? $('#CongenitalAnomaly').append("Yes") : '';
-                    data.disability == 1 ? $('#Disability').append("Yes") : '';
-                    data.other_medically_imp_cond == 1 ? $('#OtherMedicallyImpCond').append("Yes") : '';
+                    data.death == 1 ? $('#Death').append("Oui") : '';
+                    data.hosp_required == 1 ? $('#HospRequired').append("Oui") : '';
+                    data.life_threatening == 1 ? $('#LifeThreatening').append("Oui") : '';
+                    data.congenital_anomaly == 1 ? $('#CongenitalAnomaly').append("Oui") : '';
+                    data.disability == 1 ? $('#Disability').append("Oui") : '';
+                    data.other_medically_imp_cond == 1 ? $('#OtherMedicallyImpCond').append("Oui") : '';
                 } else {
                     $("#seriousSection").hide();
                 }
