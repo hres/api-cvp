@@ -89,7 +89,7 @@
     <div class="container">
         <main role="main" property="mainContentOfPage" class="container">
             <h1 property="name" id="wb-cont">Canada Vigilance Adverse Reaction Database</h1>
-            <div class="text-info"><strong>Brand/Drug Name and Active Ingredient search results for:</strong> <span id="searchTerm"></span></div>
+
 
             <section class="panel panel-default">
                 <header class="panel-heading">
@@ -100,53 +100,51 @@
                 </header>
 
                 <div class="panel-body">
-                    <div class="row bg-info">
-                        <div class="col-md-3 col-sm-3" id="age-filter-section">
-                            <label for="ageRange">Age Range</label>
-                            <select class="form-control" name="ageRange" id="ageRange">
-                                <option value="">All</option>
-                                <option value="0-20">0-20</option>
-                                <option value="21-40">21-40</option>
-                                <option value="41-60">41-60</option>
-                                <option value="61-80">61-80</option>
-                                <option value="80">80+</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3 col-sm-3" id="gender-filter-section">
-                            <label for="gender">Gender</label>
-                            <select class="form-control" name="gender" id="gender">
-                                <option value="">All</option>
-                                <option value="2">Female</option>
-                                <option value="1">Male</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3 col-sm-3" id="seriousReport-filter-section">
-                            <label for="seriousReport">Serious Report?</label>
-                            <select class="form-control" name="seriousReport" id="seriousReport">
-                                <option value="">Both</option>
-                                <option value="01">Yes</option>
-                                <option value="02">No</option>
-                            </select>
-                        </div>
-
-                        <!--<div class="wb-frmvld">
-                            <form action="#" method="get" id="validation-example">-->
-
-                                
+                    <div class="text-info"><strong>Brand/Drug Name and Active Ingredient search results for:</strong> <span id="searchTerm"></span></div>
+                    <details open>
+                        <summary><h4 class="h4">Filter Options</h4></summary>
+                        <div class="row bg-info">
+                            <div class="col-md-3 col-sm-3" id="age-filter-section">
+                                <label for="ageRange">Age Range</label>
+                                <select class="form-control" name="ageRange" id="ageRange">
+                                    <option value="">All</option>
+                                    <option value="0-20">0-20</option>
+                                    <option value="21-40">21-40</option>
+                                    <option value="41-60">41-60</option>
+                                    <option value="61-80">61-80</option>
+                                    <option value="80">80+</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 col-sm-3" id="gender-filter-section">
+                                <label for="gender">Gender</label>
+                                <select class="form-control" name="gender" id="gender">
+                                    <option value="">All</option>
+                                    <option value="2">Female</option>
+                                    <option value="1">Male</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 col-sm-3" id="seriousReport-filter-section">
+                                <label for="seriousReport">Serious Report?</label>
+                                <select class="form-control" name="seriousReport" id="seriousReport">
+                                    <option value="">Both</option>
+                                    <option value="01">Yes</option>
+                                    <option value="02">No</option>
+                                </select>
+                            </div>
+                            <!--<div class="wb-frmvld">
+                <form action="#" method="get" id="validation-example">-->
                             <div class="col-sm-3 col-sm-3 form-group" id="date-filter-section">
                                 <span class="field-name">Initial Received Date</span>
                                 <label for="startDate" control-label"><span class="field-name">From</span><span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span>:</label>
                                 <input class="form-control" type="date" id="startDate" name="startDate" min="1965-01-01" data-rule-dateiso="true" />
 
                                 <label for="endDate" control-label"><span class="field-name">To</span><span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span>:</label>
-                                <input class="form-control" type="date" id="endDate" name="endDate" data-rule-dateISO="true" />
+                                <input class="form-control" type="date" id="endDate" name="endDate" min="1965-01-01" data-rule-dateISO="true" />
                             </div>
-
                             <!--</form>
-                        </div>-->
-
-
+            </div>-->
                         </div>
+                    </details>
 
                         <p id="subParam1">Matched list of the adverse reaction reports</p>
                         <!--<div class="pull-right" id="btnDownload">
@@ -176,7 +174,7 @@
                                 <a class="btn btn-default" href="canada-vigilance.html" role="button">New Search</a>
                             </div>
                         </div>
-                    </div>
+</div>
             </section>
             <!-- prefooter-en.html-Start-->
             <div id="def-preFooter">

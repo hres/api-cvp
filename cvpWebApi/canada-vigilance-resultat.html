@@ -89,7 +89,6 @@
     <div class="container">
         <main role="main" property="mainContentOfPage" class="container">
             <h1 property="name" id="wb-cont">Base de données en ligne des effets indésirables de Canada Vigilance</h1>
-            <div class="text-info"><strong>Brand/Drug Name and Active Ingredient search results for (FR):</strong> <span id="searchTerm"></span></div>
 
             <section class="panel panel-default">
                 <header class="panel-heading">
@@ -100,76 +99,76 @@
                 </header>
 
                 <div class="panel-body">
-                    <div class="row bg-info">
-                        <div class="col-md-3" id="age-filter-section">
-                            <label for="ageRange">Groupe d'âge</label>
-                            <select class="form-control" name="ageRange" id="ageRange">
-                                <option value="">Tous les</option>
-                                <option value="0-20">0-20</option>
-                                <option value="21-40">21-40</option>
-                                <option value="41-60">41-60</option>
-                                <option value="61-80">61-80</option>
-                                <option value="80">80+</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3" id="gender-filter-section">
-                            <label for="gender">Sexe</label>
-                            <select class="form-control" name="gender" id="gender">
-                                <option value="">Tous les</option>
-                                <option value="2">Femme</option>
-                                <option value="1">Homme</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3" id="seriousReport-filter-section">
-                            <label for="seriousReport">Déclaration grave?</label>
-                            <select class="form-control" name="seriousReport" id="seriousReport">
-                                <option value="">Les deux</option>
-                                <option value="01">Oui</option>
-                                <option value="02">Non</option>
-                            </select>
-                        </div>
+                    <div class="text-info"><strong>Brand/Drug Name and Active Ingredient search results for (FR):</strong> <span id="searchTerm"></span></div>
+                    <details open>
+                        <summary><h4 class="h4">Options</h4></summary>
+                        <div class="row bg-info">
+                            <div class="col-md-3" id="age-filter-section">
+                                <label for="ageRange">Groupe d'âge</label>
+                                <select class="form-control" name="ageRange" id="ageRange">
+                                    <option value="">Tous les</option>
+                                    <option value="0-20">0-20</option>
+                                    <option value="21-40">21-40</option>
+                                    <option value="41-60">41-60</option>
+                                    <option value="61-80">61-80</option>
+                                    <option value="80">80+</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3" id="gender-filter-section">
+                                <label for="gender">Sexe</label>
+                                <select class="form-control" name="gender" id="gender">
+                                    <option value="">Tous les</option>
+                                    <option value="2">Femme</option>
+                                    <option value="1">Homme</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3" id="seriousReport-filter-section">
+                                <label for="seriousReport">Déclaration grave?</label>
+                                <select class="form-control" name="seriousReport" id="seriousReport">
+                                    <option value="">Les deux</option>
+                                    <option value="01">Oui</option>
+                                    <option value="02">Non</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3 col-sm-3 form-group" id="date-filter-section">
+                                <span class="field-name">Date de réception initiale</span>
+                                <label for="startDate" control-label"><span class="field-name">De</span><span class="datepicker-format"> (<abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour">aaaa-mm-jj</abbr>)</span> :</label>
+                                <input class="form-control" type="date" id="startDate" name="startDate" min="1965-01-01" data-rule-dateiso="true" />
 
-
-                        <div class="col-sm-3 col-sm-3 form-group" id="date-filter-section">
-                            <span class="field-name">Date de réception initiale</span>
-                            <label for="startDate" control-label"><span class="field-name">De</span><span class="datepicker-format"> (<abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour">aaaa-mm-jj</abbr>)</span> :</label>
-                            <input class="form-control" type="date" id="startDate" name="startDate" min="1965-01-01" data-rule-dateiso="true" />
-
-                            <label for="endDate" control-label"><span class="field-name">à</span><span class="datepicker-format"> (<abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour">aaaa-mm-jj</abbr>)</span> :</label>
-                            <input class="form-control" type="date" id="endDate" name="endDate" data-rule-dateISO="true" />
+                                <label for="endDate" control-label"><span class="field-name">à</span><span class="datepicker-format"> (<abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour">aaaa-mm-jj</abbr>)</span> :</label>
+                                <input class="form-control" type="date" id="endDate" name="endDate" min="1965-01-01" data-rule-dateISO="true" />
+                            </div>
                         </div>
-
-
-                    </div>
-                    <p id="subParam1">Liste des déclarations d'effets indésirables</p>
-                    <!--<div class="pull-right" id="btnDownload">
-                        <ul class="list-unstyled">
-                            <li class="btn-group btn-group-xs">
-                                <input type="button" name="btnExcel" value="Télécharger csv" id="btnExcel" class="btn btn-default btn-xs mrgn-rght-md" />
-                                <input type="button" name="btnJson" value="Télécharger json" id="btnJson" class="btn btn-default btn-xs mrgn-rght-md" />
-                                <input type="button" name="btnXml" value="Télécharger xml" id="btnXml" class="btn btn-default btn-xs" />
-                            </li>
-                        </ul>
-                    </div>-->
-                    <table id="cvpTable" class="wb-tables table table-striped table-hover table-bordered">
-                        <thead>
-                            <tr class="active">
-                                <th>Numéro d'identification de déclaration d'effet indésirable</th>
-                                <th>Numéro de la DEI du détenteur d'autorisation de mise en marché</th>
-                                <th>Date de réception initiale</th>
-                                <th>Âge</th>
-                                <th>Sexe</th>
-                                <th>Nom commercialisé du produit soupçonné</th>
-                                <th>Termes d'effet indésirable</th>
-                        </thead>
-                        <tbody id="tbodyMain"></tbody>
-                    </table>
-                    <div class="panel-footer text-center">
-                        <div class="form-group mrgn-bttm-0">
-                            <a class="btn btn-default" href="canada-vigilance-fr.html" role="button">Nouvelle recherche</a>
+                    </details>
+                        <p id="subParam1">Liste des déclarations d'effets indésirables</p>
+                        <!--<div class="pull-right" id="btnDownload">
+            <ul class="list-unstyled">
+                <li class="btn-group btn-group-xs">
+                    <input type="button" name="btnExcel" value="Télécharger csv" id="btnExcel" class="btn btn-default btn-xs mrgn-rght-md" />
+                    <input type="button" name="btnJson" value="Télécharger json" id="btnJson" class="btn btn-default btn-xs mrgn-rght-md" />
+                    <input type="button" name="btnXml" value="Télécharger xml" id="btnXml" class="btn btn-default btn-xs" />
+                </li>
+            </ul>
+        </div>-->
+                        <table id="cvpTable" class="wb-tables table table-striped table-hover table-bordered">
+                            <thead>
+                                <tr class="active">
+                                    <th>Numéro d'identification de déclaration d'effet indésirable</th>
+                                    <th>Numéro de la DEI du détenteur d'autorisation de mise en marché</th>
+                                    <th>Date de réception initiale</th>
+                                    <th>Âge</th>
+                                    <th>Sexe</th>
+                                    <th>Nom commercialisé du produit soupçonné</th>
+                                    <th>Termes d'effet indésirable</th>
+                            </thead>
+                            <tbody id="tbodyMain"></tbody>
+                        </table>
+                        <div class="panel-footer text-center">
+                            <div class="form-group mrgn-bttm-0">
+                                <a class="btn btn-default" href="canada-vigilance-fr.html" role="button">Nouvelle recherche</a>
+                            </div>
                         </div>
-                    </div>
-                </div>
+</div>
             </section>
             <!-- prefooter-en.html-Start-->
             <div id="def-preFooter">
