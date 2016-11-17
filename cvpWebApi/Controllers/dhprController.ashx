@@ -55,7 +55,7 @@ namespace cvp
                     if (!string.IsNullOrWhiteSpace(linkId))
                     {
                         var adverseReport = new Report();
-                        adverseReport = UtilityHelper.GetReportByID(linkId, lang);
+                        adverseReport = UtilityHelper.GetReportByID(linkId.Trim(), lang);
                         if (!string.IsNullOrWhiteSpace(adverseReport.report_no))
                         {
                             jsonResult = JsonHelper.JsonSerializer<Report>(adverseReport);

@@ -30,10 +30,10 @@ namespace cvpWebApi.Controllers
         }
 
 
-        public IEnumerable<AEReport> GetReportByDrugName(string drugName, string lang)
-        {
-            return databasePlaceholder.Get(drugName, lang);
-        }
+        //public IEnumerable<AEReport> GetReportByDrugName(string drugName, string lang)
+        //{
+        //    return databasePlaceholder.Get(drugName, lang);
+        //}
         
     }
 }

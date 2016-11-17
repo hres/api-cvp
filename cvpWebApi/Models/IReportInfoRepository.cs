@@ -8,9 +8,9 @@ namespace cvpWebApi.Models
 {
     interface IReportInfoRepository
     {
-        IEnumerable<ReportInfo> GetAll(string lang);
-        ReportInfo Get(int id, string lang);
-        IEnumerable<ReportInfo> Get(string drugName, string lang);
+        //IEnumerable<ReportInfo> GetAll(string lang);
+        //ReportInfo Get(int id, string lang);
+        //IEnumerable<ReportInfo> Get(string drugName, string lang);
 
     }
 }

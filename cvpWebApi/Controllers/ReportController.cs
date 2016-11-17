@@ -19,7 +19,7 @@ namespace cvpWebApi.Controllers
         }
 
 
-        public Report GetReportByID(string id, string lang)
+        public Report GetReportByID(int id, string lang)
         {
             Report report = databasePlaceholder.GetReportByID(id, lang);
             if (report == null)

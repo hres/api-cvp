@@ -28,12 +28,12 @@ namespace cvpWebApi.Models
             return _report;
         }
 
-        public IEnumerable<AEReport> Get(string drugName, string lang)
-        {
+        //public IEnumerable<AEReport> Get(string drugName, string lang)
+        //{
            
-            _reports = dbConnection.GetAEExportReportByDrugName(drugName, lang);
-            return _reports;
-        }
+        //    _reports = dbConnection.GetAEExportReportByDrugName(drugName, lang);
+        //    return _reports;
+        //}
 
 
     }
