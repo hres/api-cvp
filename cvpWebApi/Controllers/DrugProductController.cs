@@ -29,11 +29,11 @@ namespace cvpWebApi.Controllers
             return drugProduct;
         }
 
-        public IEnumerable<DrugProduct> GetDrugProductByDrugName(string drugName, string lang)
-        {
-            return databasePlaceholder.Get(drugName, lang);
+        //public IEnumerable<DrugProduct> GetDrugProductByDrugName(string drugName, string lang)
+        //{
+        //    return databasePlaceholder.Get(drugName, lang);
 
-        }
+        //}
        
     }
 }

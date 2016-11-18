@@ -29,11 +29,11 @@ namespace cvpWebApi.Models
         }
 
 
-        public IEnumerable<DrugProduct> Get(string drugName, string lang)
-        {
-            _drugProducts = dbConnection.GetDrugProductByDrugName(drugName, lang);
-            return _drugProducts;
-        }
+        //public IEnumerable<DrugProduct> Get(string drugName, string lang)
+        //{
+        //    _drugProducts = dbConnection.GetDrugProductByDrugName(drugName, lang);
+        //    return _drugProducts;
+        //}
 
 
 

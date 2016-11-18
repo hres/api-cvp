@@ -123,9 +123,7 @@ namespace cvp
         }
 
 
-
-
-        //used by API
+        // used by API
         public List<DrugProductIngredient> GetAllDrugProductIngredient(string lang)
         {
             var items = new List<DrugProductIngredient>();
@@ -322,110 +320,7 @@ namespace cvp
         }
 
 
-        //public Report GetReportById(int id, string lang)
-        //{
-        //    var report = new Report();
-        //    string commandText = "SELECT REPORT_ID, REPORT_NO, VERSION_NO, DATRECEIVED, DATINTRECEIVED, MAH_NO, REPORT_TYPE_CODE, GENDER_CODE, ";
-        //    commandText += " AGE, AGE_Y, AGE_UNIT_CODE, AGE_UNIT_CODE, AGE_GROUP_CODE, OUTCOME_CODE, WEIGHT, WEIGHT_UNIT_CODE, HEIGHT, HEIGHT_UNIT_CODE, DURATION, ";
-        //    commandText += " SERIOUSNESS_CODE, DEATH, DISABILITY, CONGENITAL_ANOMALY,LIFE_THREATENING, HOSP_REQUIRED, OTHER_MEDICALLY_IMP_COND, ";
-        //    commandText += " REPORTER_TYPE_CODE, SOURCE_CODE, REPORT_LINK_FLG, AER_ID, DRUGNAME";
-
-        //    if (lang.Equals("fr"))
-        //    {
-        //        commandText += " REPORT_TYPE_FR as REPORT_TYPE, GENDER_FR as GENDER, AGE_UNIT_FR as AGE_UNIT, AGE_GROUP_FR as AGE_GROUP, ";
-        //        commandText += " OUTCOME_FR as OUTCOME, WEIGHT_UNIT_FR as WEIGHT_UNIT, HEIGHT_UNIT_FR as HEIGHT_UNIT, SERIOUSNESS_FR as SERIOUSNESS, ";
-        //        commandText += " REPORTER_TYPE_FR as REPORTER_TYPE, SOURCE_FR as SOURCE, PT_NAME_FR as PT_NAME, SOC_NAME_FR as SOC_NAME, DURATION_UNIT_FR as DURATION_UNIT";
-        //    }
-        //    else {
-        //        commandText += " REPORT_TYPE_ENG as REPORT_TYPE, GENDER_ENG as GENDER, AGE_UNIT_ENG as AGE_UNIT, AGE_GROUP_ENG as AGE_GROUP, ";
-        //        commandText += " OUTCOME_ENG as OUTCOME, WEIGHT_UNIT_ENG as WEIGHT_UNIT, HEIGHT_UNIT_ENG as HEIGHT_UNIT, SERIOUSNESS_ENG as SERIOUSNESS, ";
-        //        commandText += " REPORTER_TYPE_ENG as REPORTER_TYPE, SOURCE_ENG as SOURCE, PT_NAME_ENG as PT_NAME, SOC_NAME_ENG as SOC_NAME, DURATION_UNIT_ENG as DURATION_UNIT";
-        //    }
-        //    commandText += " FROM CVPONL_OWNER.REPORTS WHERE REPORT_ID = :id ";
-
-        //    using (
-
-        //    OracleConnection con = new OracleConnection(DpdDBConnection))
-        //    {
-        //        OracleCommand cmd = new OracleCommand(commandText, con);
-        //        cmd.Parameters.Add("id", id);
-        //        try
-        //        {
-        //            con.Open();
-        //            using (OracleDataReader dr = cmd.ExecuteReader())
-        //            {
-        //                if (dr.HasRows)
-        //                {
-        //                    while (dr.Read())
-        //                    {
-        //                        var item = new Report();
-        //                        item.report_id = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
-        //                        item.report_no = dr["REPORT_NO"] == DBNull.Value ? string.Empty : dr["REPORT_NO"].ToString().Trim();
-        //                        item.version_no = dr["VERSION_NO"] == DBNull.Value ? 0 : Convert.ToInt32(dr["VERSION_NO"]);
-        //                        item.date_received = dr["DATRECEIVED"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["DATRECEIVED"]);
-        //                        item.date_int_received = dr["DATINTRECEIVED"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dr["DATINTRECEIVED"]);
-        //                        item.mah_no = dr["MAH_NO"] == DBNull.Value ? string.Empty : dr["MAH_NO"].ToString().Trim();
-        //                        item.reporter_type_code = dr["REPORT_TYPE_CODE"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE_CODE"].ToString().Trim();
-        //                        item.report_type_name = dr["REPORT_TYPE"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE"].ToString().Trim();
-        //                        item.gender_code = dr["GENDER_CODE"] == DBNull.Value ? string.Empty : dr["GENDER_CODE"].ToString().Trim();
-        //                        item.gender_name = dr["GENDER"] == DBNull.Value ? string.Empty : dr["GENDER"].ToString().Trim();
-        //                        item.age = dr["AGE"] == DBNull.Value ? 0 : Convert.ToInt32(dr["AGE"]);
-        //                        item.age_y = dr["AGE_Y"] == DBNull.Value ? 0 : Convert.ToInt32(dr["AGE_Y"]);
-        //                        item.age_unit_code = dr["AGE_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["AGE_UNIT_CODE"].ToString().Trim();
-        //                        item.age_unit = dr["AGE_UNIT"] == DBNull.Value ? string.Empty : dr["AGE_UNIT"].ToString().Trim();
-        //                        item.age_group_code = dr["AGE_GROUP_CODE"] == DBNull.Value ? string.Empty : dr["AGE_GROUP_CODE"].ToString().Trim();
-        //                        item.age_group_name = dr["AGE_GROUP"] == DBNull.Value ? string.Empty : dr["AGE_GROUP"].ToString().Trim();
-        //                        item.outcome_code = dr["OUTCOME_CODE"] == DBNull.Value ? string.Empty : dr["OUTCOME_CODE"].ToString().Trim();
-        //                        item.outcome = dr["OUTCOME"] == DBNull.Value ? string.Empty : dr["OUTCOME"].ToString().Trim();
-        //                        item.weight = dr["WEIGHT"] == DBNull.Value ? 0 : Convert.ToInt32(dr["WEIGHT"]);
-        //                        item.weight_unit_code = dr["WEIGHT_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["WEIGHT_UNIT_CODE"].ToString().Trim();
-        //                        item.weight_unit = dr["WEIGHT_UNIT"] == DBNull.Value ? string.Empty : dr["WEIGHT_UNIT"].ToString().Trim();
-        //                        item.height = dr["HEIGHT"] == DBNull.Value ? 0 : Convert.ToInt32(dr["HEIGHT"]);
-        //                        item.height_unit_code = dr["HEIGHT_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["HEIGHT_UNIT_CODE"].ToString().Trim();
-        //                        item.height_unit = dr["HEIGHT_UNIT"] == DBNull.Value ? string.Empty : dr["HEIGHT_UNIT"].ToString().Trim();
-        //                        item.seriousness_code = dr["SERIOUSNESS_CODE"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_CODE"].ToString().Trim();
-        //                        item.seriousness = dr["SERIOUSNESS"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS"].ToString().Trim();
-        //                        item.death = dr["DEATH"] == DBNull.Value ? string.Empty : dr["DEATH"].ToString().Trim();
-        //                        item.disability = dr["DISABILITY"] == DBNull.Value ? string.Empty : dr["DISABILITY"].ToString().Trim();
-        //                        item.congenital_anomaly = dr["CONGENITAL_ANOMALY"] == DBNull.Value ? string.Empty : dr["CONGENITAL_ANOMALY"].ToString().Trim();
-        //                        item.life_threatening = dr["LIFE_THREATENING"] == DBNull.Value ? string.Empty : dr["LIFE_THREATENING"].ToString().Trim();
-        //                        item.hosp_required = dr["HOSP_REQUIRED"] == DBNull.Value ? string.Empty : dr["HOSP_REQUIRED"].ToString().Trim();
-        //                        item.other_medically_imp_cond = dr["OTHER_MEDICALLY_IMP_COND"] == DBNull.Value ? string.Empty : dr["OTHER_MEDICALLY_IMP_COND"].ToString().Trim();
-        //                        item.reporter_type_code = dr["REPORTER_TYPE_CODE"] == DBNull.Value ? string.Empty : dr["REPORTER_TYPE_CODE"].ToString().Trim();
-        //                        item.reporter_type = dr["REPORTER_TYPE"] == DBNull.Value ? string.Empty : dr["REPORTER_TYPE"].ToString().Trim();
-        //                        item.source_code = dr["SOURCE_CODE"] == DBNull.Value ? string.Empty : dr["SOURCE_CODE"].ToString().Trim();
-        //                        item.source_name = dr["SOURCE"] == DBNull.Value ? string.Empty : dr["SOURCE"].ToString().Trim();
-        //                        item.report_link_flg = dr["REPORT_LINK_FLG"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_LINK_FLG"]);
-        //                        item.aer_id = dr["AER_ID"] == DBNull.Value ? 0 : Convert.ToInt64(dr["AER_ID"]);
-        //                        item.pt_name = dr["PT_NAME"] == DBNull.Value ? string.Empty : dr["PT_NAME"].ToString().Trim();
-        //                        item.soc_name = dr["SOC_NAME"] == DBNull.Value ? string.Empty : dr["SOC_NAME"].ToString().Trim();
-        //                        item.duration = dr["DURATION"] == DBNull.Value ? 0 : Convert.ToInt32(dr["DURATION"]);
-        //                        item.duration_unit = dr["DURATION_UNIT"] == DBNull.Value ? string.Empty : dr["DURATION_UNIT"].ToString().Trim();
-        //                        item.drug_name = dr["DRUGNAME"] == DBNull.Value ? string.Empty : dr["DRUGNAME"].ToString().Trim();
-
-        //                        report = item;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            string errorMessages = string.Format("DbConnection.cs - GetReportById()");
-        //            ExceptionHelper.LogException(ex, errorMessages);
-        //            Console.WriteLine(errorMessages);
-        //        }
-        //        finally
-        //        {
-        //            if (con.State == ConnectionState.Open)
-        //                con.Close();
-        //        }
-        //    }
-
-
-        //    return report;
-        //}
-
-        //used by detail page and API
+        // used by detail page and API
         public Report GetReportById(int id, string lang)
         {
             var report = new Report();
@@ -720,7 +615,7 @@ namespace cvp
         //}
 
 
-        //used by simple search
+        // used by simple search
         public List<Report> GetAllReportByBrandName(string searchTermBrandName, string ageRange, string gender, string seriousReport, string startDate, string endDate, string lang)
         {
             var items = new List<Report>();
@@ -896,7 +791,7 @@ namespace cvp
             return items;
         }
 
-        //used by simple search
+        // used by simple search
         public List<Report> GetAllReportByIngredientName(string searchTermIngredientName, string ageRange, string gender, string seriousReport, string startDate, string endDate, string lang)
         {
             var items = new List<Report>();
@@ -1062,52 +957,53 @@ namespace cvp
             return items;
         }
 
-        public List<DrugProduct> GetDrugProductByDrugName(string drugName, string lang)
-        {
-            var items = new List<DrugProduct>();
-            string commandText = "SELECT DISTINCT DRUG_PRODUCT_ID, PRODUCT_ID, DRUGNAME, CPD_FLAG FROM CVPONL_OWNER.DRUG_PRODUCTS WHERE UPPER(DRUGNAME) LIKE '%" + drugName.ToUpper() + "%' ORDER BY DRUGNAME ASC";
+        //public List<DrugProduct> GetDrugProductByDrugName(string drugName, string lang)
+        //{
+        //    var items = new List<DrugProduct>();
+        //    string commandText = "SELECT DISTINCT DRUG_PRODUCT_ID, PRODUCT_ID, DRUGNAME, CPD_FLAG FROM CVPONL_OWNER.DRUG_PRODUCTS WHERE UPPER(DRUGNAME) LIKE '%" + drugName.ToUpper() + "%' ORDER BY DRUGNAME ASC";
 
-            //using (SqlConnection con = new SqlConnection(DpdDBConnection))
-            using (
+        //    //using (SqlConnection con = new SqlConnection(DpdDBConnection))
+        //    using (
 
-                OracleConnection con = new OracleConnection(DpdDBConnection))
-            {
-                OracleCommand cmd = new OracleCommand(commandText, con);
-                try
-                {
-                    con.Open();
-                    using (OracleDataReader dr = cmd.ExecuteReader())
-                    {
-                        if (dr.HasRows)
-                        {
-                            while (dr.Read())
-                            {
-                                var item = new DrugProduct();
-                                item.drug_product_id = dr["DRUG_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["DRUG_PRODUCT_ID"]);
-                                item.product_id = dr["PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["PRODUCT_ID"]);
-                                item.drug_name = dr["DRUGNAME"] == DBNull.Value ? string.Empty : dr["DRUGNAME"].ToString().Trim();
-                                item.cpd_flag = dr["CPD_FLAG"] == DBNull.Value ? 0 : Convert.ToInt32(dr["CPD_FLAG"]);
+        //        OracleConnection con = new OracleConnection(DpdDBConnection))
+        //    {
+        //        OracleCommand cmd = new OracleCommand(commandText, con);
+        //        try
+        //        {
+        //            con.Open();
+        //            using (OracleDataReader dr = cmd.ExecuteReader())
+        //            {
+        //                if (dr.HasRows)
+        //                {
+        //                    while (dr.Read())
+        //                    {
+        //                        var item = new DrugProduct();
+        //                        item.drug_product_id = dr["DRUG_PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["DRUG_PRODUCT_ID"]);
+        //                        item.product_id = dr["PRODUCT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["PRODUCT_ID"]);
+        //                        item.drug_name = dr["DRUGNAME"] == DBNull.Value ? string.Empty : dr["DRUGNAME"].ToString().Trim();
+        //                        item.cpd_flag = dr["CPD_FLAG"] == DBNull.Value ? 0 : Convert.ToInt32(dr["CPD_FLAG"]);
 
-                                items.Add(item);
+        //                        items.Add(item);
 
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    string errorMessages = string.Format("DbConnection.cs - GetDrugProductByName()");
-                    ExceptionHelper.LogException(ex, errorMessages);
-                    Console.WriteLine(errorMessages);
-                }
-                finally
-                {
-                    if (con.State == ConnectionState.Open)
-                        con.Close();
-                }
-            }
-            return items;
-        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            string errorMessages = string.Format("DbConnection.cs - GetDrugProductByName()");
+        //            ExceptionHelper.LogException(ex, errorMessages);
+        //            Console.WriteLine(errorMessages);
+        //        }
+        //        finally
+        //        {
+        //            if (con.State == ConnectionState.Open)
+        //                con.Close();
+        //        }
+        //    }
+        //    return items;
+        //}
+
         //public List<ReportInfo> GetAllReportInfo(string lang)
         //{
         //    var items = new List<ReportInfo>();
@@ -1541,7 +1437,7 @@ namespace cvp
             string commandText = "SELECT DISTINCT OUTCOME_LX_ID, OUTCOME_CODE, ";
             if (lang.Equals("fr"))
             {
-                commandText += " FR_DESC as OUTCOME,";
+                commandText += " FR_DESC as OUTCOME";
 
             }
             else
