@@ -47,6 +47,9 @@ namespace cvp
                 var seriousReport = context.Request.QueryString.GetSeriousness().ToLower().Trim();
                 var startDate = context.Request.QueryString.GetStartDate().Trim();
                 var endDate = context.Request.QueryString.GetEndDate().Trim();
+                var sourceOfReport = context.Request.QueryString.GetSourceOfReport().Trim();
+                var reportOutcome = context.Request.QueryString.GetReportOutcome().Trim();
+
 
 
                 if( !string.IsNullOrWhiteSpace(linkId) || !string.IsNullOrWhiteSpace(drugReportId) || !string.IsNullOrWhiteSpace(reactionReportId) )
@@ -102,7 +105,7 @@ namespace cvp
                 else
                 {
                     List<Report> reports = new List<Report>();
-                    reports = UtilityHelper.GetReportByCriteria(lang, term, ageRange, gender, seriousReport, startDate, endDate);
+                    reports = UtilityHelper.GetReportByCriteria(lang, term, ageRange, gender, seriousReport, sourceOfReport, reportOutcome, startDate, endDate);
                     if (reports != null && reports.Count > 0)
                     {
                         jsonResult = JsonHelper.JsonSerializer<List<Report>>(reports);

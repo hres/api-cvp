@@ -33,9 +33,10 @@ namespace cvpWebApi.Models
         //    return _reports;
         //}
 
-        public IEnumerable<Report> GetReportByCriteria(string searchTerm, string ageRange, string gender, string seriousReport, string startdate, string endDate, string lang)
+        public IEnumerable<Report> GetReportByCriteria(string searchTerm, string ageRange, string gender, string seriousReport, string sourceOfReport, 
+            string reportOutcome, string startdate, string endDate, string lang)
         {
-            _reports = dbConnection.GetAllReportByBrandName(searchTerm, ageRange, gender, seriousReport, startdate, endDate, lang);
+            _reports = dbConnection.GetAllReportByBrandName(searchTerm, ageRange, gender, seriousReport, sourceOfReport, reportOutcome, startdate, endDate, lang);
             //_reports = dbConnection.GetAllReportByIngredientName(drugName);
             return _reports;
         }

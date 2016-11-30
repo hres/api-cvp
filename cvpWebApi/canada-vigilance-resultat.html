@@ -103,7 +103,7 @@
                     <details open>
                         <summary><h4 class="h4">Options</h4></summary>
                         <div class="row bg-info">
-                            <div class="col-md-3" id="age-filter-section">
+                            <div class="col-md-2 col-sm-2" id="age-filter-section">
                                 <label for="ageRange">Groupe d'âge</label>
                                 <select class="form-control" name="ageRange" id="ageRange">
                                     <option value="">Tous les</option>
@@ -114,7 +114,7 @@
                                     <option value="80">80+</option>
                                 </select>
                             </div>
-                            <div class="col-md-3" id="gender-filter-section">
+                            <div class="col-md-2 col-sm-2" id="gender-filter-section">
                                 <label for="gender">Sexe</label>
                                 <select class="form-control" name="gender" id="gender">
                                     <option value="">Tous les</option>
@@ -124,7 +124,7 @@
                                     <option value="3">Inconnu</option>
                                 </select>
                             </div>
-                            <div class="col-md-3" id="seriousReport-filter-section">
+                            <div class="col-md-2 col-sm-2" id="seriousReport-filter-section">
                                 <label for="seriousReport">Déclaration grave?</label>
                                 <select class="form-control" name="seriousReport" id="seriousReport">
                                     <option value="">Les deux</option>
@@ -132,7 +132,29 @@
                                     <option value="02">Non</option>
                                 </select>
                             </div>
-                            <div class="col-sm-3 col-sm-3 form-group" id="date-filter-section">
+                            <div class="col-md-2 col-sm-2" id="sourceOfReport-filter-section">
+                                <label for="sourceOfReport">Source de la déclaration</label>
+                                <select class="form-control" name="sourceOfReport" id="sourceOfReport">
+                                    <option value="">Tous les</option>
+                                    <option value="08">Autre</option>
+                                    <option value="01">Communauté</option>
+                                    <option value="07">Fabricant</option>
+                                    <option value="03">Hôpital</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-sm-2" id="reportOutcome-filter-section">
+                                <label for="reportOutcome">Résultat de la déclaration</label>
+                                <select class="form-control" name="reportOutcome" id="reportOutcome">
+                                    <option value="">Tous les</option>
+                                    <option value="11">Décès</option>
+                                    <option value="02">En rétablissement/en résolution</option>
+                                    <option value="06">Inconnu</option>
+                                    <option value="09">Non rétabli/non résolu</option>
+                                    <option value="07">Rétabli/résolu</option>
+                                    <option value="10">Rétabli/résolu avec séquelles</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-sm-2 form-group" id="date-filter-section">
                                 <span class="field-name">Date de réception initiale</span><br/>
                                 <label for="startDate" control-label"><span class="field-name">De</span><span class="datepicker-format"> (<abbr title="Les quatres chiffres de l'année, tiret, les deux chiffres du mois, tiret, les deux chiffres du jour">aaaa-mm-jj</abbr>)</span> :</label>
                                 <input class="form-control" type="date" id="startDate" name="startDate" min="1965-01-01" data-rule-dateiso="true" />
@@ -226,6 +248,8 @@
         //setting filter dropdowns to current value
         $("#gender").val(getParameterByName("gender"));
         $("#seriousReport").val(getParameterByName("seriousReport"));
+        $("#sourceOfReport").val(getParameterByName("sourceOfReport"));
+        $("#reportOutcome").val(getParameterByName("reportOutcome"));
         $("#ageRange").val(getParameterByName("ageRange"));
         $("#startDate").val(getParameterByName("startDate"));
         $("#endDate").val(getParameterByName("endDate"));
@@ -249,6 +273,20 @@
             var currentUrl = window.location.href;
             var currentVal = $.trim(getParameterByName("seriousReport"));
             var sendUrl = currentUrl.replace("&seriousReport=" + currentVal, "&seriousReport=" + $('#seriousReport').val());
+            window.location.href = sendUrl;
+        });
+
+        $('#sourceOfReport').change(function () {
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("sourceOfReport"));
+            var sendUrl = currentUrl.replace("&sourceOfReport=" + currentVal, "&sourceOfReport=" + $('#sourceOfReport').val());
+            window.location.href = sendUrl;
+        });
+
+        $('#reportOutcome').change(function () {
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("reportOutcome"));
+            var sendUrl = currentUrl.replace("&reportOutcome=" + currentVal, "&reportOutcome=" + $('#reportOutcome').val());
             window.location.href = sendUrl;
         });
 

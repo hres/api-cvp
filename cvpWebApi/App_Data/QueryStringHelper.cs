@@ -64,6 +64,14 @@ namespace cvp
         {
             return queryString.AllKeys.Contains("endDate") ? queryString["endDate"] : string.Empty;
         }
+        public static string GetSourceOfReport(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("sourceOfReport") ? queryString["sourceOfReport"] : string.Empty;
+        }
+        public static string GetReportOutcome(this NameValueCollection queryString)
+        {
+            return queryString.AllKeys.Contains("reportOutcome") ? queryString["reportOutcome"] : string.Empty;
+        }
 
         //public static string GetControlNumber(this NameValueCollection queryString)
         //{

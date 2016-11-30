@@ -11,6 +11,7 @@ namespace cvpWebApi.Models
         IEnumerable<Report> GetAll(string lang);
         Report GetReportByID(int id, string lang);
         //IEnumerable<Report> GetReportByCriteria(string drugName, string lang);
-        IEnumerable<Report> GetReportByCriteria(string searchTerm, string ageRange, string gender, string seriousReport, string startdate, string endDate, string lang);
+        IEnumerable<Report> GetReportByCriteria(string searchTerm, string ageRange, string gender, string seriousReport, string sourceOfReport, 
+            string reportOutcome, string startdate, string endDate, string lang);
     }
 }

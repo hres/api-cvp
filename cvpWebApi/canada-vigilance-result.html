@@ -104,7 +104,7 @@
                     <details open>
                         <summary><h4 class="h4">Filter Options</h4></summary>
                         <div class="row bg-info">
-                            <div class="col-md-3 col-sm-3" id="age-filter-section">
+                            <div class="col-md-2 col-sm-2" id="age-filter-section">
                                 <label for="ageRange">Age Range</label>
                                 <select class="form-control" name="ageRange" id="ageRange">
                                     <option value="">All</option>
@@ -115,7 +115,7 @@
                                     <option value="80">80+</option>
                                 </select>
                             </div>
-                            <div class="col-md-3 col-sm-3" id="gender-filter-section">
+                            <div class="col-md-2 col-sm-2" id="gender-filter-section">
                                 <label for="gender">Gender</label>
                                 <select class="form-control" name="gender" id="gender">
                                     <option value="">All</option>
@@ -125,7 +125,7 @@
                                     <option value="3">Unknown</option>
                                 </select>
                             </div>
-                            <div class="col-md-3 col-sm-3" id="seriousReport-filter-section">
+                            <div class="col-md-2 col-sm-2" id="seriousReport-filter-section">
                                 <label for="seriousReport">Serious Report?</label>
                                 <select class="form-control" name="seriousReport" id="seriousReport">
                                     <option value="">Both</option>
@@ -133,9 +133,31 @@
                                     <option value="02">No</option>
                                 </select>
                             </div>
+                            <div class="col-md-2 col-sm-2" id="sourceOfReport-filter-section">
+                                <label for="sourceOfReport">Source of Report</label>
+                                <select class="form-control" name="sourceOfReport" id="sourceOfReport">
+                                    <option value="">All</option>
+                                    <option value="01">Community</option>
+                                    <option value="03">Hospital</option>
+                                    <option value="07">MAH</option>
+                                    <option value="08">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 col-sm-2" id="reportOutcome-filter-section">
+                                <label for="reportOutcome">Report Outcome</label>
+                                <select class="form-control" name="reportOutcome" id="reportOutcome">
+                                    <option value="">All</option>
+                                    <option value="11">Death</option>
+                                    <option value="09">Not recovered/not resolved</option>
+                                    <option value="07">Recovered/resolved</option>
+                                    <option value="10">Recovered/resolved with sequelae</option>
+                                    <option value="02">Recovering/resolving</option>
+                                    <option value="06">Unknown</option>
+                                </select>
+                            </div>
                             <!--<div class="wb-frmvld">
                             <form action="#" method="get" id="validation-example">-->
-                            <div class="col-sm-3 col-sm-3 form-group" id="date-filter-section">
+                            <div class="col-md-2 col-sm-2 form-group" id="date-filter-section">
                                 <span class="field-name">Initial Received Date</span><br/>
                                 <label for="startDate" control-label"><span class="field-name">From</span><span class="datepicker-format"> (<abbr title="Four digits year, dash, two digits month, dash, two digits day">YYYY-MM-DD</abbr>)</span>:</label>
                                 <input class="form-control" type="date" id="startDate" name="startDate" min="1965-01-01" data-rule-dateiso="true" />
@@ -231,10 +253,11 @@
         //setting filter dropdowns to current value
         $("#gender").val(getParameterByName("gender"));
         $("#seriousReport").val(getParameterByName("seriousReport"));
+        $("#sourceOfReport").val(getParameterByName("sourceOfReport"));
+        $("#reportOutcome").val(getParameterByName("reportOutcome"));
         $("#ageRange").val(getParameterByName("ageRange"));
         $("#startDate").val(getParameterByName("startDate"));
         $("#endDate").val(getParameterByName("endDate"));
-
 
 
         $('#ageRange').change(function () {
@@ -263,6 +286,21 @@
             //alert("my send url is : " + sendUrl);
             window.location.href = sendUrl;
         });
+
+        $('#sourceOfReport').change(function () {
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("sourceOfReport"));
+            var sendUrl = currentUrl.replace("&sourceOfReport=" + currentVal, "&sourceOfReport=" + $('#sourceOfReport').val());
+            window.location.href = sendUrl;
+        });
+
+        $('#reportOutcome').change(function () {
+            var currentUrl = window.location.href;
+            var currentVal = $.trim(getParameterByName("reportOutcome"));
+            var sendUrl = currentUrl.replace("&reportOutcome=" + currentVal, "&reportOutcome=" + $('#reportOutcome').val());
+            window.location.href = sendUrl;
+        });
+
 
         $('#startDate').change(function () {
             var currentUrl = window.location.href;

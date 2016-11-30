@@ -616,7 +616,8 @@ namespace cvp
 
 
         // used by simple search
-        public List<Report> GetAllReportByBrandName(string searchTermBrandName, string ageRange, string gender, string seriousReport, string startDate, string endDate, string lang)
+        public List<Report> GetAllReportByBrandName(string searchTermBrandName, string ageRange, string gender, string seriousReport, string sourceOfReport, 
+            string reportOutcome, string startDate, string endDate, string lang)
         {
             var items = new List<Report>();
             var brandNameReports = new List<Report>();
@@ -665,6 +666,14 @@ namespace cvp
                     commandText += " AND AGE_Y <= :ageTo ";
                 }
             }
+            if (!string.IsNullOrEmpty(sourceOfReport))
+            {
+                commandText += "AND SOURCE_CODE = :sourceOfReport ";
+            }
+            if (!string.IsNullOrEmpty(reportOutcome))
+            {
+                commandText += "AND OUTCOME_CODE = :reportOutcome ";
+            }
             if (!string.IsNullOrEmpty(startDate))
             {
                 commandText += " AND DATINTRECEIVED >= TO_DATE(:startDate, 'YYYY/MM/DD') ";
@@ -689,6 +698,14 @@ namespace cvp
                 if (!string.IsNullOrEmpty(seriousReport))
                 {
                     cmd.Parameters.Add(":seriousReport", seriousReport);
+                }
+                if (!string.IsNullOrEmpty(sourceOfReport))
+                {
+                    cmd.Parameters.Add(":sourceOfReport", sourceOfReport);
+                }
+                if (!string.IsNullOrEmpty(reportOutcome))
+                {
+                    cmd.Parameters.Add(":reportOutcome", reportOutcome);
                 }
                 if (!string.IsNullOrEmpty(ageRange))
                 {
@@ -777,7 +794,7 @@ namespace cvp
                         con.Close();
                 }
             }
-            ingredientReports = GetAllReportByIngredientName(searchTermBrandName, ageRange, gender, seriousReport, startDate, endDate, lang);
+            ingredientReports = GetAllReportByIngredientName(searchTermBrandName, ageRange, gender, seriousReport, sourceOfReport, reportOutcome, startDate, endDate, lang);
             if (ingredientReports != null && ingredientReports.Count > 0)
             {
                 var mergedList = brandNameReports.Union(ingredientReports, new ReportComparer());
@@ -792,7 +809,8 @@ namespace cvp
         }
 
         // used by simple search
-        public List<Report> GetAllReportByIngredientName(string searchTermIngredientName, string ageRange, string gender, string seriousReport, string startDate, string endDate, string lang)
+        public List<Report> GetAllReportByIngredientName(string searchTermIngredientName, string ageRange, string gender, string seriousReport, 
+            string sourceOfReport, string reportOutcome, string startDate, string endDate, string lang)
         {
             var items = new List<Report>();
             var ageFrom = "";
@@ -839,7 +857,14 @@ namespace cvp
                     commandText += " AND rp.AGE_Y <= :ageTo ";
                 }
             }
-
+            if (!string.IsNullOrEmpty(sourceOfReport))
+            {
+                commandText += "AND rp.SOURCE_CODE = :sourceOfReport ";
+            }
+            if (!string.IsNullOrEmpty(reportOutcome))
+            {
+                commandText += "AND rp.OUTCOME_CODE = :reportOutcome ";
+            }
             if (!string.IsNullOrEmpty(startDate))
             {
                 commandText += " AND rp.DATINTRECEIVED >= TO_DATE(:startDate, 'YYYY/MM/DD') ";
@@ -873,6 +898,14 @@ namespace cvp
                     {
                         cmd.Parameters.Add(":ageTo", ageTo);
                     }
+                }
+                if (!string.IsNullOrEmpty(sourceOfReport))
+                {
+                    cmd.Parameters.Add(":sourceOfReport", sourceOfReport);
+                }
+                if (!string.IsNullOrEmpty(reportOutcome))
+                {
+                    cmd.Parameters.Add(":reportOutcome", reportOutcome);
                 }
                 if (!string.IsNullOrEmpty(startDate))
                 {
