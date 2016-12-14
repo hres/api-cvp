@@ -117,7 +117,7 @@
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Âge :</strong></p>
-                            <div class="col-sm-8"><p id="AgeY"></p></div>
+                            <div class="col-sm-8"><p id="Age"></p></div>
                         </div>
                         <div class="row">
                             <p class="col-sm-4"><strong>Groupe d'âge :</strong></p>
@@ -251,7 +251,7 @@
                 var defPreFooter = document.getElementById("def-preFooter");
                 defPreFooter.outerHTML = wet.builder.preFooter({
                     cdnEnv: "prod",
-                    dateModified: "2016-11-01",
+                    dateModified: "2016-12-14",
                     showPostContent: true,
                     showShare: true,
                 });
@@ -297,7 +297,7 @@
                 $('#DateReceived').append(formatedDate(data.date_received));
                 $('#DateIntReceived').append(formatedDate(data.date_int_received));
                 $('#MahNo').append(data.mah_no);
-                (data.age_y != null && data.age_y > 0) ? $('#AgeY').append(data.age_y + " " + data.age_unit) : '';
+                (data.age != null && data.age > 0) ? $('#Age').append(data.age + " " + data.age_unit) : '';
                 $('#AgeGroup').append(data.age_group_name);
                 $('#ReportType').append(data.report_type_name);
                 $('#ReporterType').append(data.reporter_type);

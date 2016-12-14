@@ -184,7 +184,7 @@
                                     <th>Adverse Reaction Report Number</th>
                                     <th>Market Authorization Holder AER Number</th>
                                     <th>Initial Received Date</th>
-                                    <th>Age</th>
+                                    <th>Age(years)</th>
                                     <th>Gender</th>
                                     <th>Suspected Product Brand Name</th>
                                     <th>Adverse Reaction Terms</th>
@@ -208,7 +208,7 @@
                 var defPreFooter = document.getElementById("def-preFooter");
                 defPreFooter.outerHTML = wet.builder.preFooter({
                     cdnEnv: "prod",
-                    dateModified: "2016-11-01",
+                    dateModified: "2016-12-14",
                     showPostContent: true,
                     showShare: true,
                 });
@@ -342,10 +342,9 @@
                                     }
                                 },
                                 {
-
                                     "data": null,
                                     "render": function (data, type, full) {
-                                        return data.age_y + ' ' + data.age_unit;
+                                        return data.age_y + ""; // ' ' + data.age_unit;
                                     }
                                 },
                                 { "data": "gender_name" },

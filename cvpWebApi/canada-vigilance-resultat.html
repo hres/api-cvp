@@ -178,7 +178,7 @@
                                     <th>Numéro d'identification de déclaration d'effet indésirable</th>
                                     <th>Numéro de la DEI du détenteur d'autorisation de mise en marché</th>
                                     <th>Date de réception initiale</th>
-                                    <th>Âge</th>
+                                    <th>Âge(ans)</th>
                                     <th>Sexe</th>
                                     <th>Nom commercialisé du produit soupçonné</th>
                                     <th>Termes d'effet indésirable</th>
@@ -202,7 +202,7 @@
                 var defPreFooter = document.getElementById("def-preFooter");
                 defPreFooter.outerHTML = wet.builder.preFooter({
                     cdnEnv: "prod",
-                    dateModified: "2016-11-01",
+                    dateModified: "2016-12-14",
                     showPostContent: true,
                     showShare: true,
                 });
@@ -331,7 +331,7 @@
 
                                     "data": null,
                                     "render": function (data, type, full) {
-                                        return data.age_y + ' ' + data.age_unit;
+                                        return data.age_y + ""; //+ ' ' + data.age_unit;
                                     }
                                 },
                                 { "data": "gender_name" },
