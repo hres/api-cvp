@@ -317,6 +317,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CSVController.cs" />
     <Compile Include="Controllers\AEReportController.cs" />
     <Compile Include="Controllers\ReportDrugController.cs" />
     <Compile Include="Controllers\ReportTypeController.cs" />
