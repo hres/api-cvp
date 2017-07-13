@@ -18,9 +18,9 @@ namespace cvpWebApi.Controllers
     {
         [System.Web.Http.AcceptVerbs("GET", "POST")]
         [System.Web.Http.HttpGet]
-        public HttpResponseMessage DownloadCSV(string dataType)
+        public HttpResponseMessage DownloadCSV(string dataType, string lang)
         {
-            DBConnection dbConnection = new DBConnection("en");
+            DBConnection dbConnection = new DBConnection(lang);
             var jsonResult = string.Empty;
             var fileNameDate = string.Format("{0}{1}{2}",
                            DateTime.Now.Year.ToString(),
@@ -36,7 +36,7 @@ namespace cvpWebApi.Controllers
             switch (dataType)
             {
                 case "ingredient":
-                    var ingredients = dbConnection.GetAllDrugProductIngredient("en").ToList();
+                    var ingredients = dbConnection.GetAllDrugProductIngredient(lang).ToList();
                     if (ingredients.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(ingredients);
@@ -45,7 +45,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "products":
-                    var products = dbConnection.GetAllDrugProduct("en").ToList();
+                    var products = dbConnection.GetAllDrugProduct(lang).ToList();
                     if (products.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(products);
@@ -54,7 +54,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "gender":
-                    var genders = dbConnection.GetAllGender("en").ToList();
+                    var genders = dbConnection.GetAllGender(lang).ToList();
                     if (genders.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(genders);
@@ -63,7 +63,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "outcome":
-                    var outcomes = dbConnection.GetAllOutcome("en").ToList();
+                    var outcomes = dbConnection.GetAllOutcome(lang).ToList();
                     if (outcomes.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(outcomes);
@@ -72,7 +72,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "reaction":
-                    var reactions = dbConnection.GetAllReaction("en").ToList();
+                    var reactions = dbConnection.GetAllReaction(lang).ToList();
                     if (reactions.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(reactions);
@@ -81,7 +81,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "reportDrug":
-                    var reportDrugs = dbConnection.GetAllReportDrug("en").ToList();
+                    var reportDrugs = dbConnection.GetAllReportDrug(lang).ToList();
                     if (reportDrugs.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(reportDrugs);
@@ -89,7 +89,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "reportLink":
-                    var reportLinks = dbConnection.GetAllReportLink("en").ToList();
+                    var reportLinks = dbConnection.GetAllReportLink(lang).ToList();
                     if (reportLinks.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(reportLinks);
@@ -97,7 +97,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "reportType":
-                    var reportTypes = dbConnection.GetAllReportType("en").ToList();
+                    var reportTypes = dbConnection.GetAllReportType(lang).ToList();
                     if (reportTypes.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(reportTypes);
@@ -106,7 +106,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "report":
-                    var reports = dbConnection.GetAllReport("en").ToList();
+                    var reports = dbConnection.GetAllReport(lang).ToList();
                     if (reports.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(reports);
@@ -115,7 +115,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "drugName":
-                    var drugNames = dbConnection.GetAllReportDrug("en").ToList();
+                    var drugNames = dbConnection.GetAllReportDrug(lang).ToList();
                     if (drugNames.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(drugNames);
@@ -124,7 +124,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "seriousness":
-                    var seriousness = dbConnection.GetAllSeriousness("en").ToList();
+                    var seriousness = dbConnection.GetAllSeriousness(lang).ToList();
                     if (seriousness.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(seriousness);
@@ -133,7 +133,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "source":
-                    var source = dbConnection.GetAllSource("en").ToList();
+                    var source = dbConnection.GetAllSource(lang).ToList();
                     if (source.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(source);
@@ -142,7 +142,7 @@ namespace cvpWebApi.Controllers
                     break;
 
                 case "info":
-                    var info = dbConnection.GetAllReport("en").ToList();
+                    var info = dbConnection.GetAllReport(lang).ToList();
                     if (info.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(info);
