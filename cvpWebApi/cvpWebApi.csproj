@@ -315,7 +315,6 @@
     <Compile Include="App_Data\UtilityHelper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CSVController.cs" />
     <Compile Include="Controllers\AEReportController.cs" />
@@ -331,7 +330,6 @@
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\DrugProductController.cs" />
     <Compile Include="Controllers\DrugProductIngredientController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportInfoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
