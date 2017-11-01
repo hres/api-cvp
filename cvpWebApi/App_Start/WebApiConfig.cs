@@ -15,16 +15,16 @@ namespace cvpWebApi
             // config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
                 name: "ApiMultiParamPathExtension ID",
-                routeTemplate: "api-v1/{controller}/{id}/{no}/{drug_name}.{ext}",
+                routeTemplate: "api/{controller}/{id}/{no}/{drug_name}.{ext}",
                 defaults: new { id = RouteParameter.Optional, ext = RouteParameter.Optional });
             
             config.Routes.MapHttpRoute(
                 name: "Api UriPathExtension ID",
-                routeTemplate: "api-v1/{controller}/{id}.{ext}",
+                routeTemplate: "api/{controller}/{id}.{ext}",
                 defaults: new { id = RouteParameter.Optional, ext = RouteParameter.Optional });
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api-v1/{controller}/{id}",
+                routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
             config.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("type", "json", new MediaTypeHeaderValue("application/json")));

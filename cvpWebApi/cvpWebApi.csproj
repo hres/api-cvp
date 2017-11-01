@@ -473,6 +473,7 @@
     <Folder Include="bin\zh-Hans\" />
     <Folder Include="bin\zh-Hant\" />
     <Folder Include="logs\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -483,7 +484,6 @@
   <ItemGroup>
     <Content Include="Controllers\dhprController.ashx" />
     <None Include="Properties\PublishProfiles\cvp.pubxml" />
-    <Content Include="Views\Home\Reference.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
