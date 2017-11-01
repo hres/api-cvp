@@ -473,7 +473,6 @@
     <Folder Include="bin\zh-Hans\" />
     <Folder Include="bin\zh-Hant\" />
     <Folder Include="logs\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
