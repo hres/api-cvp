@@ -380,6 +380,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\cvpWebApi.dll" />
+    <Content Include="bin\cvpWebApi.pdb" />
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\EntityFramework.SqlServer.dll" />
     <Content Include="bin\GoC.WebTemplateMVC.dll" />
@@ -482,6 +484,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controllers\dhprController.ashx" />
+    <Content Include="bin\cvpWebApi.dll.config" />
     <None Include="Properties\PublishProfiles\cvp.pubxml" />
   </ItemGroup>
   <PropertyGroup>
