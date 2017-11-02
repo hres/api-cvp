@@ -8,3 +8,43 @@ Stack Trace:
    at System.Convert.ToInt32(Object value)
    at cvp.DBConnection.GetAllReaction(String lang) in C:\Users\hcuser\Documents\api-cvp\cvpWebApi\App_Data\DBConnection.cs:line 1263
 
+********** 1:34:12 PM **********
+Exception Type: System.OverflowException
+Exception: Value was either too large or too small for an Int32.
+Source: DbConnection.cs - GetAllDrugProductIngredients()
+Stack Trace: 
+   at System.Convert.ToInt32(Int64 value)
+   at System.Int64.System.IConvertible.ToInt32(IFormatProvider provider)
+   at System.Convert.ToInt32(Object value)
+   at cvp.DBConnection.GetAllDrugProductIngredient(String lang) in C:\Users\hcuser\Documents\api-cvp\cvpWebApi\App_Data\DBConnection.cs:line 145
+
+********** 1:34:39 PM **********
+Exception Type: System.OverflowException
+Exception: Value was either too large or too small for an Int32.
+Source: DbConnection.cs - GetAllReaction()
+Stack Trace: 
+   at System.Decimal.FCallToInt32(Decimal d)
+   at System.Decimal.System.IConvertible.ToInt32(IFormatProvider provider)
+   at System.Convert.ToInt32(Object value)
+   at cvp.DBConnection.GetAllReaction(String lang) in C:\Users\hcuser\Documents\api-cvp\cvpWebApi\App_Data\DBConnection.cs:line 1263
+
+********** 1:39:34 PM **********
+Exception Type: System.OverflowException
+Exception: Value was either too large or too small for an Int32.
+Source: DbConnection.cs - GetAllReaction()
+Stack Trace: 
+   at System.Decimal.FCallToInt32(Decimal d)
+   at System.Decimal.System.IConvertible.ToInt32(IFormatProvider provider)
+   at System.Convert.ToInt32(Object value)
+   at cvp.DBConnection.GetAllReaction(String lang) in C:\Users\hcuser\Documents\api-cvp\cvpWebApi\App_Data\DBConnection.cs:line 1263
+
+********** 1:49:13 PM **********
+Exception Type: System.OverflowException
+Exception: Value was either too large or too small for an Int32.
+Source: DbConnection.cs - GetAllDrugProductIngredients()
+Stack Trace: 
+   at System.Convert.ToInt32(Int64 value)
+   at System.Int64.System.IConvertible.ToInt32(IFormatProvider provider)
+   at System.Convert.ToInt32(Object value)
+   at cvp.DBConnection.GetAllDrugProductIngredient() in C:\Users\hcuser\Documents\api-cvp\cvpWebApi\App_Data\DBConnection.cs:line 145
+

@@ -124,7 +124,7 @@ namespace cvp
 
 
         // used by API
-        public List<DrugProductIngredient> GetAllDrugProductIngredient(string lang)
+        public List<DrugProductIngredient> GetAllDrugProductIngredient()
         {
             var items = new List<DrugProductIngredient>();
             string commandText = "SELECT * FROM CVPONL_OWNER.DRUG_PRODUCT_INGREDIENTS";
@@ -170,7 +170,7 @@ namespace cvp
         }
 
         // used by API
-        public DrugProductIngredient GetDrugProductIngredientById(int id, string lang)
+        public DrugProductIngredient GetDrugProductIngredientById(int id)
         {
             var drugProductIngredient = new DrugProductIngredient();
             string commandText = "SELECT * FROM CVPONL_OWNER.DRUG_PRODUCT_INGREDIENTS WHERE DRUG_PRODUCT_INGREDIENT_ID = :id ";

@@ -36,7 +36,7 @@ namespace cvpWebApi.Controllers
             switch (dataType)
             {
                 case "ingredient":
-                    var ingredients = dbConnection.GetAllDrugProductIngredient(lang).ToList();
+                    var ingredients = dbConnection.GetAllDrugProductIngredient().ToList();
                     if (ingredients.Count > 0)
                     {
                         json = JsonConvert.SerializeObject(ingredients);

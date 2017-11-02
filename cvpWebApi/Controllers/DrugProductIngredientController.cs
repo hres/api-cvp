@@ -12,16 +12,16 @@ namespace cvpWebApi.Controllers
     {
         static readonly IDrugProductIngredientRepository databasePlaceholder = new DrugProductIngredientRepository();
 
-        public IEnumerable<DrugProductIngredient> GetAllDrugProductIngredient(string lang)
+        public IEnumerable<DrugProductIngredient> GetAllDrugProductIngredient()
         {
 
-            return databasePlaceholder.GetAll(lang);
+            return databasePlaceholder.GetAll();
         }
 
 
-        public DrugProductIngredient GetDrugProductIngredientByID(int id, string lang)
+        public DrugProductIngredient GetDrugProductIngredientByID(int id)
         {
-            DrugProductIngredient drugProductIngredient = databasePlaceholder.Get(id, lang);
+            DrugProductIngredient drugProductIngredient = databasePlaceholder.Get(id);
             if (drugProductIngredient == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);

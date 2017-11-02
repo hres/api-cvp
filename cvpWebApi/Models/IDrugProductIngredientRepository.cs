@@ -8,7 +8,7 @@ namespace cvpWebApi.Models
 {
     interface IDrugProductIngredientRepository
     {
-        IEnumerable<DrugProductIngredient> GetAll(string lang);
-        DrugProductIngredient Get(int id, string lang);
+        IEnumerable<DrugProductIngredient> GetAll();
+        DrugProductIngredient Get(int id);
     }
 }
