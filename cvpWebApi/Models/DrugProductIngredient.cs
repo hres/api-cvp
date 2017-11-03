@@ -8,7 +8,7 @@ namespace cvpWebApi.Models
 {
     public class DrugProductIngredient
     {
-        public int drug_product_ingredient_id { get; set; }
+        public Int64 drug_product_ingredient_id { get; set; }
         public int drug_product_id { get; set; }
         public int product_id { get; set; }
         public string drug_name { get; set; }
