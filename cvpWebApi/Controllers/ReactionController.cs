@@ -19,7 +19,7 @@ namespace cvpWebApi.Controllers
         }
 
 
-        public Reaction GetReactionsByID(int id, string lang)
+        public Reaction GetReactionsByID(Int64 id, string lang)
         {
             Reaction reaction = databasePlaceholder.Get(id, lang);
             if (reaction == null)

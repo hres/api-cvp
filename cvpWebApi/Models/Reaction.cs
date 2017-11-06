@@ -7,7 +7,7 @@ namespace cvpWebApi.Models
 {
     public class Reaction
     {
-        public long reaction_id { get; set; }
+        public Int64 reaction_id { get; set; }
         public int report_id { get; set; }
         public int duration { get; set; }
         public String duration_unit { get; set; }

@@ -18,7 +18,7 @@ namespace cvpWebApi.Models
             return _reactions;
         }
 
-        public Reaction Get(int id, string lang)
+        public Reaction Get(Int64 id, string lang)
         {
             _reaction = dbConnection.GetReactionById(id, lang);
             return _reaction;
