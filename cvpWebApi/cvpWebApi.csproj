@@ -453,15 +453,6 @@
     <Content Include="Views\Shared\Error404.htm" />
     <Content Include="Views\Shared\Error500.htm" />
     <Content Include="Views\Shared\GenericError.htm" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -487,6 +478,13 @@
     <Content Include="Controllers\dhprController.ashx" />
     <Content Include="bin\cvpWebApi.dll.config" />
     <None Include="Properties\PublishProfiles\cvp.pubxml" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
