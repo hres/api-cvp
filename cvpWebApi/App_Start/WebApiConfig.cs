@@ -15,23 +15,23 @@ namespace cvpWebApi
             // config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
                 name: "ApiMultiParamPathExtension ID",
-                routeTemplate: "api/{controller}/{id}/{no}/{drug_name}.{ext}",
+                routeTemplate: "{controller}/{id}/{no}/{drug_name}.{ext}",
                 defaults: new { id = RouteParameter.Optional, ext = RouteParameter.Optional });
             
             config.Routes.MapHttpRoute(
                 name: "Api UriPathExtension ID",
-                routeTemplate: "api/{controller}/{id}.{ext}",
+                routeTemplate: "{controller}/{id}.{ext}",
                 defaults: new { id = RouteParameter.Optional, ext = RouteParameter.Optional });
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
             config.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("type", "json", new MediaTypeHeaderValue("application/json")));
             config.Formatters.JsonFormatter.SupportedEncodings.Add(Encoding.GetEncoding("utf-8"));
             config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IsoDateTimeConverter() { DateTimeFormat = "yyyy-MM-dd" });
             config.Formatters.XmlFormatter.MediaTypeMappings.Add(new QueryStringMapping("type", "xml", new MediaTypeHeaderValue("application/xml")));
-
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.

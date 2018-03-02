@@ -12,14 +12,14 @@ namespace cvpWebApi.Controllers
     {
         static readonly IOutcomeRepository databasePlaceholder = new OutcomeRepository();
 
-        public IEnumerable<Outcome> GetAllOutcome(string lang)
+        public IEnumerable<Outcome> GetAllOutcome(string lang = "en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public Outcome GetOutcomeByID(int id, string lang)
+        public Outcome GetOutcomeByID(int id, string lang = "en")
         {
             Outcome outcome = databasePlaceholder.Get(id, lang);
             if (outcome == null)

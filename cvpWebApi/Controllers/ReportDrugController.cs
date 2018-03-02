@@ -12,14 +12,14 @@ namespace cvpWebApi.Controllers
     {
         static readonly IReportDrugRepository databasePlaceholder = new ReportDrugRepository();
 
-        public IEnumerable<ReportDrug> GetAllReportDrug(string lang)
+        public IEnumerable<ReportDrug> GetAllReportDrug(string lang = "en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public ReportDrug GetReportByDrugID(int id, string lang)
+        public ReportDrug GetReportByDrugID(int id, string lang = "en")
         {
             ReportDrug report = databasePlaceholder.Get(id, lang);
             if (report == null)
@@ -29,7 +29,7 @@ namespace cvpWebApi.Controllers
             return report;
         }
 
-        public IEnumerable<ReportDrug> GetReportDrugById(string reportId, string lang)
+        public IEnumerable<ReportDrug> GetReportDrugById(string reportId, string lang = "en")
         {
             return databasePlaceholder.GetReportDrugById(reportId, lang);
         }

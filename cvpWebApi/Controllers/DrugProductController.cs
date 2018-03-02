@@ -12,14 +12,14 @@ namespace cvpWebApi.Controllers
     {
         static readonly IDrugProductRepository databasePlaceholder = new DrugProductRepository();
 
-        public IEnumerable<DrugProduct> GetAllDrugProduct(string lang)
+        public IEnumerable<DrugProduct> GetAllDrugProduct(string lang = "en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public DrugProduct GetDrugProductByID(int id, string lang)
+        public DrugProduct GetDrugProductByID(int id, string lang = "en")
         {
             DrugProduct drugProduct = databasePlaceholder.Get(id, lang);
             if (drugProduct == null)

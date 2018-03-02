@@ -12,14 +12,14 @@ namespace cvpWebApi.Controllers
     {
         static readonly IReportTypeRepository databasePlaceholder = new ReportTypeRepository();
 
-        public IEnumerable<ReportType> GetAllReportType(string lang)
+        public IEnumerable<ReportType> GetAllReportType(string lang = "en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public ReportType GetReportTypeByID(int id, string lang)
+        public ReportType GetReportTypeByID(int id, string lang = "en")
         {
             ReportType reporttype = databasePlaceholder.Get(id, lang);
             if (reporttype == null)
