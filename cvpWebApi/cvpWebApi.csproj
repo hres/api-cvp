@@ -476,7 +476,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Controllers\dhprController.ashx" />
-    <Content Include="bin\cvpWebApi.dll.config" />
     <None Include="Properties\PublishProfiles\cvp.pubxml" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
