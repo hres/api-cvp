@@ -20,17 +20,17 @@ namespace cvpWebApi.Models
         public string gender_name { get; set; }
         public int age { get; set; }
         public int age_y { get; set; }
-        public string age_unit_code { get; set; }
+        //public string age_unit_code { get; set; } removed until approved and described by client
         public string age_unit { get; set; }
-        public string age_group_code { get; set; }
-        public string age_group_name { get; set; }
+        //public string age_group_code { get; set; } removed until approved and described by client
+        //public string age_group_name { get; set; } removed until approved and described by client
         public string outcome_code { get; set; }
         public string outcome { get; set; }
         public int weight { get; set; }
-        public string weight_unit_code { get; set; }
+        //public string weight_unit_code { get; set; } removed until approved and described by client
         public string weight_unit { get; set; }
         public int height { get; set; }
-        public string height_unit_code { get; set; }
+        //public string height_unit_code { get; set; } removed until approved and described by client
         public string height_unit { get; set; }
          public string seriousness_code { get; set; }
         public string seriousness { get; set; }
@@ -44,8 +44,8 @@ namespace cvpWebApi.Models
         public string reporter_type { get; set; }
          public string source_code { get; set; }
         public string source_name { get; set; }
-         public int report_link_flg { get; set; }
-        public long aer_id { get; set; }
+        //public int report_link_flg { get; set; } removed until approved and described by client
+        //public long aer_id { get; set; } removed until approved and described by client
         public string pt_name { get; set; }
          public string soc_name { get; set; }
          public int duration { get; set; }
