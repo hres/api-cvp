@@ -19,19 +19,19 @@ namespace cvpWebApi.Controllers
         }
 
 
-        public ReportDrug GetReportByDrugID(int id, string lang = "en")
-        {
-            ReportDrug report = databasePlaceholder.Get(id, lang);
-            if (report == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-            return report;
-        }
+        //public ReportDrug GetReportByDrugID(int id, string lang = "en")
+        //{
+        //    ReportDrug report = databasePlaceholder.Get(id, lang);
+        //    if (report == null)
+        //    {
+        //        throw new HttpResponseException(HttpStatusCode.NotFound);
+        //    }
+        //    return report;
+        //}
 
-        public IEnumerable<ReportDrug> GetReportDrugById(string reportId, string lang = "en")
+        public IEnumerable<ReportDrug> GetReportDrugById(string id, string lang = "en")
         {
-            return databasePlaceholder.GetReportDrugById(reportId, lang);
+            return databasePlaceholder.GetReportDrugById(id, lang);
         }
 
     }
