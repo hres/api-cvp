@@ -12,11 +12,11 @@ namespace cvpWebApi.Models
         public int drug_product_id { get; set; }
         public String drug_name { get; set; }
         public String drug_involv_name { get; set; }
-        public String route_admin { get; set; }
+        //public String route_admin { get; set; } removed until approved and described by client
         public String route_admin_name { get; set; }
  
         public int unit_dose_qty { get; set; }
-        public String dose_unit { get; set; }
+        //public String dose_unit { get; set; } removed until approved and described by client
         public String dose_unit_name { get; set; }
         public int frequency { get; set; }
         public int freq_time { get; set; }

@@ -12,14 +12,14 @@ namespace cvpWebApi.Controllers
     {
         static readonly IGenderRepository databasePlaceholder = new GenderRepository();
 
-        public IEnumerable<Gender> GetAllGender(string lang)
+        public IEnumerable<Gender> GetAllGender(string lang="en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public Gender GetGenderByID(int id, string lang)
+        public Gender GetGenderByID(int id, string lang = "en")
         {
             Gender gender = databasePlaceholder.Get(id, lang);
             if (gender == null)

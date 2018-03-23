@@ -12,14 +12,14 @@ namespace cvpWebApi.Controllers
     {
         static readonly IReactionRepository databasePlaceholder = new ReactionRepository();
 
-        public IEnumerable<Reaction> GetAllReport(string lang)
+        public IEnumerable<Reaction> GetAllReport(string lang="en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public Reaction GetReactionsByID(Int64 id, string lang)
+        public Reaction GetReactionsByID(Int64 id, string lang = "en")
         {
             Reaction reaction = databasePlaceholder.Get(id, lang);
             if (reaction == null)
@@ -29,7 +29,7 @@ namespace cvpWebApi.Controllers
             return reaction;
         }
 
-        public IEnumerable<Reaction> GetReactionsByReportId(string reportId, string lang)
+        public IEnumerable<Reaction> GetReactionsByReportId(string reportId, string lang = "en")
         {
             return databasePlaceholder.GetReactionByReportId(reportId, lang);
         }

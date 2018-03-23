@@ -12,14 +12,14 @@ namespace cvpWebApi.Controllers
     {
         static readonly ISeriousnessRepository databasePlaceholder = new SeriousnessRepository();
 
-        public IEnumerable<Seriousness> GetAllSeriousness(string lang)
+        public IEnumerable<Seriousness> GetAllSeriousness(string lang = "en")
         {
 
             return databasePlaceholder.GetAll(lang);
         }
 
 
-        public Seriousness GetSeriousnessByID(int id, string lang)
+        public Seriousness GetSeriousnessByID(int id, string lang = "en")
         {
             Seriousness seriousness = databasePlaceholder.Get(id, lang);
             if (seriousness == null)

@@ -18,15 +18,15 @@ namespace cvpWebApi.Models
             return _reportDrugs;
         }
 
-        public ReportDrug Get(int id, string lang)
-        {
-            _reportDrug = dbConnection.GetReportDrugById(id, lang);
-            return _reportDrug;
-        }
+        //public ReportDrug Get(int id, string lang)
+        //{
+        //    _reportDrug = dbConnection.GetReportDrugById(id, lang);
+        //    return _reportDrug;
+        //}
 
-        public IEnumerable<ReportDrug> GetReportDrugById(string reportId, string lang)
+        public IEnumerable<ReportDrug> GetReportDrugById(string id, string lang)
         {
-            _reportDrugs = dbConnection.GetReportDrugByReportId(reportId, lang);
+            _reportDrugs = dbConnection.GetReportDrugByReportId(id, lang);
             return _reportDrugs;
         }
     }
