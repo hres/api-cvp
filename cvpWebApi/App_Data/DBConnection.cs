@@ -170,10 +170,10 @@ namespace cvp
         }
 
         // used by API
-        public DrugProductIngredient GetDrugProductIngredientById(int id)
+        public DrugProductIngredient GetDrugProductIngredientById(Int64 id)
         {
             var drugProductIngredient = new DrugProductIngredient();
-            string commandText = "SELECT * FROM CVPONL_OWNER.DRUG_PRODUCT_INGREDIENTS WHERE DRUG_PRODUCT_INGREDIENT_ID = :id ";
+            string commandText = "SELECT * FROM CVPONL_OWNER.DRUG_PRODUCT_INGREDIENTS WHERE DRUG_PRODUCT_INGREDIENT_ID = :id";
 
             //using (SqlConnection con = new SqlConnection(DpdDBConnection))
             using (
