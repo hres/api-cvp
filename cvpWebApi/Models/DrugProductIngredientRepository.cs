@@ -22,7 +22,7 @@ namespace cvpWebApi.Models
         }
 
 
-        public DrugProductIngredient Get(int id)
+        public DrugProductIngredient Get(Int64 id)
         {
             _drugProductIngredient = dbConnection.GetDrugProductIngredientById(id);
             return _drugProductIngredient;

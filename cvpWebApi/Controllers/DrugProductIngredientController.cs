@@ -19,7 +19,7 @@ namespace cvpWebApi.Controllers
         }
 
 
-        public DrugProductIngredient GetDrugProductIngredientByID(int id)
+        public DrugProductIngredient GetDrugProductIngredientByID(Int64 id)
         {
             DrugProductIngredient drugProductIngredient = databasePlaceholder.Get(id);
             if (drugProductIngredient == null)
