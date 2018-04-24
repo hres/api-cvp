@@ -2134,12 +2134,12 @@ namespace cvp
                 commandText += " DRUGINVOLV_ENG as DRUGINVOLV, ROUTEADMIN_ENG AS ROUTEADMIN, DOSE_UNIT_ENG as DOSE_UNIT, FREQUENCY_TIME_ENG as FREQUENCY_TIME, ";
                 commandText += " FREQ_TIME_UNIT_ENG as FREQ_TIME_UNIT, THERAPY_DURATION_UNIT_ENG as THERAPY_DURATION_UNIT, DOSAGEFORM_ENG as DOSAGEFORM";
             }
-            commandText += " FROM CVPONL_OWNER.REPORT_DRUG WHERE AER_ID = :aer_id ";
+            commandText += " FROM CVPONL_OWNER.REPORT_DRUG WHERE REPORT_ID = :report_id ";
 
             using (OracleConnection con = new OracleConnection(DpdDBConnection))
             {
                 OracleCommand cmd = new OracleCommand(commandText, con);
-                cmd.Parameters.Add(":aer_id", id);
+                cmd.Parameters.Add(":report_id", id);
                 try
                 {
                     con.Open();
