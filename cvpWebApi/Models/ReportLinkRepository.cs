@@ -18,7 +18,7 @@ namespace cvpWebApi.Models
             return _reportLinks;
         }
 
-        public ReportLink Get(int id, string lang)
+        public ReportLink Get(Int64 id, string lang)
         {
             _reportLink = dbConnection.GetReportLinkById(id, lang);
             return _reportLink;
