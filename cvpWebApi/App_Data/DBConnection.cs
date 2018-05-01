@@ -1972,7 +1972,7 @@ namespace cvp
                             while (dr.Read())
                             {
                                 var item = new ReportLink();
-                                item.report_link_id = dr["REPORT_LINK_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_LINK_ID"]);
+                                item.report_link_id = dr["REPORT_LINK_ID"] == DBNull.Value ? 0 : Convert.ToInt64(dr["REPORT_LINK_ID"]);
                                 item.report_id = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
                                 item.record_type = dr["RECORD_TYPE"] == DBNull.Value ? string.Empty : dr["RECORD_TYPE"].ToString().Trim();
                                 item.report_link_no = dr["REPORT_LINK"] == DBNull.Value ? string.Empty : dr["REPORT_LINK"].ToString().Trim();
@@ -1998,7 +1998,7 @@ namespace cvp
         }
 
         // used by API
-        public ReportLink GetReportLinkById(int id, string lang)
+        public ReportLink GetReportLinkById(Int64 id, string lang)
         {
             var reportLinks = new ReportLink();
             string commandText = "SELECT DISTINCT REPORT_LINK_ID, REPORT_ID, REPORT_LINK,";
@@ -2028,7 +2028,7 @@ namespace cvp
                             while (dr.Read())
                             {
                                 var item = new ReportLink();
-                                item.report_link_id = dr["REPORT_LINK_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_LINK_ID"]);
+                                item.report_link_id = dr["REPORT_LINK_ID"] == DBNull.Value ? 0 : Convert.ToInt64(dr["REPORT_LINK_ID"]);
                                 item.report_id = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
                                 item.record_type = dr["RECORD_TYPE"] == DBNull.Value ? string.Empty : dr["RECORD_TYPE"].ToString().Trim();
                                 item.report_link_no = dr["REPORT_LINK"] == DBNull.Value ? string.Empty : dr["REPORT_LINK"].ToString().Trim();
