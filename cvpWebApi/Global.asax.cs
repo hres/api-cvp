@@ -1,3 +1,5 @@
+using NLog;
+using System;
 using System.Web.Http;
 using System.Web.Mvc;
 
@@ -8,6 +10,17 @@ namespace cvpWebApi
 
     public class WebApiApplication : System.Web.HttpApplication
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            Exception exception = Server.GetLastError();
+            if (exception != null)
+            {
+                logger.Debug(exception);
+            }
+        }
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
