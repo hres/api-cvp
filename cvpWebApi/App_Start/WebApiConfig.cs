@@ -3,6 +3,7 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 namespace cvpWebApi
 {
@@ -12,6 +13,9 @@ namespace cvpWebApi
         public static readonly string UriPathExtensionKey = "ext";
         public static void Register(HttpConfiguration config)
         {
+            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.LocalOnly;
+            config.Services.Replace(typeof(IExceptionHandler), new UnhandledExceptionHandler());
+
             // config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
                 name: "ApiMultiParamPathExtension ID",
@@ -40,7 +44,10 @@ namespace cvpWebApi
 
             // To disable tracing in your application, please comment out or remove the following line of code
             // For more information, refer to: http://www.asp.net/web-api
-            config.EnableSystemDiagnosticsTracing();
+            // config.EnableSystemDiagnosticsTracing();
+
+
+
         }
     }
 }
