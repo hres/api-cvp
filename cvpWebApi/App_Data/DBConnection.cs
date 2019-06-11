@@ -1527,7 +1527,7 @@ namespace cvp
         {
             var items = new List<Gender>();
             string commandText = "SELECT DISTINCT GENDER_LX_ID, GENDER_CODE, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " FR_DESC as GENDER";
             }
