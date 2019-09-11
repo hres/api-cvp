@@ -229,7 +229,7 @@ namespace cvp
             commandText += " SERIOUSNESS_CODE, DEATH, DISABILITY, CONGENITAL_ANOMALY,LIFE_THREATENING, HOSP_REQUIRED, OTHER_MEDICALLY_IMP_COND, DURATION, ";
             commandText += " REPORTER_TYPE_CODE, SOURCE_CODE, REPORT_LINK_FLG, AER_ID, DRUGNAME, ";
 
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " REPORT_TYPE_FR as REPORT_TYPE, GENDER_FR as GENDER, AGE_UNIT_FR as AGE_UNIT, AGE_GROUP_FR as AGE_GROUP, ";
                 commandText += " OUTCOME_FR as OUTCOME, WEIGHT_UNIT_FR as WEIGHT_UNIT, HEIGHT_UNIT_FR as HEIGHT_UNIT, SERIOUSNESS_FR as SERIOUSNESS, ";
@@ -329,7 +329,7 @@ namespace cvp
             commandText += " SERIOUSNESS_CODE, DEATH, DISABILITY, CONGENITAL_ANOMALY,LIFE_THREATENING, HOSP_REQUIRED, OTHER_MEDICALLY_IMP_COND, DURATION, ";
             commandText += " REPORTER_TYPE_CODE, SOURCE_CODE, REPORT_LINK_FLG, AER_ID, DRUGNAME, ";
 
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " REPORT_TYPE_FR as REPORT_TYPE, GENDER_FR as GENDER, AGE_UNIT_FR as AGE_UNIT, AGE_GROUP_FR as AGE_GROUP, ";
                 commandText += " OUTCOME_FR as OUTCOME, WEIGHT_UNIT_FR as WEIGHT_UNIT, HEIGHT_UNIT_FR as HEIGHT_UNIT, SERIOUSNESS_FR as SERIOUSNESS, ";
@@ -629,7 +629,7 @@ namespace cvp
             commandText += " SERIOUSNESS_CODE, DEATH, DISABILITY, CONGENITAL_ANOMALY,LIFE_THREATENING, HOSP_REQUIRED, OTHER_MEDICALLY_IMP_COND, DURATION, ";
             commandText += " REPORTER_TYPE_CODE, SOURCE_CODE, REPORT_LINK_FLG, AER_ID, DRUGNAME,";
 
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " REPORT_TYPE_FR as REPORT_TYPE, GENDER_FR as GENDER, AGE_UNIT_FR as AGE_UNIT, AGE_GROUP_FR as AGE_GROUP, ";
                 commandText += " OUTCOME_FR as OUTCOME, WEIGHT_UNIT_FR as WEIGHT_UNIT, HEIGHT_UNIT_FR as HEIGHT_UNIT, SERIOUSNESS_FR as SERIOUSNESS, ";
@@ -821,7 +821,7 @@ namespace cvp
             commandText += " rp.SERIOUSNESS_CODE, rp.DEATH, rp.DISABILITY, rp.CONGENITAL_ANOMALY, rp.LIFE_THREATENING, rp.HOSP_REQUIRED, rp.OTHER_MEDICALLY_IMP_COND, rp.DURATION, ";
             commandText += " rp.REPORTER_TYPE_CODE, rp.SOURCE_CODE, rp.REPORT_LINK_FLG, rp.AER_ID, rp.DRUGNAME,";
 
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " rp.REPORT_TYPE_FR as REPORT_TYPE, rp.GENDER_FR as GENDER, rp.AGE_UNIT_FR as AGE_UNIT, rp.AGE_GROUP_FR as AGE_GROUP, ";
                 commandText += " rp.OUTCOME_FR as OUTCOME, rp.WEIGHT_UNIT_FR as WEIGHT_UNIT, rp.HEIGHT_UNIT_FR as HEIGHT_UNIT, rp.SERIOUSNESS_FR as SERIOUSNESS, ";
@@ -1236,7 +1236,8 @@ namespace cvp
         {
             var items = new List<Reaction>();
             string commandText = "SELECT DISTINCT REACTION_ID, REPORT_ID, DURATION, MEDDRA_VERSION, ";
-            if (lang.Equals("fr"))
+
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " DURATION_UNIT_FR as DURATION_UNIT, PT_NAME_FR as PT_NAME, SOC_NAME_FR as SOC_NAME";
 
@@ -1293,7 +1294,8 @@ namespace cvp
         {
             var reactions = new Reaction();
             string commandText = "SELECT DISTINCT REACTION_ID, REPORT_ID, DURATION, MEDDRA_VERSION, ";
-            if (lang.Equals("fr"))
+
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " DURATION_UNIT_FR as DURATION_UNIT, PT_NAME_FR as PT_NAME, SOC_NAME_FR as SOC_NAME";
 
@@ -1354,7 +1356,7 @@ namespace cvp
         {
             var reaction = new List<Reaction>();
             string commandText = "SELECT DISTINCT REACTION_ID, REPORT_ID, DURATION, MEDDRA_VERSION, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " DURATION_UNIT_FR as DURATION_UNIT, PT_NAME_FR as PT_NAME, SOC_NAME_FR as SOC_NAME";
             }
@@ -1414,7 +1416,7 @@ namespace cvp
         {
             var items = new List<Outcome>();
             string commandText = "SELECT DISTINCT OUTCOME_LX_ID, OUTCOME_CODE, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " FR_DESC as OUTCOME";
 
@@ -1468,7 +1470,7 @@ namespace cvp
         {
             var outcome = new Outcome();
             string commandText = "SELECT DISTINCT OUTCOME_LX_ID, OUTCOME_CODE, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " FR_DESC as OUTCOME";
 
@@ -1525,7 +1527,7 @@ namespace cvp
         {
             var items = new List<Gender>();
             string commandText = "SELECT DISTINCT GENDER_LX_ID, GENDER_CODE, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " FR_DESC as GENDER";
             }
@@ -1577,7 +1579,7 @@ namespace cvp
         {
             var gender = new Gender();
             string commandText = "SELECT DISTINCT GENDER_LX_ID, GENDER_CODE, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " FR_DESC as GENDER";
             }
@@ -1631,7 +1633,7 @@ namespace cvp
         {
             var items = new List<ReportType>();
             string commandText = "SELECT DISTINCT REPORT_TYPE_LX_ID, REPORT_TYPE_CODE, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " FR_DESC as REPORT_TYPE";
             }
@@ -1682,7 +1684,7 @@ namespace cvp
         {
             var reportType = new ReportType();
             string commandText = "SELECT DISTINCT REPORT_TYPE_LX_ID, REPORT_TYPE_CODE, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " FR_DESC as REPORT_TYPE";
             }
@@ -1737,7 +1739,7 @@ namespace cvp
         {
             var items = new List<Seriousness>();
             string commandText = "SELECT DISTINCT SERIOUSNESS_LX_ID, SERIOUSNESS_CODE, ";
-            if (lang.Equals("fr"))
+            if (lang != null &&  lang.Equals("fr"))
             {
                 commandText += " FR_DESC as SERIOUSNESS";
             }
@@ -1789,7 +1791,7 @@ namespace cvp
         {
             var seriousness = new Seriousness();
             string commandText = "SELECT DISTINCT SERIOUSNESS_LX_ID, SERIOUSNESS_CODE, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " FR_DESC as SERIOUSNESS";
             }
@@ -1844,7 +1846,7 @@ namespace cvp
         {
             var items = new List<Source>();
             string commandText = "SELECT DISTINCT SOURCE_LX_ID, SOURCE_CODE,";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " FR_DESC as SOURCE";
             }
@@ -1897,7 +1899,7 @@ namespace cvp
             var source = new Source();
 
             string commandText = "SELECT DISTINCT SOURCE_LX_ID, SOURCE_CODE,";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " FR_DESC as SOURCE";
             }
@@ -1950,7 +1952,7 @@ namespace cvp
         {
             var items = new List<ReportLink>();
             string commandText = "SELECT DISTINCT REPORT_LINK_ID, REPORT_ID, REPORT_LINK,";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " RECORD_TYPE_FR as RECORD_TYPE";
             }
@@ -2002,7 +2004,7 @@ namespace cvp
         {
             var reportLinks = new ReportLink();
             string commandText = "SELECT DISTINCT REPORT_LINK_ID, REPORT_ID, REPORT_LINK,";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " RECORD_TYPE_FR as RECORD_TYPE";
             }
@@ -2058,7 +2060,7 @@ namespace cvp
         {
             var items = new List<ReportDrug>();
             string commandText = "SELECT DISTINCT REPORT_DRUG_ID, REPORT_ID, DRUG_PRODUCT_ID, DRUGNAME, UNIT_DOSE_QTY, FREQUENCY, FREQ_TIME, THERAPY_DURATION, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " DRUGINVOLV_FR as DRUGINVOLV, ROUTEADMIN_FR AS ROUTEADMIN, DOSE_UNIT_FR as DOSE_UNIT, FREQUENCY_TIME_FR as FREQUENCY_TIME, ";
                 commandText += " FREQ_TIME_UNIT_FR as FREQ_TIME_UNIT, THERAPY_DURATION_UNIT_FR as THERAPY_DURATION_UNIT, DOSAGEFORM_FR as DOSAGEFORM";
@@ -2124,7 +2126,7 @@ namespace cvp
         {
             var items = new List<ReportDrug>();
             string commandText = "SELECT DISTINCT REPORT_DRUG_ID, REPORT_ID, DRUG_PRODUCT_ID, DRUGNAME, UNIT_DOSE_QTY, FREQUENCY, FREQ_TIME, THERAPY_DURATION, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " DRUGINVOLV_FR as DRUGINVOLV, ROUTEADMIN_FR AS ROUTEADMIN, DOSE_UNIT_FR as DOSE_UNIT, FREQUENCY_TIME_FR as FREQUENCY_TIME, ";
                 commandText += " FREQ_TIME_UNIT_FR as FREQ_TIME_UNIT, THERAPY_DURATION_UNIT_FR as THERAPY_DURATION_UNIT, DOSAGEFORM_FR as DOSAGEFORM";
@@ -2191,7 +2193,7 @@ namespace cvp
         {
             var reportDrug = new ReportDrug();
             string commandText = "SELECT DISTINCT REPORT_DRUG_ID, REPORT_ID, DRUG_PRODUCT_ID, FREQ_TIME, DRUGNAME, UNIT_DOSE_QTY, FREQUENCY, THERAPY_DURATION, ";
-            if (lang.Equals("fr"))
+            if (lang != null && lang.Equals("fr"))
             {
                 commandText += " DRUGINVOLV_FR as DRUGINVOLV, ROUTEADMIN_FR AS ROUTEADMIN, DOSE_UNIT_FR as DOSE_UNIT, FREQUENCY_TIME_FR as FREQUENCY_TIME, ";
                 commandText += " FREQ_TIME_UNIT_FR as FREQ_TIME_UNIT, THERAPY_DURATION_UNIT_FR as THERAPY_DURATION_UNIT, DOSAGEFORM_FR as DOSAGEFORM";
