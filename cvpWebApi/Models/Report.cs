@@ -18,18 +18,18 @@ namespace cvpWebApi.Models
         public string report_type_name { get; set; }
         public string gender_code { get; set; }
         public string gender_name { get; set; }
-        public int age { get; set; }
-        public int age_y { get; set; }
+        public double age { get; set; }
+        public double age_y { get; set; }
         //public string age_unit_code { get; set; } removed until approved and described by client
         public string age_unit { get; set; }
         //public string age_group_code { get; set; } removed until approved and described by client
         //public string age_group_name { get; set; } removed until approved and described by client
         public string outcome_code { get; set; }
         public string outcome { get; set; }
-        public int weight { get; set; }
+        public double weight { get; set; }
         //public string weight_unit_code { get; set; } removed until approved and described by client
         public string weight_unit { get; set; }
-        public int height { get; set; }
+        public double height { get; set; }
         //public string height_unit_code { get; set; } removed until approved and described by client
         public string height_unit { get; set; }
          public string seriousness_code { get; set; }
@@ -48,7 +48,7 @@ namespace cvpWebApi.Models
         //public long aer_id { get; set; } removed until approved and described by client
         public string pt_name { get; set; }
          public string soc_name { get; set; }
-         public int duration { get; set; }
+         public double duration { get; set; }
         public string duration_unit { get; set; }
         public string drug_name { get; set; }
 
