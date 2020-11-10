@@ -344,8 +344,8 @@ namespace cvp
             item.report_type_name = dr["REPORT_TYPE"] == DBNull.Value ? string.Empty : dr["REPORT_TYPE"].ToString().Trim();
             item.gender_code = dr["GENDER_CODE"] == DBNull.Value ? string.Empty : dr["GENDER_CODE"].ToString().Trim();
             item.gender_name = dr["GENDER"] == DBNull.Value ? string.Empty : dr["GENDER"].ToString().Trim();
-            item.age = dr["AGE"] == DBNull.Value ? 0 : Convert.ToDouble(dr["AGE"]);
-            item.age_y = dr["AGE_Y"] == DBNull.Value ? 0 : Convert.ToDouble(dr["AGE_Y"]);
+            item.age = dr["AGE"] == DBNull.Value ? 0 : Convert.ToDouble(dr["AGE"].ToString());
+            item.age_y = dr["AGE_Y"] == DBNull.Value ? 0 : Convert.ToDouble(dr["AGE_Y"].ToString());
             //item.age_unit_code = dr["AGE_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["AGE_UNIT_CODE"].ToString().Trim(); removed until approved and described by client
             item.age_unit = dr["AGE_UNIT"] == DBNull.Value ? string.Empty : dr["AGE_UNIT"].ToString().Trim();
             //item.age_group_code = dr["AGE_GROUP_CODE"] == DBNull.Value ? string.Empty : dr["AGE_GROUP_CODE"].ToString().Trim(); removed until approved and described by client
@@ -355,7 +355,7 @@ namespace cvp
             item.weight = dr["WEIGHT"] == DBNull.Value ? 0 : Convert.ToDouble(dr["WEIGHT"].ToString());
             //item.weight_unit_code = dr["WEIGHT_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["WEIGHT_UNIT_CODE"].ToString().Trim(); removed until approved and described by client
             item.weight_unit = dr["WEIGHT_UNIT"] == DBNull.Value ? string.Empty : dr["WEIGHT_UNIT"].ToString().Trim();
-            item.height = dr["HEIGHT"] == DBNull.Value ? 0 : Convert.ToDouble(dr["HEIGHT"]);
+            item.height = dr["HEIGHT"] == DBNull.Value ? 0 : Convert.ToDouble(dr["HEIGHT"].ToString());
             //item.height_unit_code = dr["HEIGHT_UNIT_CODE"] == DBNull.Value ? string.Empty : dr["HEIGHT_UNIT_CODE"].ToString().Trim(); removed until approved and described by client
             item.height_unit = dr["HEIGHT_UNIT"] == DBNull.Value ? string.Empty : dr["HEIGHT_UNIT"].ToString().Trim();
             item.seriousness_code = dr["SERIOUSNESS_CODE"] == DBNull.Value ? string.Empty : dr["SERIOUSNESS_CODE"].ToString().Trim();
@@ -374,7 +374,7 @@ namespace cvp
             //item.aer_id = dr["AER_ID"] == DBNull.Value ? 0 : Convert.ToInt64(dr["AER_ID"]); removed until approved and described by client
             item.pt_name = dr["PT_NAME"] == DBNull.Value ? string.Empty : dr["PT_NAME"].ToString().Trim();
             item.soc_name = dr["SOC_NAME"] == DBNull.Value ? string.Empty : dr["SOC_NAME"].ToString().Trim();
-            item.duration = dr["DURATION"] == DBNull.Value ? 0 : Convert.ToDouble(dr["DURATION"]);
+            item.duration = dr["DURATION"] == DBNull.Value ? 0 : Convert.ToDouble(dr["DURATION"].ToString());
             item.duration_unit = dr["DURATION_UNIT"] == DBNull.Value ? string.Empty : dr["DURATION_UNIT"].ToString().Trim();
             item.drug_name = dr["DRUGNAME"] == DBNull.Value ? string.Empty : dr["DRUGNAME"].ToString().Trim();
 
@@ -1260,7 +1260,7 @@ namespace cvp
             var item = new Reaction();
             item.reaction_id = dr["REACTION_ID"] == DBNull.Value ? 0 : Convert.ToInt64(dr["REACTION_ID"]);
             item.report_id = dr["REPORT_ID"] == DBNull.Value ? 0 : Convert.ToInt32(dr["REPORT_ID"]);
-            item.duration = dr["DURATION"] == DBNull.Value ? 0 : Convert.ToDouble(dr["DURATION"]);
+            item.duration = dr["DURATION"] == DBNull.Value ? 0 : Convert.ToDouble(dr["DURATION"].ToString());
             item.duration_unit = dr["DURATION_UNIT"] == DBNull.Value ? string.Empty : dr["DURATION_UNIT"].ToString().Trim();
             item.pt_name = dr["PT_NAME"] == DBNull.Value ? string.Empty : dr["PT_NAME"].ToString().Trim();
             item.soc_name = dr["SOC_NAME"] == DBNull.Value ? string.Empty : dr["SOC_NAME"].ToString().Trim();
@@ -2072,13 +2072,13 @@ namespace cvp
             item.drug_name = dr["DRUGNAME"] == DBNull.Value ? string.Empty : dr["DRUGNAME"].ToString().Trim();
             item.drug_involv_name = dr["DRUGINVOLV"] == DBNull.Value ? string.Empty : dr["DRUGINVOLV"].ToString().Trim();
             item.route_admin_name = dr["ROUTEADMIN"] == DBNull.Value ? string.Empty : dr["ROUTEADMIN"].ToString().Trim();
-            item.unit_dose_qty = dr["UNIT_DOSE_QTY"] == DBNull.Value ? 0 : Convert.ToDouble(dr["UNIT_DOSE_QTY"]);
+            item.unit_dose_qty = dr["UNIT_DOSE_QTY"] == DBNull.Value ? 0 : Convert.ToDouble(dr["UNIT_DOSE_QTY"].ToString());
             //item.dose_unit = dr["DOSE_UNIT"] == DBNull.Value ? string.Empty : dr["DOSE_UNIT"].ToString().Trim(); removed until approved and described by client
             item.frequency = dr["FREQUENCY"] == DBNull.Value ? 0 : Convert.ToInt32(dr["FREQUENCY"]);
-            item.freq_time = dr["FREQ_TIME"] == DBNull.Value ? 0 : Convert.ToDouble(dr["FREQ_TIME"]);
+            item.freq_time = dr["FREQ_TIME"] == DBNull.Value ? 0 : Convert.ToDouble(dr["FREQ_TIME"].ToString());
             item.frequency_time = dr["FREQUENCY_TIME"] == DBNull.Value ? string.Empty : dr["FREQUENCY_TIME"].ToString().Trim();
             item.freq_time_unit = dr["FREQ_TIME_UNIT"] == DBNull.Value ? string.Empty : dr["FREQ_TIME_UNIT"].ToString().Trim();
-            item.therapy_duration = dr["THERAPY_DURATION"] == DBNull.Value ? 0 : Convert.ToDouble(dr["THERAPY_DURATION"]);
+            item.therapy_duration = dr["THERAPY_DURATION"] == DBNull.Value ? 0 : Convert.ToDouble(dr["THERAPY_DURATION"].ToString());
             item.therapy_duration_unit = dr["THERAPY_DURATION_UNIT"] == DBNull.Value ? string.Empty : dr["THERAPY_DURATION_UNIT"].ToString().Trim();
             item.dosage_form = dr["DOSAGEFORM"] == DBNull.Value ? string.Empty : dr["DOSAGEFORM"].ToString().Trim();
 
