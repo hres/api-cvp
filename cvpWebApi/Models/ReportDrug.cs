@@ -15,14 +15,14 @@ namespace cvpWebApi.Models
         //public String route_admin { get; set; } removed until approved and described by client
         public String route_admin_name { get; set; }
  
-        public int unit_dose_qty { get; set; }
+        public double unit_dose_qty { get; set; }
         //public String dose_unit { get; set; } removed until approved and described by client
         public String dose_unit_name { get; set; }
         public int frequency { get; set; }
-        public int freq_time { get; set; }
+        public double freq_time { get; set; }
         public String frequency_time { get; set; }
         public String freq_time_unit { get; set; }
-        public int therapy_duration { get; set; }
+        public double therapy_duration { get; set; }
         public String therapy_duration_unit { get; set; }
         public String dosage_form { get; set; }
         public String indication_name { get; set; }
