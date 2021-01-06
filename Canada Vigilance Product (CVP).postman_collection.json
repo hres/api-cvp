@@ -1,0 +1,5557 @@
+{
+	"info": {
+		"_postman_id": "666db341-269b-4218-9460-3f9e38d0ed88",
+		"name": "Canada Vigilance Product (CVP)",
+		"description": "The Canada Vigilance Adverse Reaction Online Database contains information about suspected adverse reactions (also known as side effects) to health products.\n\nContact Support:\n Email: open-ouvert@tbs-sct.gc.ca",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "xml",
+			"item": [
+				{
+					"name": "/drugproductingredient xml",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b546dc9-beab-417e-9c27-02c7dfceb972",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"   //var jsonData = xml2Json(pm.response.text());\r",
+									"   //console.log(jsonData);   \r",
+									"   //pm.expect(jsonData.DrugProductIngredient.active_ingredient_id).to.eql(\"2322\");\r",
+									"   var jsonData = xml2Json(responseBody);\r",
+									"   //console.log(jsonData);\r",
+									"   pm.expect(jsonData.DrugProductIngredient.drug_product_ingredient_id).to.eql(\"143902322\");\r",
+									"   pm.expect(jsonData.DrugProductIngredient.drug_product_id).to.eql(\"1439\");\r",
+									"   pm.expect(jsonData.DrugProductIngredient.drug_name).to.eql(\"DOPAMINE HCL 1.6MG/ML DEXTROSE 5% INJ USP\");\r",
+									"   pm.expect(jsonData.DrugProductIngredient.active_ingredient_id).to.eql(\"2322\");\r",
+									"   pm.expect(jsonData.DrugProductIngredient.active_ingredient_name).to.eql(\"dopamine hydrochloride\");\r",
+									"});\r",
+									"\r",
+									"//Testing header\r",
+									"\r",
+									"pm.test(\"Content-Type header\", () => {\r",
+									"  if(pm.globals.get(\"type\") === \"json\"){\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+									"  }\r",
+									"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+									"  }  \r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "aa196855-1993-4732-a903-913704ce3561",
+								"exec": [
+									"pm.globals.set(\"language\",\"en\");\r",
+									"pm.globals.set(\"type\",\"xml\");\r",
+									"pm.variables.set(\"path\",\"drugproductingredient\");\r",
+									"pm.variables.set(\"id\",143902322);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{API Key}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "user-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{path}}"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "{{language}}"
+								},
+								{
+									"key": "type",
+									"value": "{{type}}"
+								},
+								{
+									"key": "id",
+									"value": "{{id}}"
+								}
+							]
+						},
+						"description": "Returns all drug product ingredients."
+					},
+					"response": [
+						{
+							"name": "Returns a list of all drug product ingredients, or if an ID is provided, the list of all ingredients that correspond to the given active ingredient identifier",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) The identifier assigned to your account for accessing the API",
+										"key": "user-key",
+										"value": "<string>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/drugproductingredient?lang=en&type=json&id=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"drugproductingredient"
+									],
+									"query": [
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "type",
+											"value": "json"
+										},
+										{
+											"key": "id",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"drug_product_ingredient_id\": \"Duis eiusmod\",\n  \"drug_product_id\": \"ut exercitation\",\n  \"drug_name\": \"Excepteur est Lorem\",\n  \"active_ingredient_id\": \"cons\",\n  \"active_ingredient_name\": \"elit fugiat\"\n },\n {\n  \"drug_product_ingredient_id\": \"id ad\",\n  \"drug_product_id\": \"est ut et\",\n  \"drug_name\": \"ea non officia\",\n  \"active_ingredient_id\": \"enim in aute\",\n  \"active_ingredient_name\": \"ullamco\"\n }\n]"
+						},
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) The identifier assigned to your account for accessing the API",
+										"key": "user-key",
+										"value": "<string>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/drugproductingredient?lang=en&type=json&id=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"drugproductingredient"
+									],
+									"query": [
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "type",
+											"value": "json"
+										},
+										{
+											"key": "id",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Untitled Example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) The identifier assigned to your account for accessing the API",
+										"key": "user-key",
+										"value": "<string>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/drugproductingredient?lang=en&type=json&id=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"drugproductingredient"
+									],
+									"query": [
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "type",
+											"value": "json"
+										},
+										{
+											"key": "id",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "/drugproductingredient by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0923cc6e-3e44-4fe6-b59e-2c0748569b0f",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = {\r",
+							" \"required\": [\r",
+							"        \"drug_product_ingredient_id\",\r",
+							"        \"drug_product_id\",\r",
+							"        \"drug_name\",\r",
+							"        \"active_ingredient_id\",\r",
+							"        \"active_ingredient_name\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"drug_product_ingredient_id\": {\r",
+							"            \"$id\": \"#/properties/drug_product_ingredient_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"drug_product_id\": {\r",
+							"            \"$id\": \"#/properties/drug_product_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"drug_name\": {\r",
+							"            \"$id\": \"#/properties/drug_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"active_ingredient_id\": {\r",
+							"            \"$id\": \"#/properties/active_ingredient_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"active_ingredient_name\": {\r",
+							"            \"$id\": \"#/properties/active_ingredient_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							"pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData.drug_product_ingredient_id).to.eql(pm.variables.get(\"id\"));\r",
+							"     //pm.expect(jsonData.drug_product_id).to.eql(1439);\r",
+							"     //pm.expect(jsonData.drug_name).to.eql(\"DOPAMINE HCL 1.6MG/ML DEXTROSE 5% INJ USP\");\r",
+							"     //pm.expect(jsonData.active_ingredient_id).to.eql(2322);\r",
+							"     //pm.expect(jsonData.active_ingredient_name).to.eql(\"dopamine hydrochloride\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0e8e5ce1-14ad-4020-b4cd-c1d12c1061e9",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"drugproductingredient\");\r",
+							"pm.variables.set(\"id\",143902322);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				},
+				"description": "Returns all drug product ingredients."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproductingredient?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproductingredient"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all drug product ingredients, or if an ID is provided, the list of all ingredients that correspond to the given active ingredient identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproductingredient?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproductingredient"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"drug_product_ingredient_id\": \"Duis eiusmod\",\n  \"drug_product_id\": \"ut exercitation\",\n  \"drug_name\": \"Excepteur est Lorem\",\n  \"active_ingredient_id\": \"cons\",\n  \"active_ingredient_name\": \"elit fugiat\"\n },\n {\n  \"drug_product_ingredient_id\": \"id ad\",\n  \"drug_product_id\": \"est ut et\",\n  \"drug_name\": \"ea non officia\",\n  \"active_ingredient_id\": \"enim in aute\",\n  \"active_ingredient_name\": \"ullamco\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproductingredient?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproductingredient"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/drugproductingredient all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "265abbe4-240d-44fd-aa8d-6bcb2b56d69d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = {\r",
+							" \"items\": {\r",
+							"        \"required\": [\r",
+							"            \"drug_product_ingredient_id\",\r",
+							"            \"drug_product_id\",\r",
+							"            \"drug_name\",\r",
+							"            \"active_ingredient_id\",\r",
+							"            \"active_ingredient_name\"\r",
+							"        ],\r",
+							"        \"properties\": {\r",
+							"            \"drug_product_ingredient_id\": {\r",
+							"                \"$id\": \"#/items/properties/drug_product_ingredient_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"drug_product_id\": {\r",
+							"                \"$id\": \"#/items/properties/drug_product_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"drug_name\": {\r",
+							"                \"$id\": \"#/items/properties/drug_name\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"active_ingredient_id\": {\r",
+							"                \"$id\": \"#/items/properties/active_ingredient_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"active_ingredient_name\": {\r",
+							"                \"$id\": \"#/items/properties/active_ingredient_name\",\r",
+							"                \"type\": \"string\"\r",
+							"            }\r",
+							"        },\r",
+							"        \"$id\": \"#/items\",\r",
+							"        \"type\": \"object\"\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"array\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    }\r",
+							"\r",
+							"//Testing header\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a549ac08-2d02-4b70-98f2-82fb34f470e8",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"drugproductingredient\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						}
+					]
+				},
+				"description": "Returns all drug product ingredients."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproductingredient?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproductingredient"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all drug product ingredients, or if an ID is provided, the list of all ingredients that correspond to the given active ingredient identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproductingredient?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproductingredient"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"drug_product_ingredient_id\": \"Duis eiusmod\",\n  \"drug_product_id\": \"ut exercitation\",\n  \"drug_name\": \"Excepteur est Lorem\",\n  \"active_ingredient_id\": \"cons\",\n  \"active_ingredient_name\": \"elit fugiat\"\n },\n {\n  \"drug_product_ingredient_id\": \"id ad\",\n  \"drug_product_id\": \"est ut et\",\n  \"drug_name\": \"ea non officia\",\n  \"active_ingredient_id\": \"enim in aute\",\n  \"active_ingredient_name\": \"ullamco\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproductingredient?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproductingredient"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/drugproduct by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bb47bf3-0a0a-4824-befa-72a959c08887",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = {\r",
+							"         \"required\": [\r",
+							"        \"drug_product_id\",\r",
+							"        \"drug_name\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"drug_product_id\": {\r",
+							"            \"$id\": \"#/properties/drug_product_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"drug_name\": {\r",
+							"            \"$id\": \"#/properties/drug_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"//CVP Dev Data Test\r",
+							"pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData.drug_product_id).to.eql(pm.variables.get(\"id\"));\r",
+							"     //pm.expect(jsonData.drug_name).to.eql(\"BEMINAL W C FORTIS INJ\");\r",
+							"     \r",
+							"});\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c6a6f24f-26f0-4d68-be13-1cc550b8f545",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"drugproduct\");\r",
+							"pm.variables.set(\"id\",822);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				},
+				"description": "Returns all drug products."
+			},
+			"response": [
+				{
+					"name": "Returns a list of all drug products, or if an ID is provided, the list of all drug products that correspond to the given drug product identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproduct?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproduct"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"drug_product_id\": \"ipsum\",\n  \"drug_name\": \"laboris consectetur eiusmod nostrud\"\n },\n {\n  \"drug_product_id\": \"eu in esse eiusmod\",\n  \"drug_name\": \"do\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproduct?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproduct"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproduct?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproduct"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/drugproduct all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d1f2dc78-3b31-4035-939f-8180959b847a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = {\r",
+							"     \"items\": {\r",
+							"        \"required\": [\r",
+							"            \"drug_product_id\",\r",
+							"            \"drug_name\"\r",
+							"        ],\r",
+							"        \"properties\": {\r",
+							"            \"drug_product_id\": {\r",
+							"                \"$id\": \"#/items/properties/drug_product_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"drug_name\": {\r",
+							"                \"$id\": \"#/items/properties/drug_name\",\r",
+							"                \"type\": \"string\"\r",
+							"            }\r",
+							"        },\r",
+							"        \"$id\": \"#/items\",\r",
+							"        \"type\": \"object\"\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"array\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c92e0b8c-eed5-454d-ba62-14ecc773d0b5",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"drugproduct\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						}
+					]
+				},
+				"description": "Returns all drug products."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproduct?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproduct"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all drug products, or if an ID is provided, the list of all drug products that correspond to the given drug product identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproduct?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproduct"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"drug_product_id\": \"ipsum\",\n  \"drug_name\": \"laboris consectetur eiusmod nostrud\"\n },\n {\n  \"drug_product_id\": \"eu in esse eiusmod\",\n  \"drug_name\": \"do\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/drugproduct?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"drugproduct"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/gender by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a1b7ea8f-dfaa-4f4c-a2ba-e64000b611f3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = {\r",
+							"         \r",
+							"        \"required\": [\r",
+							"            \"gender_id\",\r",
+							"            \"gender_code\",\r",
+							"            \"gender_name\"\r",
+							"        ],\r",
+							"        \"properties\": {\r",
+							"            \"gender_id\": {\r",
+							"                \"$id\": \"#/items/properties/gender_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"gender_code\": {\r",
+							"                \"$id\": \"#/items/properties/gender_code\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"gender_name\": {\r",
+							"                \"$id\": \"#/items/properties/gender_name\",\r",
+							"                \"type\": \"string\"\r",
+							"            }\r",
+							"        },\r",
+							"      \r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData.gender_id).to.eql(pm.variables.get(\"id\"));\r",
+							"     pm.expect(jsonData.gender_code).to.eql(\"1\");\r",
+							"     pm.expect(jsonData.gender_name).to.eql(\"Male\");\r",
+							"     \r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e0cd9b5b-b2d8-4fa6-b4c4-816ffedb8397",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"gender\");\r",
+							"pm.variables.set(\"id\",41);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				},
+				"description": "Returns all genders."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gender?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gender"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all genderes, or if an ID is provided, the list of all genders that correspond to the given gender identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gender?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gender"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"gender_id\": \"cupidatat mollit\",\n  \"gender_code\": \"Ut\",\n  \"gender_name\": \"deserunt\"\n },\n {\n  \"gender_id\": \"voluptate quis\",\n  \"gender_code\": \"cillum nis\",\n  \"gender_name\": \"Excepteur amet tempor Ut nisi\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gender?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gender"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/gender all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e75b4518-6357-4428-b755-6fbb472b4ee3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = {\r",
+							"       \"items\": {\r",
+							"        \"required\": [\r",
+							"            \"gender_id\",\r",
+							"            \"gender_code\",\r",
+							"            \"gender_name\"\r",
+							"        ],\r",
+							"        \"properties\": {\r",
+							"            \"gender_id\": {\r",
+							"                \"$id\": \"#/items/properties/gender_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"gender_code\": {\r",
+							"                \"$id\": \"#/items/properties/gender_code\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"gender_name\": {\r",
+							"                \"$id\": \"#/items/properties/gender_name\",\r",
+							"                \"type\": \"string\"\r",
+							"            }\r",
+							"        },\r",
+							"        \"$id\": \"#/items\",\r",
+							"        \"type\": \"object\"\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"array\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "430b29c1-ea9f-48a4-9a05-cd57923c9da7",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"gender\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						}
+					]
+				},
+				"description": "Returns all genders."
+			},
+			"response": [
+				{
+					"name": "Returns a list of all genderes, or if an ID is provided, the list of all genders that correspond to the given gender identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gender?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gender"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"gender_id\": \"cupidatat mollit\",\n  \"gender_code\": \"Ut\",\n  \"gender_name\": \"deserunt\"\n },\n {\n  \"gender_id\": \"voluptate quis\",\n  \"gender_code\": \"cillum nis\",\n  \"gender_name\": \"Excepteur amet tempor Ut nisi\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gender?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gender"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/gender?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"gender"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/outcome by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "77d3b7f5-084d-4b00-8a71-06a54c802bb2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = {\r",
+							"          \"required\": [\r",
+							"        \"outcome_id\",\r",
+							"        \"outcome_code\",\r",
+							"        \"outcome_name\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"outcome_id\": {\r",
+							"            \"$id\": \"#/properties/outcome_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"outcome_code\": {\r",
+							"            \"$id\": \"#/properties/outcome_code\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"outcome_name\": {\r",
+							"            \"$id\": \"#/properties/outcome_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData.outcome_id).to.eql(pm.variables.get(\"id\"));\r",
+							"     pm.expect(jsonData.outcome_code).to.eql(\"06\");\r",
+							"     pm.expect(jsonData.outcome_name).to.eql(\"Unknown\");\r",
+							"     \r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c17d5699-f004-4cb4-8708-4d9984ff9b35",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"outcome\");\r",
+							"pm.variables.set(\"id\",1906);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				},
+				"description": "Returns all outcomes."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/outcome?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"outcome"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all outcomes, or if an ID is provided, the list of all outcomes that correspond to the given outcome identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/outcome?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"outcome"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"outcome_id\": \"ipsum cupidatat enim velit\",\n  \"outcome_code\": \"nulla non dolore\",\n  \"outcome_name\": \"id\"\n },\n {\n  \"outcome_id\": \"sint\",\n  \"outcome_code\": \"laboris do Lorem e\",\n  \"outcome_name\": \"eiusmod cons\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/outcome?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"outcome"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/outcome all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe96204b-3450-4aca-bd91-9a36395d1aa7",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = {\r",
+							" \"items\": {\r",
+							"        \"required\": [\r",
+							"            \"outcome_id\",\r",
+							"            \"outcome_code\",\r",
+							"            \"outcome_name\"\r",
+							"        ],\r",
+							"        \"properties\": {\r",
+							"            \"outcome_id\": {\r",
+							"                \"$id\": \"#/items/properties/outcome_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"outcome_code\": {\r",
+							"                \"$id\": \"#/items/properties/outcome_code\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"outcome_name\": {\r",
+							"                \"$id\": \"#/items/properties/outcome_name\",\r",
+							"                \"type\": \"string\"\r",
+							"            }\r",
+							"        },\r",
+							"        \"$id\": \"#/items\",\r",
+							"        \"type\": \"object\"\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"array\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c97eae7d-d672-48f8-af76-1f45d11ac6c3",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"outcome\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						}
+					]
+				},
+				"description": "Returns all outcomes."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/outcome?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"outcome"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/outcome?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"outcome"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all outcomes, or if an ID is provided, the list of all outcomes that correspond to the given outcome identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/outcome?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"outcome"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"outcome_id\": \"ipsum cupidatat enim velit\",\n  \"outcome_code\": \"nulla non dolore\",\n  \"outcome_name\": \"id\"\n },\n {\n  \"outcome_id\": \"sint\",\n  \"outcome_code\": \"laboris do Lorem e\",\n  \"outcome_name\": \"eiusmod cons\"\n }\n]"
+				}
+			]
+		},
+		{
+			"name": "/reaction by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2fff36d-e0d0-42f7-b2dc-778e315fe2a6",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = {\r",
+							"         \"required\": [\r",
+							"        \"reaction_id\",\r",
+							"        \"report_id\",\r",
+							"        \"duration\",\r",
+							"        \"duration_unit\",\r",
+							"        \"pt_name\",\r",
+							"        \"soc_name\",\r",
+							"        \"meddra_version\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"reaction_id\": {\r",
+							"            \"$id\": \"#/properties/reaction_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"report_id\": {\r",
+							"            \"$id\": \"#/properties/report_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"duration\": {\r",
+							"            \"$id\": \"#/properties/duration\",\r",
+							"            \"type\": \"number\"\r",
+							"        },\r",
+							"        \"duration_unit\": {\r",
+							"            \"$id\": \"#/properties/duration_unit\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"pt_name\": {\r",
+							"            \"$id\": \"#/properties/pt_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"soc_name\": {\r",
+							"            \"$id\": \"#/properties/soc_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"meddra_version\": {\r",
+							"            \"$id\": \"#/properties/meddra_version\",\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"//id=11880202\r",
+							"/*pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData.reaction_id).to.eql(11880202);\r",
+							"     pm.expect(jsonData.report_id).to.eql(118802);\r",
+							"     pm.expect(jsonData.duration).to.eql(3.5);\r",
+							"     pm.expect(jsonData.soc_name).to.eql(\"Gastrointestinal disorders\");\r",
+							"     //pm.expect(jsonData.meddra_version).to.eql(\"v.23.0\");\r",
+							"     \r",
+							"});*/\r",
+							"\r",
+							"pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData.reaction_id).to.eql(pm.variables.get(\"id\"));\r",
+							"     pm.expect(jsonData.report_id).to.eql(118802);\r",
+							"     pm.expect(jsonData.duration).to.eql(3.5);\r",
+							"     pm.expect(jsonData.soc_name).to.eql(\"Gastrointestinal disorders\");\r",
+							"     //pm.expect(jsonData.meddra_version).to.eql(\"v.23.0\");\r",
+							"     \r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8dc89c32-b52d-4231-acd5-18ebed4c65f3",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"reaction\");\r",
+							"pm.variables.set(\"id\",11880202);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				},
+				"description": "Returns all reactions."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reaction?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reaction"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all reactions, or if an ID is provided, the list of all reactions that correspond to the given reaction identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reaction?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reaction"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"reaction_id\": \"Ut o\",\n  \"report_id\": \"commodo ex\",\n  \"duration\": \"nostrud cupidatat ut dolor adipisicing\",\n  \"duration_unit\": \"et cupidatat in tempor consequat\",\n  \"pt_name\": \"adipisi\",\n  \"soc_name\": \"et cupidatat\",\n  \"meddra_version\": \"irure Lorem ad aliqua\"\n },\n {\n  \"reaction_id\": \"ex\",\n  \"report_id\": \"veniam sit\",\n  \"duration\": \"cillum consequat labore eiusmod\",\n  \"duration_unit\": \"nisi\",\n  \"pt_name\": \"velit cil\",\n  \"soc_name\": \"labore pariatur non minim\",\n  \"meddra_version\": \"in qui nulla incididunt Excepteur\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reaction?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reaction"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/reportdrug",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af090341-f302-4eb3-b792-9b533a4c13cf",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = {\r",
+							" \"items\": {\r",
+							"        \"required\": [\r",
+							"            \"report_drug_id\",\r",
+							"            \"report_id\",\r",
+							"            \"drug_product_id\",\r",
+							"            \"drug_name\",\r",
+							"            \"drug_involv_name\",\r",
+							"            \"route_admin_name\",\r",
+							"            \"unit_dose_qty\",\r",
+							"            \"dose_unit_name\",\r",
+							"            \"frequency\",\r",
+							"            \"freq_time\",\r",
+							"            \"frequency_time\",\r",
+							"            \"freq_time_unit\",\r",
+							"            \"therapy_duration\",\r",
+							"            \"therapy_duration_unit\",\r",
+							"            \"dosage_form\",\r",
+							"            \"indication_name\"\r",
+							"        ],\r",
+							"        \"properties\": {\r",
+							"            \"report_drug_id\": {\r",
+							"                \"$id\": \"#/items/properties/report_drug_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"report_id\": {\r",
+							"                \"$id\": \"#/items/properties/report_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"drug_product_id\": {\r",
+							"                \"$id\": \"#/items/properties/drug_product_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"drug_name\": {\r",
+							"                \"$id\": \"#/items/properties/drug_name\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"drug_involv_name\": {\r",
+							"                \"$id\": \"#/items/properties/drug_involv_name\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"route_admin_name\": {\r",
+							"                \"$id\": \"#/items/properties/route_admin_name\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"unit_dose_qty\": {\r",
+							"                \"$id\": \"#/items/properties/unit_dose_qty\",\r",
+							"                \"type\": \"number\"\r",
+							"            },\r",
+							"            \"dose_unit_name\": {\r",
+							"                \"$id\": \"#/items/properties/dose_unit_name\",\r",
+							"                \"type\": \"null\"\r",
+							"            },\r",
+							"            \"frequency\": {\r",
+							"                \"$id\": \"#/items/properties/frequency\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"freq_time\": {\r",
+							"                \"$id\": \"#/items/properties/freq_time\",\r",
+							"                \"type\": \"number\"\r",
+							"            },\r",
+							"            \"frequency_time\": {\r",
+							"                \"$id\": \"#/items/properties/frequency_time\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"freq_time_unit\": {\r",
+							"                \"$id\": \"#/items/properties/freq_time_unit\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"therapy_duration\": {\r",
+							"                \"$id\": \"#/items/properties/therapy_duration\",\r",
+							"                \"type\": \"number\"\r",
+							"            },\r",
+							"            \"therapy_duration_unit\": {\r",
+							"                \"$id\": \"#/items/properties/therapy_duration_unit\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"dosage_form\": {\r",
+							"                \"$id\": \"#/items/properties/dosage_form\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"indication_name\": {\r",
+							"                \"$id\": \"#/items/properties/indication_name\",\r",
+							"                \"type\": \"null\"\r",
+							"            }\r",
+							"        },\r",
+							"        \"$id\": \"#/items\",\r",
+							"        \"type\": \"object\"\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"array\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// id=90173746 (both Dev and Prod data)\r",
+							"/*pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();    \r",
+							"     pm.expect(jsonData[0].report_id).to.eql(179);    \r",
+							"     pm.expect(jsonData[0].drug_name).to.eql(\"HYOSCINE\");\r",
+							"     pm.expect(jsonData[0].unit_dose_qty).to.eql(0.66);\r",
+							"     pm.expect(jsonData[0].freq_time).to.eql(0.0);\r",
+							"     \r",
+							"});*/\r",
+							"\r",
+							"//Dev data\r",
+							"pm.test(\"verify json values\", function () {   \r",
+							"   const jsonData = pm.response.json();\r",
+							"   const reportDrug = jsonData.find\r",
+							"      (m => m.report_drug_id === 1972431);\r",
+							"   console.log(reportDrug);\r",
+							"   pm.expect(reportDrug.freq_time).to.eql(0.3);\r",
+							"   pm.expect(reportDrug.report_id).to.eql(pm.variables.get(\"id\")); \r",
+							"\r",
+							"})\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "36f78963-0a73-4a7c-a963-6a92da05a7cb",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"reportdrug\");\r",
+							"pm.variables.set(\"id\",901737346);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				},
+				"description": "Returns all drug reports."
+			},
+			"response": [
+				{
+					"name": "Returns a list of all drug reports, or if an ID is provided, the list of all drug reports that correspond to the given adverse reaction report number",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reportdrug?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reportdrug"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"report_drug_id\": \"quis magna\",\n  \"report_id\": \"id Lorem in ut\",\n  \"drug_product_id\": \"cillum\",\n  \"drug_name\": \"ullamco minim consequat in\",\n  \"drug_involv_name\": \"do in\",\n  \"route_admin_name\": \"fugiat dolore consequat labore\",\n  \"unit_dose_qty\": \"elit ea aute\",\n  \"dose_unit_name\": \"velit\",\n  \"frequency\": \"in magna exercita\",\n  \"freq_time\": \"volupta\",\n  \"frequency_time\": \"officia qui\",\n  \"freq_time_unit\": \"occaecat labore non Lorem\",\n  \"therapy_duration\": \"adipisicing\",\n  \"therapy_duration_unit\": \"id ut\",\n  \"dosage_form\": \"aliquip pariatur consequat exercitation\",\n  \"indication_name\": \"vol\"\n },\n {\n  \"report_drug_id\": \"aute ullamco mollit\",\n  \"report_id\": \"elit magna\",\n  \"drug_product_id\": \"velit in nisi irure\",\n  \"drug_name\": \"magna ex\",\n  \"drug_involv_name\": \"velit\",\n  \"route_admin_name\": \"tempor minim ut laborum dolore\",\n  \"unit_dose_qty\": \"dolor do\",\n  \"dose_unit_name\": \"ut adipisicing sun\",\n  \"frequency\": \"officia dolore ut laborum\",\n  \"freq_time\": \"voluptate tempor minim anim\",\n  \"frequency_time\": \"culpa irure est nostrud\",\n  \"freq_time_unit\": \"velit Lorem\",\n  \"therapy_duration\": \"Ut incididunt eu cupidatat in\",\n  \"therapy_duration_unit\": \"labore nulla sed elit\",\n  \"dosage_form\": \"proident est\",\n  \"indication_name\": \"aliquip dolor reprehend\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reportdrug?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reportdrug"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reportdrug?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reportdrug"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/reportlink",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f3b4ed3-cfab-4fa2-a33e-5a884a5af24a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = { \r",
+							" \"required\": [\r",
+							"        \"report_link_id\",\r",
+							"        \"report_id\",\r",
+							"        \"record_type\",\r",
+							"        \"report_link_no\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"report_link_id\": {\r",
+							"            \"$id\": \"#/properties/report_link_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"report_id\": {\r",
+							"            \"$id\": \"#/properties/report_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"record_type\": {\r",
+							"            \"$id\": \"#/properties/record_type\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"report_link_no\": {\r",
+							"            \"$id\": \"#/properties/report_link_no\",\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();    \r",
+							"     pm.expect(jsonData.report_link_id).to.eql(pm.variables.get(\"id\"));    \r",
+							"     pm.expect(jsonData.record_type).to.eql(\"Duplicate\");    \r",
+							"     \r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1244e9c1-8bd4-4b08-b47e-38b1140d4ca1",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"reportlink\");\r",
+							"pm.variables.set(\"id\",1518321);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				},
+				"description": "Returns all report links."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reportlink?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reportlink"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all report links, or if an ID is provided, the list of all reports links that correspond to the given report link identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reportlink?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reportlink"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"report_link_id\": \"ullamco\",\n  \"report_id\": \"in velit incididunt\",\n  \"record_type\": \"ea sed eu\",\n  \"report_link_no\": \"tempor\"\n },\n {\n  \"report_link_id\": \"aliqua dolor ad\",\n  \"report_id\": \"anim eu qui\",\n  \"record_type\": \"sit aute ex\",\n  \"report_link_no\": \"nisi ullamco Ut dolor et\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reportlink?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reportlink"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/reporttype by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c1b8e73c-dede-4e57-b3b0-9f7c82ebb728",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = { \r",
+							" \"required\": [\r",
+							"        \"report_type_id\",\r",
+							"        \"report_type_code\",\r",
+							"        \"report_type\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"report_type_id\": {\r",
+							"            \"$id\": \"#/properties/report_type_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"report_type_code\": {\r",
+							"            \"$id\": \"#/properties/report_type_code\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"report_type\": {\r",
+							"            \"$id\": \"#/properties/report_type\",\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();    \r",
+							"     pm.expect(jsonData.report_type_id).to.eql(pm.variables.get(\"id\"));    \r",
+							"     pm.expect(jsonData.report_type).to.eql(\"Published\");    \r",
+							"     \r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c85ac18d-2e1b-4369-bf60-e70e4186e739",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"reporttype\");\r",
+							"pm.variables.set(\"id\",70095007);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				},
+				"description": "Returns all report types."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reporttype?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reporttype"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all report types, or if an ID is provided, the list of all report types that correspond to the given report type identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reporttype?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reporttype"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"report_type_id\": \"ani\",\n  \"report_type_code\": \"et eiusmod\",\n  \"report_type\": \"officia et\"\n },\n {\n  \"report_type_id\": \"culpa Ut minim proident dolor\",\n  \"report_type_code\": \"ipsum officia commodo irure deserunt\",\n  \"report_type\": \"Ut minim\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reporttype?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reporttype"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/reporttype all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d27e9fb4-d77e-42b4-9701-4e5a97d8a700",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = { \r",
+							"    \"items\": {\r",
+							"        \"required\": [\r",
+							"            \"report_type_id\",\r",
+							"            \"report_type_code\",\r",
+							"            \"report_type\"\r",
+							"        ],\r",
+							"        \"properties\": {\r",
+							"            \"report_type_id\": {\r",
+							"                \"$id\": \"#/items/properties/report_type_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"report_type_code\": {\r",
+							"                \"$id\": \"#/items/properties/report_type_code\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"report_type\": {\r",
+							"                \"$id\": \"#/items/properties/report_type\",\r",
+							"                \"type\": \"string\"\r",
+							"            }\r",
+							"        },\r",
+							"        \"$id\": \"#/items\",\r",
+							"        \"type\": \"object\"\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"array\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "38a175b2-cb57-45fd-80cd-f5264205832a",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"reporttype\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						}
+					]
+				},
+				"description": "Returns all report types."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reporttype?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reporttype"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reporttype?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reporttype"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all report types, or if an ID is provided, the list of all report types that correspond to the given report type identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reporttype?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reporttype"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"report_type_id\": \"ani\",\n  \"report_type_code\": \"et eiusmod\",\n  \"report_type\": \"officia et\"\n },\n {\n  \"report_type_id\": \"culpa Ut minim proident dolor\",\n  \"report_type_code\": \"ipsum officia commodo irure deserunt\",\n  \"report_type\": \"Ut minim\"\n }\n]"
+				}
+			]
+		},
+		{
+			"name": "/report",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a09422de-8fe0-418c-9846-8f4890ab4e0b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = { \r",
+							"       \"required\": [\r",
+							"        \"report_id\",\r",
+							"        \"report_no\",\r",
+							"        \"version_no\",\r",
+							"        \"date_received\",\r",
+							"        \"date_int_received\",\r",
+							"        \"mah_no\",\r",
+							"        \"report_type_code\",\r",
+							"        \"report_type_name\",\r",
+							"        \"gender_code\",\r",
+							"        \"gender_name\",\r",
+							"        \"age\",\r",
+							"        \"age_y\",\r",
+							"        \"age_unit\",\r",
+							"        \"outcome_code\",\r",
+							"        \"outcome\",\r",
+							"        \"weight\",\r",
+							"        \"weight_unit\",\r",
+							"        \"height\",\r",
+							"        \"height_unit\",\r",
+							"        \"seriousness_code\",\r",
+							"        \"seriousness\",\r",
+							"        \"death\",\r",
+							"        \"disability\",\r",
+							"        \"congenital_anomaly\",\r",
+							"        \"life_threatening\",\r",
+							"        \"hosp_required\",\r",
+							"        \"other_medically_imp_cond\",\r",
+							"        \"reporter_type_code\",\r",
+							"        \"reporter_type\",\r",
+							"        \"source_code\",\r",
+							"        \"source_name\",\r",
+							"        \"pt_name\",\r",
+							"        \"soc_name\",\r",
+							"        \"duration\",\r",
+							"        \"duration_unit\",\r",
+							"        \"drug_name\",\r",
+							"        \"cpd_flag\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"report_id\": {\r",
+							"            \"$id\": \"#/properties/report_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"report_no\": {\r",
+							"            \"$id\": \"#/properties/report_no\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"version_no\": {\r",
+							"            \"$id\": \"#/properties/version_no\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"date_received\": {\r",
+							"            \"$id\": \"#/properties/date_received\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"date_int_received\": {\r",
+							"            \"$id\": \"#/properties/date_int_received\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"mah_no\": {\r",
+							"            \"$id\": \"#/properties/mah_no\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"report_type_code\": {\r",
+							"            \"$id\": \"#/properties/report_type_code\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"report_type_name\": {\r",
+							"            \"$id\": \"#/properties/report_type_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"gender_code\": {\r",
+							"            \"$id\": \"#/properties/gender_code\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"gender_name\": {\r",
+							"            \"$id\": \"#/properties/gender_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"age\": {\r",
+							"            \"$id\": \"#/properties/age\",\r",
+							"            \"type\": \"number\"\r",
+							"        },\r",
+							"        \"age_y\": {\r",
+							"            \"$id\": \"#/properties/age_y\",\r",
+							"            \"type\": \"number\"\r",
+							"        },\r",
+							"        \"age_unit\": {\r",
+							"            \"$id\": \"#/properties/age_unit\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"outcome_code\": {\r",
+							"            \"$id\": \"#/properties/outcome_code\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"outcome\": {\r",
+							"            \"$id\": \"#/properties/outcome\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"weight\": {\r",
+							"            \"$id\": \"#/properties/weight\",\r",
+							"            \"type\": \"number\"\r",
+							"        },\r",
+							"        \"weight_unit\": {\r",
+							"            \"$id\": \"#/properties/weight_unit\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"height\": {\r",
+							"            \"$id\": \"#/properties/height\",\r",
+							"            \"type\": \"number\"\r",
+							"        },\r",
+							"        \"height_unit\": {\r",
+							"            \"$id\": \"#/properties/height_unit\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"seriousness_code\": {\r",
+							"            \"$id\": \"#/properties/seriousness_code\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"seriousness\": {\r",
+							"            \"$id\": \"#/properties/seriousness\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"death\": {\r",
+							"            \"$id\": \"#/properties/death\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"disability\": {\r",
+							"            \"$id\": \"#/properties/disability\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"congenital_anomaly\": {\r",
+							"            \"$id\": \"#/properties/congenital_anomaly\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"life_threatening\": {\r",
+							"            \"$id\": \"#/properties/life_threatening\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"hosp_required\": {\r",
+							"            \"$id\": \"#/properties/hosp_required\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"other_medically_imp_cond\": {\r",
+							"            \"$id\": \"#/properties/other_medically_imp_cond\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"reporter_type_code\": {\r",
+							"            \"$id\": \"#/properties/reporter_type_code\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"reporter_type\": {\r",
+							"            \"$id\": \"#/properties/reporter_type\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"source_code\": {\r",
+							"            \"$id\": \"#/properties/source_code\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"source_name\": {\r",
+							"            \"$id\": \"#/properties/source_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"pt_name\": {\r",
+							"            \"$id\": \"#/properties/pt_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"soc_name\": {\r",
+							"            \"$id\": \"#/properties/soc_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"duration\": {\r",
+							"            \"$id\": \"#/properties/duration\",\r",
+							"            \"type\": \"number\"\r",
+							"        },\r",
+							"        \"duration_unit\": {\r",
+							"            \"$id\": \"#/properties/duration_unit\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"drug_name\": {\r",
+							"            \"$id\": \"#/properties/drug_name\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"cpd_flag\": {\r",
+							"            \"$id\": \"#/properties/cpd_flag\",\r",
+							"            \"type\": \"integer\"\r",
+							"        }\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\" \r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();    \r",
+							"     pm.expect(jsonData.report_no).to.eql(pm.variables.get(\"id\"));   \r",
+							"     pm.expect(jsonData.age_y).to.eql(0.005);\r",
+							"     pm.expect(jsonData.weight).to.eql(31);  \r",
+							"     pm.expect(jsonData.height).to.eql(50);       \r",
+							"     pm.expect(jsonData.soc_name).to.eql(\"Skin and subcutaneous tissue disorders\");  \r",
+							"     pm.expect(jsonData.drug_name).to.eql(\"PHISOHEX\");  \r",
+							"     \r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5e8c734f-44dc-4bbd-a77a-430fb13b7100",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"report\");\r",
+							"pm.variables.set(\"id\",\"000000354\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				},
+				"description": "Returns all reports."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/report?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all reports, or if an ID is provided, the list of all reports that correspond to the given adverse reaction report number",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/report?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"report_id\": \"officia culpa ex sunt\",\n  \"report_no\": \"Lo\",\n  \"version_no\": \"Ut voluptate do\",\n  \"date_received\": \"sed anim irure\",\n  \"date_int_received\": \"aliqua dolor\",\n  \"mah_no\": \"laboris\",\n  \"report_type_code\": \"ullamco est Lorem fugiat\",\n  \"report_type_name\": \"proi\",\n  \"gender_code\": \"et tempor incididunt dolore aute\",\n  \"gender_name\": \"sunt fugiat reprehenderit amet\",\n  \"age\": \"eu nostrud ex pariatur\",\n  \"age_y\": \"adipisicing magna ut dolore proident\",\n  \"age_unit\": \"esse dolore consequat fugiat\",\n  \"outcome_code\": \"velit in commodo reprehenderit\",\n  \"outcome\": \"nulla ad dolor aute exercitation\",\n  \"weight\": \"cillum cupidatat proident\",\n  \"weight_unit\": \"aute\",\n  \"height\": \"ex nulla\",\n  \"height_unit\": \"dolor\",\n  \"seriousness_code\": \"sunt voluptate incididunt\",\n  \"seriousness\": \"ea voluptate non officia\",\n  \"death\": \"proident Lorem ad volupta\",\n  \"disability\": \"ut in amet\",\n  \"congenital_anomaly\": \"labore\",\n  \"life_threatening\": \"proident minim\",\n  \"hosp_required\": \"cillum\",\n  \"other_medically_imp_cond\": \"ipsum\",\n  \"reporter_type_code\": \"est adipisicing commod\",\n  \"reporter_type\": \"cil\",\n  \"source_code\": \"exercitat\",\n  \"source_name\": \"nisi aute commodo ut\",\n  \"pt_name\": \"qui in\",\n  \"soc_name\": \"in dolore esse anim\",\n  \"duration\": \"sint elit incididunt nulla\",\n  \"duration_unit\": \"in pro\",\n  \"drug_name\": \"nisi enim pariatur reprehenderit proident\"\n },\n {\n  \"report_id\": \"ipsum culpa irure\",\n  \"report_no\": \"sunt incididunt quis deserunt consequat\",\n  \"version_no\": \"incididunt Excepteur in in\",\n  \"date_received\": \"incididunt quis eu\",\n  \"date_int_received\": \"sed\",\n  \"mah_no\": \"ad nostrud nulla sit occaecat\",\n  \"report_type_code\": \"est elit Lorem\",\n  \"report_type_name\": \"ut esse quis labore\",\n  \"gender_code\": \"sunt\",\n  \"gender_name\": \"labore \",\n  \"age\": \"ex aliqua do\",\n  \"age_y\": \"dolor magna sed cillum\",\n  \"age_unit\": \"consequat voluptate fugiat\",\n  \"outcome_code\": \"ea ipsum et\",\n  \"outcome\": \"laborum elit nulla\",\n  \"weight\": \"dolore consectetur\",\n  \"weight_unit\": \"in si\",\n  \"height\": \"adipisicing eiusmod\",\n  \"height_unit\": \"enim sit velit occaecat Lorem\",\n  \"seriousness_code\": \"cillum ut in \",\n  \"seriousness\": \"qui ullamco elit\",\n  \"death\": \"laboris amet nulla est sunt\",\n  \"disability\": \"Duis\",\n  \"congenital_anomaly\": \"tempor\",\n  \"life_threatening\": \"dolor dolor amet eiusmod\",\n  \"hosp_required\": \"amet et labore quis officia\",\n  \"other_medically_imp_cond\": \"ut commodo minim dolor\",\n  \"reporter_type_code\": \"proident enim minim\",\n  \"reporter_type\": \"veniam sunt quis nostrud\",\n  \"source_code\": \"fugiat ullamco consectetur Ut\",\n  \"source_name\": \"consectetur in\",\n  \"pt_name\": \"fugiat aliqua Lorem ut\",\n  \"soc_name\": \"est adipisicing\",\n  \"duration\": \"exercitation sit tempor occaecat\",\n  \"duration_unit\": \"veniam reprehenderit consectetur\",\n  \"drug_name\": \"minim fugiat\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/report?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"report"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/seriousness by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d37c6a8b-b1ce-4986-a5ca-562d9d66a121",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = { \r",
+							"      \"required\": [\r",
+							"        \"seriousness_id\",\r",
+							"        \"seriousness_code\",\r",
+							"        \"seriousness\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"seriousness_id\": {\r",
+							"            \"$id\": \"#/properties/seriousness_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"seriousness_code\": {\r",
+							"            \"$id\": \"#/properties/seriousness_code\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"seriousness\": {\r",
+							"            \"$id\": \"#/properties/seriousness\",\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"//Dev data\r",
+							"pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();    \r",
+							"     pm.expect(jsonData.seriousness_id).to.eql(pm.variables.get(\"id\"));   \r",
+							"     pm.expect(jsonData.seriousness).to.eql(\"Serious\");     \r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "168ad540-15a8-4d23-8c26-037308aac768",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"seriousness\");\r",
+							"pm.variables.set(\"id\",2001);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				},
+				"description": "Returns all seriousness presentation texts."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/seriousness?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"seriousness"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all seriousness presentation texts, or if an ID is provided, the list of all texts that correspond to the given serious report identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/seriousness?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"seriousness"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"seriousness_id\": \"aliquip in\",\n  \"seriousness_code\": \"sunt esse dolor\",\n  \"seriousness\": \"velit in sunt\"\n },\n {\n  \"seriousness_id\": \"nisi\",\n  \"seriousness_code\": \"fugiat laborum quis in\",\n  \"seriousness\": \"culpa\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/seriousness?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"seriousness"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/seriousness all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1427ea2d-fe16-4377-af53-39eb90dbf824",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = { \r",
+							"\"items\": {\r",
+							"        \"required\": [\r",
+							"            \"seriousness_id\",\r",
+							"            \"seriousness_code\",\r",
+							"            \"seriousness\"\r",
+							"        ],\r",
+							"        \"properties\": {\r",
+							"            \"seriousness_id\": {\r",
+							"                \"$id\": \"#/items/properties/seriousness_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"seriousness_code\": {\r",
+							"                \"$id\": \"#/items/properties/seriousness_code\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"seriousness\": {\r",
+							"                \"$id\": \"#/items/properties/seriousness\",\r",
+							"                \"type\": \"string\"\r",
+							"            }\r",
+							"        },\r",
+							"        \"$id\": \"#/items\",\r",
+							"        \"type\": \"object\"\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"array\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8478f513-bf38-4bdd-a93c-629e45567810",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"seriousness\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						}
+					]
+				},
+				"description": "Returns all seriousness presentation texts."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/seriousness?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"seriousness"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all seriousness presentation texts, or if an ID is provided, the list of all texts that correspond to the given serious report identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/seriousness?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"seriousness"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"seriousness_id\": \"aliquip in\",\n  \"seriousness_code\": \"sunt esse dolor\",\n  \"seriousness\": \"velit in sunt\"\n },\n {\n  \"seriousness_id\": \"nisi\",\n  \"seriousness_code\": \"fugiat laborum quis in\",\n  \"seriousness\": \"culpa\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/seriousness?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"seriousness"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/source by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f51c677-763b-4040-b43f-b00361e4697e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = { \r",
+							" \"required\": [\r",
+							"        \"source_id\",\r",
+							"        \"source_code\",\r",
+							"        \"source\"\r",
+							"    ],\r",
+							"    \"properties\": {\r",
+							"        \"source_id\": {\r",
+							"            \"$id\": \"#/properties/source_id\",\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"source_code\": {\r",
+							"            \"$id\": \"#/properties/source_code\",\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"source\": {\r",
+							"            \"$id\": \"#/properties/source\",\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"object\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"//Dev data\r",
+							"pm.test(\"verify json values\", function () {\r",
+							"    var jsonData = pm.response.json();    \r",
+							"     pm.expect(jsonData.source_id).to.eql(pm.variables.get(\"id\"));   \r",
+							"     pm.expect(jsonData.source).to.eql(\"Community\");     \r",
+							"});\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c843e998-7c6c-47d2-be6f-15b5cb0e2367",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"source\");\r",
+							"pm.variables.set(\"id\",1001);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}&id={{id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						},
+						{
+							"key": "id",
+							"value": "{{id}}"
+						}
+					]
+				},
+				"description": "Returns all sources."
+			},
+			"response": [
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/source?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"source"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Returns a list of all sources, or if an ID is provided, the list of all sources that correspond to the given source identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/source?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"source"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"source_id\": \"reprehenderit\",\n  \"source_code\": \"ad quis dolor\",\n  \"source\": \"magna eu non et Excepteur\"\n },\n {\n  \"source_id\": \"ut\",\n  \"source_code\": \"ipsum Duis dolore exercitation cillum\",\n  \"source\": \"do laboris dolor consectetur\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/source?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"source"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/source all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "72f59144-2ffb-4780-97c3-ca0d33315c0b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = { \r",
+							"    \"items\": {\r",
+							"        \"required\": [\r",
+							"            \"source_id\",\r",
+							"            \"source_code\",\r",
+							"            \"source\"\r",
+							"        ],\r",
+							"        \"properties\": {\r",
+							"            \"source_id\": {\r",
+							"                \"$id\": \"#/items/properties/source_id\",\r",
+							"                \"type\": \"integer\"\r",
+							"            },\r",
+							"            \"source_code\": {\r",
+							"                \"$id\": \"#/items/properties/source_code\",\r",
+							"                \"type\": \"string\"\r",
+							"            },\r",
+							"            \"source\": {\r",
+							"                \"$id\": \"#/items/properties/source\",\r",
+							"                \"type\": \"string\"\r",
+							"            }\r",
+							"        },\r",
+							"        \"$id\": \"#/items\",\r",
+							"        \"type\": \"object\"\r",
+							"    },\r",
+							"    \"$id\": \"http://example.org/root.json#\",\r",
+							"    \"type\": \"array\",\r",
+							"    \"definitions\": {},\r",
+							"    \"$schema\": \"http://json-schema.org/draft-07/schema#\"\r",
+							"    };\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    var data = pm.response.json();\r",
+							"    pm.expect(ajv.validate(schema, data)).to.be.true;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//Testing header\r",
+							"\r",
+							"pm.test(\"Content-Type header\", () => {\r",
+							"  if(pm.globals.get(\"type\") === \"json\"){\r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+							"  }\r",
+							"  if(pm.globals.get(\"type\") === \"xml\"){  \r",
+							"  pm.expect(pm.response.headers.get('Content-Type')).to.include('application/xml');\r",
+							"  }  \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "90ff936b-6e2e-4cc3-b55d-d6506201852a",
+						"exec": [
+							"pm.globals.set(\"language\",\"en\");\r",
+							"pm.globals.set(\"type\",\"json\");\r",
+							"pm.variables.set(\"path\",\"source\");\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{API Key}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "user-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"description": "(Required) The identifier assigned to your account for accessing the API",
+						"key": "user-key",
+						"value": "<string>"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/{{path}}?lang={{language}}&type={{type}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"{{path}}"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "{{language}}"
+						},
+						{
+							"key": "type",
+							"value": "{{type}}"
+						}
+					]
+				},
+				"description": "Returns all sources."
+			},
+			"response": [
+				{
+					"name": "Returns a list of all sources, or if an ID is provided, the list of all sources that correspond to the given source identifier",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/source?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"source"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "[\n {\n  \"source_id\": \"reprehenderit\",\n  \"source_code\": \"ad quis dolor\",\n  \"source\": \"magna eu non et Excepteur\"\n },\n {\n  \"source_id\": \"ut\",\n  \"source_code\": \"ipsum Duis dolore exercitation cillum\",\n  \"source\": \"do laboris dolor consectetur\"\n }\n]"
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/source?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"source"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Untitled Example",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "(Required) The identifier assigned to your account for accessing the API",
+								"key": "user-key",
+								"value": "<string>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/source?lang=en&type=json&id=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"source"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "en"
+								},
+								{
+									"key": "type",
+									"value": "json"
+								},
+								{
+									"key": "id",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"id": "baseUrl",
+			"key": "baseUrl",
+			"value": "https://cvp-hc-sc-apicast-production.api.canada.ca/v1/",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
